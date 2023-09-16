@@ -30,6 +30,13 @@
                     <div class="col-lg-4 col-sm-6">
                         <!-- Form -->
                         <div class="mb-4">
+                            <label for="name">Name</label>
+                            <input type="name" class="form-control" id="name" aria-describedby="nameHelp">
+                            <small id="nameHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
+                        </div>
+                        <!-- End of Form -->
+                        <!-- Form -->
+                        <div class="mb-4">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
