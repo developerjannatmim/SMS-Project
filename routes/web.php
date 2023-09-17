@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 use App\Http\Livewire\BootstrapTables;
 use App\Http\Livewire\Components\Buttons;
 use App\Http\Livewire\Components\Forms;
@@ -68,4 +70,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms', Forms::class)->name('forms');
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
+
+    //Student users route
+    Route::get('admin/student', [AdminController::class, 'student_list'])->name('admin.student');
+    Route::get('admin/student/create', [AdminController::class, 'student_create'])->name('admin.student.create');
+    Route::post('admin/student', [AdminController::class, 'student_store'])->name('admin.student.store');
+    Route::get('admin/student/edit/{id}', [AdminController::class,'student_edit'])->name('admin.student.edit');
+    Route::post('admin/student/{id}', [AdminController::class,'student_update'])->name('admin.student.update');
+    Route::get('admin/student/delete/{id}', [AdminController::class,'student_delete'])->name('admin.student.delete');
+    
+    //School users route
+    // Route::get('/school', [AdminController::class, 'school_list'])->name('admin.school.school_list');
+    // Route::get('/add-school', [AdminController::class, 'school_create']);
+    // Route::post('/add-school', [AdminController::class, 'school_store'])->name('admin.school.store');
 });
+
+

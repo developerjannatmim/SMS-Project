@@ -28,14 +28,14 @@
                           <div class="col-md-6 mb-3">
                               <div>
                                   <label for="name">Name</label>
-                                  <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+                                  <input class="form-control @error('name') is-valid @enderror" id="name" type="text"
                                       placeholder="Enter your name" required>
                               </div>
                           </div>
                           <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input  class="form-control @error('email') is-valid @enderror" name="email" type="email"
+                                <input  class="form-control @error('email') is-valid @enderror" id="text" type="email"
                                     placeholder="name@gmail.com" required>
                             </div>
                         </div>
@@ -44,19 +44,15 @@
                         <div class="col-md-6 mb-3">
                             <div>
                                 <label for="password">Password</label>
-                                <input class="form-control @error('password') is-valid @enderror" name="password" type="password"
+                                <input class="form-control @error('password') is-valid @enderror" id="password" type="password"
                                     placeholder="Enter your password" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-group">
-                              <label for="class_id">Class</label>
-                              <select name="class_id" class="form-select eChoice-multiple-with-remove" required onchange="classWiseSection(this.value)">
-                                <option value="">Select a class</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                @endforeach
-                              </section>
+                              <label for="class_id">Class ID</label>
+                              <input  class="form-control @error('class_id') is-valid @enderror" id="class_id" type="text"
+                                  placeholder="name@gmail.com" required>
                           </div>
                       </div>
                     </div>
@@ -71,13 +67,13 @@
                                               clip-rule="evenodd"></path>
                                       </svg></span>
                                   <input data-datepicker=""
-                                      class="form-control datepicker-input" name="birthday"
+                                      class="form-control datepicker-input" id="birthday" type="text"
                                       placeholder="yyyy/mm/dd" required>
                               </div>
                           </div>
                           <div class="col-md-6 mb-3">
                               <label for="gender">Gender</label>
-                              <select class="form-select mb-0 @error('gender') is-valid @enderror" name="gender"
+                              <select class="form-select mb-0 @error('gender') is-valid @enderror" id="gender"
                                   aria-label="Gender select example">
                                   <option selected>Gender</option>
                                   <option value="Female">Female</option>
@@ -90,14 +86,14 @@
                         <div class="col-sm-6 mb-3">
                           <div class="form-group">
                               <label for="address">Address</label>
-                              <input  class="form-control @error('address') is-valid @enderror" name="address" type="text"
+                              <input  class="form-control @error('address') is-valid @enderror" id="address" type="text"
                                   placeholder="Enter your home address">
                           </div>
                       </div>
                           <div class="col-md-6 mb-3">
                               <div class="form-group">
                                   <label for="phone">Phone</label>
-                                  <input class="form-control @error('phone') is-valid @enderror" name="phone" type="number"
+                                  <input class="form-control @error('phone') is-valid @enderror" id="phone" type="number"
                                       placeholder="+12-345 678 910">
                               </div>
                           </div>
@@ -109,7 +105,7 @@
                       </div>
                       <div class="col-md-6 mb-3">
                         <label for="blood_group" class="form-label">Blood group</label>
-                        <select name="blood_group" class="form-select eForm-select eChoice-multiple-with-remove">
+                        <select name="blood_group" id="blood_group" class="form-select eForm-select eChoice-multiple-with-remove">
                             <option selected>Select a blood group</option>
                             <option value="a+">A+</option>
                             <option value="a-">A-</option>

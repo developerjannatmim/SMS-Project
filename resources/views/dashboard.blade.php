@@ -3,7 +3,7 @@
 <div class="p-2 mb-0 mt-2">
     <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
-            <p class="mb-0 text-center text-lg-start"><span class="">Dashboard</span></p>
+            <p class="mb-0 text-center text-lg-start"><b class="">Dashboard</b></p>
             <p class="mb-0 text-center text-lg-start"><small class="">Home - Dashboard</small></p>
         </div>
     </div>

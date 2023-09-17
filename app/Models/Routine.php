@@ -15,14 +15,14 @@ class Routine extends Model
     * @var array
     */
     protected $fillable = [
-        'class_id', 
-        'subject_id', 
-        'starting_hour', 
-        'ending_hour', 
-        'starting_minute', 
-        'ending_minute', 
-        'day', 
-        'teacher_id', 
+        'class_id',
+        'subject_id',
+        'starting_hour',
+        'ending_hour',
+        'starting_minute',
+        'ending_minute',
+        'day',
+        'teacher_id',
         'school_id'
     ];
 }
