@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('school_info');
             $table->integer('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

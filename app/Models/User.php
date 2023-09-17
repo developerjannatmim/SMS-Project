@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id', 
+        'parent_id', 
+        'school_id', 
+        'department_id'
     ]; 
     protected $guarded=[];
 

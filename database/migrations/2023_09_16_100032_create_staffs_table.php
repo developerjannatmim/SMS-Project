@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('blood_group');
             $table->string('address');
             $table->string('photo');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
