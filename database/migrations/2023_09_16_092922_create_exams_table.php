@@ -21,9 +21,12 @@ return new class extends Migration
             $table->string('ending_time');
             $table->float('total_marks');
             $table->string('status');
-            $table->integer('class_id');
-            $table->integer('subject_id');
-            $table->integer('school_id');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });
     }

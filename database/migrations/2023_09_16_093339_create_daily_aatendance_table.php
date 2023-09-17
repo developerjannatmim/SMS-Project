@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('daily_aatendance', function (Blueprint $table) {
             $table->id();
-            $table->integer('class_id');
-            $table->integer('student_id');
-            $table->integer('school_id');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->integer('status');
             $table->timestamps();
         });

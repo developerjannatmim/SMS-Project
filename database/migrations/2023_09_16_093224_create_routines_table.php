@@ -15,15 +15,18 @@ return new class extends Migration
     {
         Schema::create('routines', function (Blueprint $table) {
             $table->id();
-            $table->integer('class_id');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes');
             $table->integer('subject_id');
             $table->integer('starting_hour');
             $table->integer('ending_hour');
             $table->integer('starting_minute');
             $table->integer('ending_minute');
             $table->string('day');
-            $table->integer('teacher_id');
-            $table->integer('school_id');
+            $table->unsignedBigInteger('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });
     }

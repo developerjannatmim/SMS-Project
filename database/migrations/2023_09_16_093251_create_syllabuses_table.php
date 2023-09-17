@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('syllabuses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('class_id');
-            $table->integer('subject_id');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->string('file');
-            $table->integer('school_id');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });
     }

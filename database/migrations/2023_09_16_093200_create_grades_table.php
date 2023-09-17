@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('grade_point');
             $table->integer('mark_from');
             $table->integer('mark_upto');
-            $table->integer('school_id');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });
     }
