@@ -77,6 +77,10 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('admin/student', [AdminController::class, 'student_list'])->name('admin.student');
+Route::get('admin/student/create', [AdminController::class, 'student_create'])->name('admin.student.create');
+Route::post('admin/student', [AdminController::class, 'student_store'])->name('admin.student.store');
+
 //Admin routes start here
 Route::controller(AdminController::class)->middleware(['admin','auth'])->group(function () {
 
@@ -86,13 +90,13 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/admin', 'adminList')->name('admin.admin');
 
     //Student users route
-    Route::get('admin/student', 'student_list')->name('admin.student');
-    Route::get('admin/student/create', 'student_create')->name('admin.student.create');
-    Route::post('admin/student', 'student_store')->name('admin.student.store');
+    // Route::get('admin/student', 'student_list')->name('admin.student');
+    // Route::get('admin/student/create', 'student_create')->name('admin.student.create');
+    // Route::post('admin/student', 'student_store')->name('admin.student.store');
     Route::get('admin/student/edit/{id}', 'student_edit')->name('admin.student.edit');
     Route::post('admin/student/{id}', 'student_update')->name('admin.student.update');
     Route::get('admin/student/delete/{id}', 'student_delete')->name('admin.student.delete');
-    
+
     //Parent users route
     // Route::get('admin/parent', 'parent_list')->name('admin.parent');
     Route::post('admin/parent/create',  'parent_create')->name('admin.parent.create');
@@ -138,7 +142,7 @@ Route::controller(TeacherController::class)->middleware(['teacher','auth'])->gro
     Route::get('teacher/marks', 'marks')->name('teacher.marks');
 
     //Grade routes
-    Route::get('teacher/grade', 'grade')->name('teacher.grade');
+    Route::get('teacher/grade', 'grade')->name('teacher.grade_list');
 
     //Routine routes
     Route::get('teacher/routine', 'routine')->name('teacher.routine');
@@ -148,7 +152,7 @@ Route::controller(TeacherController::class)->middleware(['teacher','auth'])->gro
 
 
     //Syllabus routes
-    Route::get('teacher/syllabus', 'list_of_syllabus')->name('teacher.list_of_syllabus');
+    Route::get('teacher/syllabus', 'list_of_syllabus')->name('teacher.syllabus_list');
 
     //Profile
     Route::get('teacher/profile', 'profile')->name('teacher.profile');
@@ -187,7 +191,7 @@ Route::controller(ParentController::class)->middleware(['parent','auth'])->group
     Route::get('parent/profile', 'profile')->name('parent.profile');
     Route::post('parent/profile/update', 'profile_update')->name('parent.profile.update');
     Route::any('parent/password/{action_type}', 'password')->name('parent.password');
-    
+
 });
 //Parent routes end here
 
@@ -206,7 +210,7 @@ Route::controller(StudentController::class)->middleware(['student','auth'])->gro
     Route::get('student/subject', 'subjectList')->name('student.subject_list');
 
     //Syllabus routes
-    Route::get('student/syllabus', 'syllabus')->name('student.syllabus');
+    Route::get('student/syllabus', 'syllabus')->name('student.syllabus_list');
 
     //Grade routes
     Route::get('student/grade', 'gradeList')->name('student.grade_list');
@@ -216,6 +220,7 @@ Route::controller(StudentController::class)->middleware(['student','auth'])->gro
 
     //Profile
     Route::get('student/profile', 'profile')->name('student.profile');
+    Route::get('student/profile/edit', 'profile_edit')->name('student.profile.edit');
     Route::post('student/profile/update', 'profile_update')->name('student.profile.update');
     Route::any('student/password/{action_type}', 'password')->name('student.password');
 });

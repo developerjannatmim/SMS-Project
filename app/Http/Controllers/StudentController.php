@@ -14,4 +14,19 @@ class StudentController extends Controller
                 ->with('error', 'You are not logged in.');
         }
     }
+
+    function profile()
+    {
+        return view('student.profile.view');
+    }
+
+    function profile_edit(Request $request)
+    {
+        return view('student.profile.update');
+    }
+
+    function profile_update()
+    {
+        //return view('student.profile.update');
+    }
 }

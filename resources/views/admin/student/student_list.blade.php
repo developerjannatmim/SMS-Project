@@ -34,17 +34,24 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($students as $data)
+		@foreach($students as $key => $data)
+		<?php
+			$student = DB::table('users')->where('id', $data->id)->first();
+			$info = json_decode($student->user_information);
+
+		?>
 		<tr>
-			<td>{{$data->name}}</td>
-			<td>{{$data->email}}</td>
-			<td>{{$data->class_id}}</td>
-			<td>{{$data->birthday}}</td>
-			<td>{{$data->gender}}</td>
-			<td>{{$data->phone}}</td>
-			<td>{{$data->blood_group}}</td>
-			<td>{{$data->address}}</td>
-			<td>{{$data->photo}}</td>
+			<td>{{$student->name}}</td>
+			<td>{{$student->email}}</td>
+			{{-- @if ($student->class_id == $classes->id)
+			<td>{{$class->class_name}}</td>
+			@endif --}}
+			<td>{{$info->birthday}}</td>
+			<td>{{$info->gender}}</td>
+			<td>{{$info->phone}}</td>
+			<td>{{$info->blood_group}}</td>
+			<td>{{$info->address}}</td>
+			<td>{{$info->photo}}</td>
 		</tr>
 		@endforeach
 	</tbody>

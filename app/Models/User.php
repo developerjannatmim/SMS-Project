@@ -68,5 +68,16 @@ class User extends Authenticatable
         return $this->hasMany(Parent::class);
     }
 
+    public function class(): HasMany
+    {
+        return $this->hasMany(Classes::class);
+    }
+
+
+    //mutetor
+    public function getNameAttribute($value)
+    {
+        return $this->attributes['name']=ucfirst($value);
+    }
 
 }

@@ -56,7 +56,7 @@ class Login extends Component
 
             } else {
                 return $this->addError('email', trans('auth.failed'));
-            } 
+            }
         }else {
             return redirect()->route('login')
             ->with('error', 'Your school is yet to be authorized to this service!');

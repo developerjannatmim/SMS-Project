@@ -15,4 +15,8 @@ class ParentController extends Controller
                 ->with('error', 'You are not logged in.');
         }
     }
+
+    function profile(){
+        return view('student.profile.view');
+    }
 }

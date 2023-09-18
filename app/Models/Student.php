@@ -7,32 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Classes extends Model
+class Student extends Model
 {
     use HasFactory;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
-        'school_id'
+        'email',
+        'password',
+        'phone',
     ];
 
-    public function school(): BelongsTo
-    {
-        return $this->belongsTo(School::class);
-    }
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function exam(): HasMany
+    public function parent(): HasMany
     {
-        return $this->hasMany(Exam::class);
+        return $this->hasMany(Parent::class);
     }
 }

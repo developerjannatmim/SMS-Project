@@ -18,12 +18,24 @@ class AdminController extends Controller
 							->with('error','You are not logged in.');
 			}
 	}
-	
+
 	//Student
-	public function student_list()
+	public function student_list(Request $request)
 	{
-		$students = User::get();
-		return view('admin.student.student_list', compact('students'));
+		$class_id = $request['class_id'] ?? "";
+
+		$users = User::where('users.school_id', auth()->user()->school_id)
+        ->where('users.role_id', 3);
+
+		if($class_id == 'all' || $class_id != ""){
+            $users->where('class_id', $class_id);
+        }
+
+		$students = $users->join('roles', 'users.role_id', '=', 'roles.id')->select('roles.*')->paginate(10);
+
+		$classes = Classes::get()->where('school_id', auth()->user()->school_id);
+		
+		return view('admin.student.student_list', compact('users', 'classes', 'class_id', 'students'));
 	}
 
 	public function student_create()

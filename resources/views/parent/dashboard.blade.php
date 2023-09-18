@@ -2,7 +2,7 @@
   {{-- Nav --}}
   @include('layouts.nav')
   {{-- SideNav --}}
-  @include('admin.sidenav')
+  @include('parent.sidenav')
   
   <main class="content">
   
@@ -21,7 +21,8 @@
 <div class="bg-white rounded p-4 mb-4 mt-2">
     <div class="row">
         <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-            <h5>{{auth()->user()->name}}</h5>
+			<span><b>{{auth()->user()->name}}</b></span><br/>
+			<small>Parent</small><br/>
             <small class="mb-0 text-center text-lg-start">Welcome, to Paramount Secondary School</small>
         </div>
         <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
