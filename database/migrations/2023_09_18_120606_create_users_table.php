@@ -22,8 +22,6 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedBigInteger('class_id')->nullable();
             $table->foreign('class_id')->references('id')->on('classes');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('parents');
             $table->unsignedBigInteger('school_id')->nullable();
             $table->foreign('school_id')->references('id')->on('schools');
             $table->unsignedBigInteger('department_id')->nullable();

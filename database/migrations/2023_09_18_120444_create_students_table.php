@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('class_id');
             $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('parents');
             $table->string('birthday');
             $table->string('gender');
             $table->string('phone');
