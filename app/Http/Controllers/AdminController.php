@@ -9,6 +9,16 @@ use App\Models\School;
 
 class AdminController extends Controller
 {
+	public function adminDashboard()
+	{
+			if(auth()->user()->role_id != "") {
+					return view('admin.dashboard');
+			} else {
+					redirect()->route('login')
+							->with('error','You are not logged in.');
+			}
+	}
+	
 	//Student
 	public function student_list()
 	{

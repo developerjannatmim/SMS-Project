@@ -40,8 +40,8 @@
           </span>
         </a>
       </li>
-      <li class="nav-item {{ Request::segment(1) == 'dashboard' ? 'active' : '' }}">
-        <a href="/dashboard" class="nav-link">
+      <li class="nav-item {{ request()->is('admin/dashboard') ? 'showMenu':'' }}">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">
           <span class="sidebar-icon"> <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
@@ -52,11 +52,11 @@
       </li>
 
       <li class="nav-item">
-        <span class="nav-link collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+        <span class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('admin/admin*') || request()->is('admin/teacher*') || request()->is('admin/parent*') || request()->is('admin/student') ? 'showMenu':'' }}" data-bs-toggle="collapse"
           data-bs-target="#submenu-laravel" aria-expanded="false">
           <span>
             <span class="sidebar-icon"><i class="fab fa-laravel me-2" style="color: #fb503b;"></i></span>
-            <span class="sidebar-text" style="color: #fb503b;">Academic</span>
+            <span class="sidebar-text" style="color: #fb503b;">Users</span>
           </span>
           <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -66,35 +66,29 @@
             </svg></span>
         </span>
         <div class="multi-level collapse show" role="list" id="submenu-laravel" aria-expanded="false">
-          <ul class="flex-column nav">
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a href="/#" class="nav-link">
-                <span class="sidebar-text">Daily Attendance</span>
-              </a>
-            </li>
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a href="#" class="nav-link">
-                <span class="sidebar-text">Class Routine</span>
-              </a>
-            </li>
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a href="#" class="nav-link">
-                <span class="sidebar-text">Subjects</span>
-              </a>
-            </li>
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a href="#" class="nav-link">
-                <span class="sidebar-text">Syllabus</span>
-              </a>
-            </li>
-          </ul>
+        <ul class="sub-menu">
+          <li><a class="{{ (request()->is('admin/admin*')) ? 'active' : '' }}" href="{{ route('admin.admin') }}"><span>
+                      {{ get_phrase('Admin') }}
+                  </span></a></li>
+          <li><a class="{{ (request()->is('admin/teacher*')) ? 'active' : '' }}" href="{{ route('admin.teacher') }}"><span>
+                      {{ get_phrase('Teacher') }}
+                  </span></a></li>
+          <li><a class="{{ (request()->is('admin/parent*')) ? 'active' : '' }}" href="{{ route('admin.parent') }}"><span>
+                      {{ get_phrase('Parent') }}
+                  </span></a></li>
+          <li>
+            <a class="{{ (request()->is('admin/student')) ? 'active' : '' }}" href="{{ route('admin.student') }}"><span>
+            {{ get_phrase('Student') }}
+            </span></a>
+          </li>
+        </ul>
         </div>
       </li>
 
 
       <li class="nav-item">
         <span
-          class="nav-link {{ Request::segment(1) !== 'bootstrap-tables' ? 'collapsed' : '' }} d-flex justify-content-between align-items-center"
+          class="nav-link {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu':'' }} d-flex justify-content-between align-items-center"
           data-bs-toggle="collapse" data-bs-target="#submenu-app">
           <span>
             <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"

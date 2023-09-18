@@ -2,7 +2,7 @@
 {{-- Nav --}}
 @include('layouts.nav')
 {{-- SideNav --}}
-@include('layouts.sidenav')
+@include('admin.sidenav')
 
 <main class="content">
 

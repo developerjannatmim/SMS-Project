@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ParentController;
+use App\Http\Controllers\TeacherController;
+
 use App\Http\Livewire\BootstrapTables;
 use App\Http\Livewire\Components\Buttons;
 use App\Http\Livewire\Components\Forms;
@@ -71,18 +74,143 @@ Route::middleware('auth')->group(function () {
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
 
-    //Student users route
-    Route::get('admin/student', [AdminController::class, 'student_list'])->name('admin.student');
-    Route::get('admin/student/create', [AdminController::class, 'student_create'])->name('admin.student.create');
-    Route::post('admin/student', [AdminController::class, 'student_store'])->name('admin.student.store');
-    Route::get('admin/student/edit/{id}', [AdminController::class,'student_edit'])->name('admin.student.edit');
-    Route::post('admin/student/{id}', [AdminController::class,'student_update'])->name('admin.student.update');
-    Route::get('admin/student/delete/{id}', [AdminController::class,'student_delete'])->name('admin.student.delete');
-    
-    //School users route
-    // Route::get('/school', [AdminController::class, 'school_list'])->name('admin.school.school_list');
-    // Route::get('/add-school', [AdminController::class, 'school_create']);
-    // Route::post('/add-school', [AdminController::class, 'school_store'])->name('admin.school.store');
+
 });
 
+//Admin routes start here
+Route::controller(AdminController::class)->middleware(['admin','auth'])->group(function () {
 
+    Route::get('admin/dashboard', 'adminDashboard')->name('admin.dashboard')->middleware('role_id');
+
+    //Admin users route
+    Route::get('admin/admin', 'adminList')->name('admin.admin');
+
+    //Student users route
+    Route::get('admin/student', 'student_list')->name('admin.student');
+    Route::get('admin/student/create', 'student_create')->name('admin.student.create');
+    Route::post('admin/student', 'student_store')->name('admin.student.store');
+    Route::get('admin/student/edit/{id}', 'student_edit')->name('admin.student.edit');
+    Route::post('admin/student/{id}', 'student_update')->name('admin.student.update');
+    Route::get('admin/student/delete/{id}', 'student_delete')->name('admin.student.delete');
+    
+    //Parent users route
+    Route::get('admin/parent','parent_list')->name('admin.parent');
+    Route::post('admin/parent/create',  'parent_create')->name('admin.parent.create');
+    Route::get('admin/parent',  'parent_store')->name('admin.parent.store');
+    Route::get('admin/parent/edit/{id}', 'parent_edit')->name('admin.parent.edit');
+    Route::post('admin/parent/{id}', 'parent_update')->name('admin.parent.update');
+    Route::get('admin/parent/delete/{id}', 'parentDelete')->name('admin.parent.delete');
+
+    //Teacher users route
+    Route::get('admin/teacher', 'teacherList')->name('admin.teacher');
+
+    //Marks route
+    Route::get('admin/marks', 'marks')->name('admin.marks');
+
+    //Grade routes
+    Route::get('admin/grade', 'grade_list')->name('admin.grade.list');
+
+    //Subject routes
+    Route::get('admin/subject', 'subjectList')->name('admin.subject_list');
+
+    //Depertment routes
+    Route::get('admin/department', 'departmentList')->name('admin.department_list');
+
+    //Class list routes
+    Route::get('admin/class_list', 'classList')->name('admin.class_list');
+
+});
+//Admin routes end here
+
+//Teacher routes are here
+Route::controller(TeacherController::class)->middleware(['teacher','auth'])->group(function () {
+
+    Route::get('teacher/dashboard', 'teacherDashboard')->name('teacher.dashboard')->middleware('role_id');
+
+
+    //Marks routes
+    Route::get('teacher/marks', 'marks')->name('teacher.marks');
+
+    //Grade routes
+    Route::get('teacher/grade', 'grade')->name('teacher.grade');
+
+    //Routine routes
+    Route::get('teacher/routine', 'routine')->name('teacher.routine');
+
+    //Subject routes
+    Route::get('teacher/subject', 'subjectList')->name('teacher.subject_list');
+
+
+    //Syllabus routes
+    Route::get('teacher/syllabus', 'list_of_syllabus')->name('teacher.list_of_syllabus');
+
+    //Profile
+    Route::get('teacher/profile', 'profile')->name('teacher.profile');
+    Route::post('teacher/profile/update', 'profile_update')->name('teacher.profile.update');
+    Route::any('teacher/password/{action_type}', 'password')->name('teacher.password');
+
+});
+//Teacher routes end here
+
+//Parent routes are here
+Route::controller(ParentController::class)->middleware(['parent','auth'])->group(function () {
+
+    Route::get('parent/dashboard', 'parentDashboard')->name('parent.dashboard')->middleware('role_id');
+
+
+    //User routes
+    Route::get('parent/teacherlist', 'teacherList')->name('parent.teacherlist');
+    Route::get('parent/childlist', 'childList')->name('parent.childlist');
+
+    //Grade rotues
+    Route::get('parent/grade', 'gradeList')->name('parent.grade_list');
+
+    //Subject routes
+    Route::get('parent/child/subjects', 'subjectList')->name('parent.subject_list');
+
+    //Syllabus routes
+    Route::get('parent/child/syllabus', 'syllabusList')->name('parent.syllabus_list');
+
+    //Routine routes
+    Route::get('parent/routine', 'routine')->name('parent.routine');
+
+    //Marks routes
+    Route::get('parent/marks', 'marks')->name('parent.marks');
+
+    //Profile
+    Route::get('parent/profile', 'profile')->name('parent.profile');
+    Route::post('parent/profile/update', 'profile_update')->name('parent.profile.update');
+    Route::any('parent/password/{action_type}', 'password')->name('parent.password');
+    
+});
+//Parent routes end here
+
+//Student routes are here
+Route::controller(StudentController::class)->middleware(['student','auth'])->group(function () {
+
+    Route::get('student/dashboard', 'studentDashboard')->name('student.dashboard')->middleware('role_id');
+
+    //User routes
+    Route::get('student/teacher', 'teacherList')->name('student.teacher');
+
+    //Routine routes
+    Route::get('student/routine', 'routine')->name('student.routine');
+
+    //Subject routes
+    Route::get('student/subject', 'subjectList')->name('student.subject_list');
+
+    //Syllabus routes
+    Route::get('student/syllabus', 'syllabus')->name('student.syllabus');
+
+    //Grade routes
+    Route::get('student/grade', 'gradeList')->name('student.grade_list');
+
+    //Marks routes
+    Route::get('student/marks', 'marks')->name('student.marks');
+
+    //Profile
+    Route::get('student/profile', 'profile')->name('student.profile');
+    Route::post('student/profile/update', 'profile_update')->name('student.profile.update');
+    Route::any('student/password/{action_type}', 'password')->name('student.password');
+});
+//Student routes end here

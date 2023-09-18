@@ -15,12 +15,12 @@ class Register extends Component
     public $password = '';
     public $passwordConfirmation = '';
 
-    public function mount()
-    {
-        if (auth()->user()) {
-            return redirect()->intended('/dashboard');
-        }
-    }
+    // public function mount()
+    // {
+    //     if (auth()->user()) {
+    //         return redirect()->intended('/dashboard');
+    //     }
+    // }
 
     public function updatedEmail()
     {
