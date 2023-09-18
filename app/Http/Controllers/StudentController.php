@@ -7,7 +7,7 @@ class StudentController extends Controller
 {
     public function studentDashboard()
     {
-        if (auth()->user()->role_id == 7) {
+        if (auth()->user()->role_id == 3) {
             return view('student.dashboard');
         } else {
             redirect()->route('login')

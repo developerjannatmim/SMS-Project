@@ -1,160 +1,227 @@
 <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
-  <div class="sidebar-inner px-2 pt-3">
-    <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
-      <div class="d-flex align-items-center">
-        <div class="avatar-lg me-4">
-          <img src="/assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white"
-            alt="Bonnie Green">
+    <div class="sidebar-inner px-2 pt-3">
+        <div
+            class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
+            <div class="d-flex align-items-center">
+                <div class="avatar-lg me-4">
+                    <img src="/assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white"
+                        alt="Bonnie Green">
+                </div>
+                <div class="d-block">
+                    <h2 class="h5 mb-3">Hi, Jane</h2>
+                    <a href="/login" class="btn btn-secondary btn-sm d-inline-flex align-items-center">
+                        <svg class="icon icon-xxs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
+                        </svg>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+            <div class="collapse-close d-md-none">
+                <a href="#sidebarMenu" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="true" aria-label="Toggle navigation">
+                    <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-        <div class="d-block">
-          <h2 class="h5 mb-3">Hi, Jane</h2>
-          <a href="/login" class="btn btn-secondary btn-sm d-inline-flex align-items-center">
-            <svg class="icon icon-xxs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-            </svg>
-            Sign Out
-          </a>
-        </div>
-      </div>
-      <div class="collapse-close d-md-none">
-        <a href="#sidebarMenu" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-          aria-expanded="true" aria-label="Toggle navigation">
-          <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-    <ul class="nav flex-column pt-3 pt-md-0">
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex align-items-center">
-          <span class="sidebar-icon me-3">
-            <img src="/assets/uploads/logo/blue gradient.png" height="25" width="25" alt="Volt Logo">
-          </span>
-          <span class="mt-1 ms-1 sidebar-text">
-            Paramount
-          </span>
-        </a>
-      </li>
-      <li class="nav-item {{ request()->is('admin/dashboard') ? 'showMenu':'' }}">
-        <a href="{{ route('admin.dashboard') }}" class="nav-link">
-          <span class="sidebar-icon"> <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-            </svg></span></span>
-          <span class="sidebar-text">Dashboard</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <span class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('admin/admin*') || request()->is('admin/teacher*') || request()->is('admin/parent*') || request()->is('admin/student') ? 'showMenu':'' }}" data-bs-toggle="collapse"
-          data-bs-target="#submenu-laravel" aria-expanded="false">
-          <span>
-            <span class="sidebar-icon"><i class="fab fa-laravel me-2" style="color: #fb503b;"></i></span>
-            <span class="sidebar-text" style="color: #fb503b;">Users</span>
-          </span>
-          <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"></path>
-            </svg></span>
-        </span>
-        <div class="multi-level collapse show" role="list" id="submenu-laravel" aria-expanded="false">
-        <ul class="sub-menu">
-          <li><a class="{{ (request()->is('admin/admin*')) ? 'active' : '' }}" href="{{ route('admin.admin') }}"><span>
-                      {{ get_phrase('Admin') }}
-                  </span></a></li>
-          <li><a class="{{ (request()->is('admin/teacher*')) ? 'active' : '' }}" href="{{ route('admin.teacher') }}"><span>
-                      {{ get_phrase('Teacher') }}
-                  </span></a></li>
-          <li><a class="{{ (request()->is('admin/parent*')) ? 'active' : '' }}" href="{{ route('admin.parent') }}"><span>
-                      {{ get_phrase('Parent') }}
-                  </span></a></li>
-          <li>
-            <a class="{{ (request()->is('admin/student')) ? 'active' : '' }}" href="{{ route('admin.student') }}"><span>
-            {{ get_phrase('Student') }}
-            </span></a>
-          </li>
-        </ul>
-        </div>
-      </li>
-
-
-      <li class="nav-item">
-        <span
-          class="nav-link {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu':'' }} d-flex justify-content-between align-items-center"
-          data-bs-toggle="collapse" data-bs-target="#submenu-app">
-          <span>
-            <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                  clip-rule="evenodd"></path>
-              </svg></span>
-            <span class="sidebar-text">Examination</span>
-          </span>
-          <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"></path>
-            </svg></span>
-        </span>
-        <div class="multi-level collapse {{ Request::segment(1) == 'bootstrap-tables' ? 'show' : '' }}" role="list"
-          id="submenu-app" aria-expanded="false">
-          <ul class="flex-column nav">
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a class="nav-link" href="#">
-                <span class="sidebar-text">Marks</span>
-              </a>
-            </li>
-            <li class="nav-item {{ Request::segment(1) == '#' ? 'active' : '' }}">
-              <a class="nav-link" href="#">
-                <span class="sidebar-text">Exam List</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-
-      <li class="nav-item">
-        <span class="nav-link collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-          data-bs-target="#submenu-pages">
-          <span>
-            <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                  clip-rule="evenodd"></path>
-                <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-              </svg></span>
-            <span class="sidebar-text">User Profile</span>
-          </span>
-          <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"></path>
-            </svg></span>
-        </span>
-        
-        <div class="multi-level collapse" role="list" id="submenu-pages" aria-expanded="false">
-          <ul class="flex-column nav">
+        <ul class="nav flex-column pt-3 pt-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('profile-example') }}">
-                <span class="sidebar-text">Profile</span>
-              </a>
+                <a href="#" class="nav-link d-flex align-items-center">
+                    <span class="sidebar-icon me-3">
+                        <img src="/assets/uploads/logo/blue gradient.png" height="25" width="25" alt="Volt Logo">
+                    </span>
+                    <span class="mt-1 ms-1 sidebar-text">
+                        Paramount
+                    </span>
+                </a>
             </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
+            <li class="nav-item {{ request()->is('admin/dashboard') ? 'showMenu' : '' }}">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                    <span class="sidebar-icon"> <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                        </svg></span></span>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <span
+                    class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('admin/admin*') || request()->is('admin/teacher*') || request()->is('admin/parent*') || request()->is('admin/student') ? 'showMenu' : '' }}"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-laravel" aria-expanded="false">
+                    <span>
+                        <span class="sidebar-icon"><i class="fab fa-laravel me-2" style="color: #fb503b;"></i></span>
+                        <span class="sidebar-text" style="color: #fb503b;">Users</span>
+                    </span>
+                    <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></span>
+                </span>
+                <div class="multi-level collapse show" role="list" id="submenu-laravel" aria-expanded="false">
+                    <ul class="sub-menu">
+                        <li><a class="{{ request()->is('admin/admin*') ? 'active' : '' }}"
+                                href="{{ route('admin.admin') }}"><span>
+                                    {{ get_phrase('Admin') }}
+                                </span></a></li>
+                        <li><a class="{{ request()->is('admin/teacher*') ? 'active' : '' }}"
+                                href="{{ route('admin.teacher') }}"><span>
+                                    {{ get_phrase('Teacher') }}
+                                </span></a></li>
+                        <li><a class="{{ request()->is('admin/parent*') ? 'active' : '' }}"
+                                href="{{ route('admin.parent') }}"><span>
+                                    {{ get_phrase('Parent') }}
+                                </span></a></li>
+                        <li>
+                            <a class="{{ request()->is('admin/student') ? 'active' : '' }}"
+                                href="{{ route('admin.student') }}"><span>
+                                    {{ get_phrase('Student') }}
+                                </span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <span
+                    class="nav-link {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-app">
+                    <span>
+                        <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
+                                    clip-rule="evenodd"></path>
+                            </svg></span>
+                        <span class="sidebar-text">Examination</span>
+                    </span>
+                    <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></span>
+                </span>
+                <div class="multi-level collapse {{ Request::segment(1) == 'bootstrap-tables' ? 'show' : '' }}"
+                    role="list" id="submenu-app" aria-expanded="false">
+                    <ul class="flex-column nav">
+                        <li>
+                            <a class="{{ request()->is('admin/marks') ? 'active' : '' }}"
+                                href="{{ route('admin.marks') }}"><span>Marks</span></a>
+                        </li>
+                        <li>
+                            <a class="{{ request()->is('admin/grade') ? 'active' : '' }}"
+                                href="{{ route('admin.grade_list') }}"><span>Grades</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <span
+                    class="nav-link {{ request()->is('admin/routine*') || request()->is('admin/subject*') || request()->is('admin/syllabus*') || request()->is('admin/grade*') || request()->is('admin/department*') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-app">
+                    <span>
+                        <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
+                                    clip-rule="evenodd"></path>
+                            </svg></span>
+                        <span class="sidebar-text">Academic</span>
+                    </span>
+                    <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></span>
+                </span>
+                <div class="multi-level collapse {{ Request::segment(1) == 'bootstrap-tables' ? 'show' : '' }}"
+                    role="list" id="submenu-app" aria-expanded="false">
+                    <ul class="flex-column nav">
+                      
+                        <li>
+                          <a class="{{ request()->is('admin/routine*') ? 'active' : '' }}"
+                                href="{{ route('admin.routine') }}"><span>
+                                    Class Routine
+                                </span></a>
+                              </li>
+                        <li>
+                          <a class="{{ request()->is('admin/subject*') ? 'active' : '' }}"
+                                href="{{ route('admin.subject_list') }}"><span>
+                                    Subjects
+                                </span></a>
+                              </li>
+                        <li>
+                          <a class="{{ request()->is('admin/grade*') ? 'active' : '' }}"
+                                href="{{ route('admin.grade') }}"><span>'Grade</span>
+                              </a>
+                            </li>
+                        <li>
+                          <a class="{{ request()->is('admin/syllabus*') ? 'active' : '' }}"
+                                href="{{ route('admin.syllabus') }}"><span>
+                                    Syllabus
+                                </span>
+                              </a>
+                            </li>
+
+                        <li>
+                          <a class="{{ request()->is('admin/department*') ? 'active' : '' }}"
+                                href="{{ route('admin.department_list') }}"><span>
+                                    Department
+                                </span>
+                              </a>
+                            </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <span class="nav-link collapsed d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-pages">
+                    <span>
+                        <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                                    clip-rule="evenodd"></path>
+                                <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+                            </svg></span>
+                        <span class="sidebar-text">User Profile</span>
+                    </span>
+                    <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></span>
+                </span>
+
+                <div class="multi-level collapse" role="list" id="submenu-pages" aria-expanded="false">
+                    <ul class="flex-column nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile-example') }}">
+                                <span class="sidebar-text">Profile</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
