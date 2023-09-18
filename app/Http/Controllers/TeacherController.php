@@ -8,6 +8,11 @@ class TeacherController extends Controller
 {
     public function teacherDashboard()
     {
-        return view('teacher.dashboard');
+        if (auth()->user()->role_id == 2) {
+            return view('teacher.dashboard');
+        } else {
+            redirect()->route('login')
+                ->with('error', 'You are not logged in.');
+        }
     }
 }

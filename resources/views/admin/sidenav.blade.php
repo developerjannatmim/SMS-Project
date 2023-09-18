@@ -69,25 +69,26 @@
                                 clip-rule="evenodd"></path>
                         </svg></span>
                 </span>
-                <div class="multi-level collapse show" role="list" id="submenu-laravel" aria-expanded="false">
-                    <ul class="sub-menu">
-                        <li><a class="{{ request()->is('admin/admin*') ? 'active' : '' }}"
-                                href="{{ route('admin.admin') }}"><span>
-                                    {{ get_phrase('Admin') }}
-                                </span></a></li>
-                        <li><a class="{{ request()->is('admin/teacher*') ? 'active' : '' }}"
-                                href="{{ route('admin.teacher') }}"><span>
-                                    {{ get_phrase('Teacher') }}
-                                </span></a></li>
-                        <li><a class="{{ request()->is('admin/parent*') ? 'active' : '' }}"
-                                href="{{ route('admin.parent') }}"><span>
-                                    {{ get_phrase('Parent') }}
-                                </span></a></li>
-                        <li>
-                            <a class="{{ request()->is('admin/student') ? 'active' : '' }}"
-                                href="{{ route('admin.student') }}"><span>
-                                    {{ get_phrase('Student') }}
-                                </span></a>
+                <div class="multi-level collapse" role="list" id="submenu-laravel" aria-expanded="false">
+                    <ul class="flex-column nav">
+                        <li class="nav-item {{ request()->is('admin/admin*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.admin') }}"><small class="sidebar-text">
+                                    Admin
+                                </small></a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/teacher*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.teacher') }}"><small class="sidebar-text">
+                                    Teacher
+                                </small></a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/parent*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{-- {{ route('admin.parent') }} --}}"><small class="sidebar-text">Parent
+                                </small></a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/student') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.student') }}"><small class="sidebar-text">
+                                    Student
+                                </small></a>
                         </li>
                     </ul>
                 </div>
@@ -96,8 +97,8 @@
 
             <li class="nav-item">
                 <span
-                    class="nav-link {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center"
-                    data-bs-toggle="collapse" data-bs-target="#submenu-app">
+                    class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu' : '' }}"
+                    data-bs-toggle="collapse" data-bs-target="#submenu-app" aria-expanded="false">
                     <span>
                         <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -114,16 +115,14 @@
                                 clip-rule="evenodd"></path>
                         </svg></span>
                 </span>
-                <div class="multi-level collapse {{ Request::segment(1) == 'bootstrap-tables' ? 'show' : '' }}"
-                    role="list" id="submenu-app" aria-expanded="false">
+                <div class="multi-level collapse" role="list" id="submenu-app" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li>
-                            <a class="{{ request()->is('admin/marks') ? 'active' : '' }}"
-                                href="{{ route('admin.marks') }}"><span>Marks</span></a>
+                        <li class="nav-item {{ request()->is('admin/marks') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.marks') }}"><small
+                                    class="sidebar-text">Marks</small></a>
                         </li>
-                        <li>
-                            <a class="{{ request()->is('admin/grade') ? 'active' : '' }}"
-                                href="{{ route('admin.grade_list') }}"><span>Grades</span></a>
+                        <li class="nav-item {{ request()->is('admin/grade') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.grade') }}"><small class="sidebar-text">Grades</small></a>
                         </li>
                     </ul>
                 </div>
@@ -133,7 +132,7 @@
             <li class="nav-item">
                 <span
                     class="nav-link {{ request()->is('admin/routine*') || request()->is('admin/subject*') || request()->is('admin/syllabus*') || request()->is('admin/grade*') || request()->is('admin/department*') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center"
-                    data-bs-toggle="collapse" data-bs-target="#submenu-app">
+                    data-bs-toggle="collapse" data-bs-target="#submenu-apps">
                     <span>
                         <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -150,42 +149,36 @@
                                 clip-rule="evenodd"></path>
                         </svg></span>
                 </span>
-                <div class="multi-level collapse {{ Request::segment(1) == 'bootstrap-tables' ? 'show' : '' }}"
-                    role="list" id="submenu-app" aria-expanded="false">
+                <div class="multi-level collapse" role="list" id="submenu-apps" aria-expanded="false">
                     <ul class="flex-column nav">
-                      
-                        <li>
-                          <a class="{{ request()->is('admin/routine*') ? 'active' : '' }}"
-                                href="{{ route('admin.routine') }}"><span>
-                                    Class Routine
-                                </span></a>
-                              </li>
-                        <li>
-                          <a class="{{ request()->is('admin/subject*') ? 'active' : '' }}"
-                                href="{{ route('admin.subject_list') }}"><span>
-                                    Subjects
-                                </span></a>
-                              </li>
-                        <li>
-                          <a class="{{ request()->is('admin/grade*') ? 'active' : '' }}"
-                                href="{{ route('admin.grade') }}"><span>'Grade</span>
-                              </a>
-                            </li>
-                        <li>
-                          <a class="{{ request()->is('admin/syllabus*') ? 'active' : '' }}"
-                                href="{{ route('admin.syllabus') }}"><span>
-                                    Syllabus
-                                </span>
-                              </a>
-                            </li>
 
-                        <li>
-                          <a class="{{ request()->is('admin/department*') ? 'active' : '' }}"
-                                href="{{ route('admin.department_list') }}"><span>
+                        <li class="nav-item {{ request()->is('admin/routine*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.routine') }}"><small class="sidebar-text">
+                                    Class Routine
+                                </small></a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/subject*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.subject') }}"><small class="sidebar-text">
+                                    Subjects
+                                </small></a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/grade*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.grade') }}"><small class="sidebar-text">Grade</small>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ request()->is('admin/syllabus*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.syllabus') }}"><small class="sidebar-text">
+                                    Syllabus
+                                </small>
+                            </a>
+                        </li>
+
+                        <li class="nav-item {{ request()->is('admin/department*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.department') }}"><small class="sidebar-text">
                                     Department
-                                </span>
-                              </a>
-                            </li>
+                                </small>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -202,7 +195,7 @@
                                     clip-rule="evenodd"></path>
                                 <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
                             </svg></span>
-                        <span class="sidebar-text">User Profile</span>
+                        <span class="sidebar-text">Profile</span>
                     </span>
                     <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +209,7 @@
                     <ul class="flex-column nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('profile-example') }}">
-                                <span class="sidebar-text">Profile</span>
+                                <small class="sidebar-text">Profile</small>
                             </a>
                         </li>
                     </ul>

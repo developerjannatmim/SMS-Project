@@ -94,7 +94,7 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/student/delete/{id}', 'student_delete')->name('admin.student.delete');
     
     //Parent users route
-    Route::get('admin/parent','parent_list')->name('admin.parent');
+    // Route::get('admin/parent', 'parent_list')->name('admin.parent');
     Route::post('admin/parent/create',  'parent_create')->name('admin.parent.create');
     Route::get('admin/parent',  'parent_store')->name('admin.parent.store');
     Route::get('admin/parent/edit/{id}', 'parent_edit')->name('admin.parent.edit');
@@ -104,17 +104,23 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     //Teacher users route
     Route::get('admin/teacher', 'teacherList')->name('admin.teacher');
 
+    //Routine routes
+    Route::get('admin/routine', 'routine')->name('admin.routine');
+
     //Marks route
     Route::get('admin/marks', 'marks')->name('admin.marks');
 
     //Grade routes
-    Route::get('admin/grade', 'grade_list')->name('admin.grade.list');
+    Route::get('admin/grade', 'grade_list')->name('admin.grade');
 
     //Subject routes
-    Route::get('admin/subject', 'subjectList')->name('admin.subject_list');
+    Route::get('admin/subject', 'subjectList')->name('admin.subject');
+
+    //Syllabus routes
+    Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
 
     //Depertment routes
-    Route::get('admin/department', 'departmentList')->name('admin.department_list');
+    Route::get('admin/department', 'departmentList')->name('admin.department');
 
     //Class list routes
     Route::get('admin/class_list', 'classList')->name('admin.class_list');

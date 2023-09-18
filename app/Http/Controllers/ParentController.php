@@ -8,6 +8,11 @@ class ParentController extends Controller
 {
     public function parentDashboard()
     {
-        return view('parent.dashboard');
+        if (auth()->user()->role_id == 4) {
+            return view('parent.dashboard');
+        } else {
+            redirect()->route('login')
+                ->with('error', 'You are not logged in.');
+        }
     }
 }
