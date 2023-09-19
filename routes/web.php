@@ -114,6 +114,15 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     //Marks route
     Route::get('admin/marks', 'marks')->name('admin.marks');
 
+    //Exam route
+    Route::get('admin/exam', 'examList')->name('admin.exam');
+    Route::get('admin/exam_create', 'createExam')->name('admin.exam.create');
+    Route::post('admin/exam', 'examStore')->name('admin.store.exam');
+    Route::get('admin/exam/{id}', 'editExam')->name('admin.edit.exam');
+    Route::post('admin/exam/{id}', 'examUpdate')->name('admin.exam.update');
+    Route::get('admin/exam/delete/{id}', 'examDelete')->name('admin.exam.delete');
+    Route::get('admin/exam_list_by_class/{id}', 'classWiseExam')->name('admin.class_wise_exam_list');
+
     //Grade routes
     Route::get('admin/grade', 'gradeList')->name('admin.grade');
     Route::get('admin/grade_create', 'createGrade')->name('admin.grade.create');

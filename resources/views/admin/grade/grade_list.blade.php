@@ -3,16 +3,21 @@
   @include('layouts.nav')
   {{-- SideNav --}}
   @include('admin.sidenav')
-  
+
   <main class="content">
-  
+
   @include('layouts.topbar')
+  @if ($message = session('message'))
+  <div class="alert alert-success">
+    {{ $message }}
+  </div>
+  @endif
   <div class="p-2 mb-0 mt-2">
     <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
             <p class="mb-0 text-center text-lg-start"><b class="">Grades</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Home - 
-              Examination - 
+            <p class="mb-0 text-center text-lg-start"><small class="">Home -
+              Examination -
               Grades</small></p>
         </div>
     </div>
@@ -55,6 +60,9 @@
                           <ul
                             class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                           >
+                          <li>
+                            <a class="dropdown-item" href="{{ route('admin.grade.create') }}">Add</a>
+                          </li>
                             <li>
                               <a class="dropdown-item" href="{{ route('admin.edit.grade', ['id' => $grade->id]) , 'Edit Grade'}}">Edit</a>
                             </li>
@@ -73,7 +81,7 @@
         </div>
       </div>
     </section>
-  
+
 {{-- Footer --}}
 @include('layouts.footer')
 </main>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedBigInteger('class_id')->nullable();
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->string('password');
             $table->longText('user_information')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

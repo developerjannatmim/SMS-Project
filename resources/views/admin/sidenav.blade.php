@@ -117,6 +117,10 @@
                 </span>
                 <div class="multi-level collapse" role="list" id="submenu-app" aria-expanded="false">
                     <ul class="flex-column nav">
+                        <li class="nav-item {{ request()->is('admin/exam') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.exam') }}"><small
+                                    class="sidebar-text">Exam</small></a>
+                        </li>
                         <li class="nav-item {{ request()->is('admin/marks') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.marks') }}"><small
                                     class="sidebar-text">Marks</small></a>

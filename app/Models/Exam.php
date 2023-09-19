@@ -42,4 +42,5 @@ class Exam extends Model
         return $this->hasMany(Grade::class);
     }
     
+    protected $table = 'exam';
 }
