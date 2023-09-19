@@ -129,7 +129,7 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
 
     //Depertment routes
-    Route::get('admin/department', 'departmentList')->name('admin.department');
+    Route::get('admin/section', 'sectionList')->name('admin.section');
 
     //Class list routes
     Route::get('admin/class_list', 'classList')->name('admin.class_list');

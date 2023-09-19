@@ -173,9 +173,9 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->is('admin/department*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.department') }}"><small class="sidebar-text">
-                                    Department
+                        <li class="nav-item {{ request()->is('admin/section*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.section') }}"><small class="sidebar-text">
+                                    Section
                                 </small>
                             </a>
                         </li>
