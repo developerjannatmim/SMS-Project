@@ -115,7 +115,12 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/marks', 'marks')->name('admin.marks');
 
     //Grade routes
-    Route::get('admin/grade', 'grade_list')->name('admin.grade');
+    Route::get('admin/grade', 'gradeList')->name('admin.grade');
+    Route::get('admin/grade_create', 'createGrade')->name('admin.grade.create');
+    Route::post('admin/grade', 'gradeStore')->name('admin.store.grade');
+    Route::get('admin/grade/{id}', 'editGrade')->name('admin.edit.grade');
+    Route::post('admin/grade/{id}', 'gradeUpdate')->name('admin.grade.update');
+    Route::get('admin/grade/delete/{id}', 'gradeDelete')->name('admin.grade.delete');
 
     //Subject routes
     Route::get('admin/subject', 'subjectList')->name('admin.subject');

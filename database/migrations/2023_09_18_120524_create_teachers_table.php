@@ -15,18 +15,9 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('designation');
-            $table->string('birthday');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('blood_group');
-            $table->string('address');
-            $table->string('photo');
             $table->softDeletes();
             $table->timestamps();
         });

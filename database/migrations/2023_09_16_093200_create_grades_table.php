@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->string('name');
             $table->string('grade_point');
             $table->integer('mark_from');
             $table->integer('mark_upto');
-            $table->unsignedBigInteger('school_id');
-            $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });
     }

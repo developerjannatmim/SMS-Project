@@ -24,10 +24,10 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('classes');
             $table->unsignedBigInteger('school_id')->nullable();
             $table->foreign('school_id')->references('id')->on('schools');
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->longText('user_information')->nullable();
+            $table->unsignedBigInteger('section_id')->nullable();
+            $table->foreign('section_id')->references('id')->on('sections');
             $table->string('password');
+            $table->longText('user_information')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
