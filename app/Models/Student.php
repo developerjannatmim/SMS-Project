@@ -34,4 +34,9 @@ class Student extends Model
     {
         return $this->hasMany(Parent::class);
     }
+
+    // public function getBirthdayAttribute($value)
+	// {
+	// 	return $this->attributes['birthday'] = strtotime($value);
+	// }
 }
