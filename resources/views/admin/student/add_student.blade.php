@@ -1,147 +1,138 @@
 <x-layouts.base>
-{{-- Nav --}}
-@include('layouts.nav')
-{{-- SideNav --}}
-@include('admin.sidenav')
+  {{-- Nav --}}
+  @include('layouts.nav')
+  {{-- SideNav --}}
+  @include('admin.sidenav')
 
-<main class="content">
+  <main class="content">
 
-@include('layouts.topbar')
+    @include('layouts.topbar')
 
-<title>SMS Project Dashboard</title>
+    <title>SMS Project Dashboard</title>
 
-<div class="p-2 mb-0 mt-2">
-    <div class="row">
+    <div class="p-2 mb-0 mt-2">
+      <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
-            <p class="mb-0 text-center text-lg-start"><b class="">Create Student</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Student</small></p>
+          <p class="mb-0 text-center text-lg-start"><b class="">Create Student</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Student</small></p>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="bg-white rounded p-4 mb-4 mt-2">
-            {{-- <h5>{{auth()->user()->name}}</h5> --}}
-                  <h2 class="h5 mb-4">Create Student information</h2>
-                  <form action="{{route('admin.student.store')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                      <div class="row">
-                          <div class="col-md-6 mb-3">
-                              <div>
-                                  <label for="name">Name</label>
-                                  <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
-                                      placeholder="Enter your name" required>
-                              </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input  class="form-control @error('email') is-valid @enderror" name="email" type="email"
-                                    placeholder="name@gmail.com" required>
-                            </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div>
-                                <label for="password">Password</label>
-                                <input class="form-control @error('password') is-valid @enderror" name="password" type="password"
-                                    placeholder="Enter your password" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <div class="form-group">
-                              <label for="class_id">Class</label>
-                              <select name="class_id" class="form-select eChoice-multiple-with-remove" required onchange="classWiseSection(this.value)">
-                                <option value="">Select a class</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                @endforeach
-                              </select>
-                          </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div>
-                                <label for="password">Password</label>
-                                <input class="form-control @error('password') is-valid @enderror" name="password" type="password"
-                                placeholder="Enter your password" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="birthday" class="eForm-label">Birthday</label>
-                          <input type="date" class="form-control eForm-control" id="eInputDate" name="birthday" value="{{ date('Y-m-d') }}" required/>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div>
-                                <label for="name">Name</label>
-                                <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
-                                    placeholder="Enter your name" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <div class="form-group">
-                              <label for="email">Email</label>
-                              <input  class="form-control @error('email') is-valid @enderror" name="email" type="email"
-                                  placeholder="name@gmail.com" required>
-                          </div>
-                      </div>
-                    </div>
-
-                      <div class="row">
-                        <div class="col-sm-6 mb-3">
-                          <div class="form-group">
-                              <label for="address">Address</label>
-                              <input  class="form-control @error('address') is-valid @enderror" name="address" type="text"
-                                  placeholder="Enter your home address">
-                          </div>
-                      </div>
-                          <div class="col-md-6 mb-3">
-                              <div class="form-group">
-                                  <label for="phone">Phone</label>
-                                  <input class="form-control @error('phone') is-valid @enderror" name="phone" type="number"
-                                      placeholder="+12-345 678 910">
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <Label for="form-label" class="">Add Photo</Label>
-                            <input class="form-control @error('photo') is-valid @enderror" type="file" name="photo" placeholder="Add Photo..." >
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <label for="blood_group" class="form-label">Blood group</label>
-                        <select name="blood_group" class="form-select eForm-select eChoice-multiple-with-remove">
-                            <option selected>Select a blood group</option>
-                            <option value="a+">A+</option>
-                            <option value="a-">A-</option>
-                            <option value="b+">B+</option>
-                            <option value="b-">B-</option>
-                            <option value="ab+">AB+</option>
-                            <option value="ab-">AB-</option>
-                            <option value="o+">O+</option>
-                            <option value="o-">O-</option>
-                        </select>
-                    </div>
-                      </div>
-
-                      <div class="mt-3">
-                          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Student</button>
-                      </div>
-                  </form>
-              </div>
+    <div class="bg-white rounded p-4 mb-4 mt-2">
+      {{-- <h5>{{auth()->user()->name}}</h5> --}}
+      <h2 class="h5 mb-4">Create Student information</h2>
+      <form action="{{route('admin.student.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div>
+              <label for="name">Name</label>
+              <input class="form-control @error('name') is-valid @enderror" name="name" type="text" placeholder="Enter your name" required>
+            </div>
           </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control @error('email') is-valid @enderror" name="email" type="email" placeholder="name@gmail.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div>
+              <label for="password">Password</label>
+              <input class="form-control @error('password') is-valid @enderror" name="password" type="password" placeholder="Enter your password" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="class_id">Class</label>
+              <select name="class_id" class="form-select eChoice-multiple-with-remove" required onchange="classWiseSection(this.value)">
+                <option value="">Select a class</option>
+                @foreach ($classes as $class)
+                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div>
+              <label for="password">Password</label>
+              <input class="form-control @error('password') is-valid @enderror" name="password" type="password" placeholder="Enter your password" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="birthday" class="eForm-label">Birthday</label>
+            <input type="date" class="form-control eForm-control" id="eInputDate" name="birthday" value="{{ date('Y-m-d') }}" required />
+          </div>
+        </div>
 
 
-{{-- Footer --}}
-@include('layouts.footer')
-</main>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div>
+              <label for="name">Name</label>
+              <input class="form-control @error('name') is-valid @enderror" name="name" type="text" placeholder="Enter your name" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control @error('email') is-valid @enderror" name="email" type="email" placeholder="name@gmail.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input class="form-control @error('address') is-valid @enderror" name="address" type="text" placeholder="Enter your home address">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input class="form-control @error('phone') is-valid @enderror" name="phone" type="number" placeholder="+12-345 678 910">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <Label for="form-label" class="">Add Photo</Label>
+            <input class="form-control @error('photo') is-valid @enderror" type="file" name="photo" placeholder="Add Photo...">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="blood_group" class="form-label">Blood group</label>
+            <select name="blood_group" class="form-select eForm-select eChoice-multiple-with-remove">
+              <option selected>Select a blood group</option>
+              <option value="a+">A+</option>
+              <option value="a-">A-</option>
+              <option value="b+">B+</option>
+              <option value="b-">B-</option>
+              <option value="ab+">AB+</option>
+              <option value="ab-">AB-</option>
+              <option value="o+">O+</option>
+              <option value="o-">O-</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Student</button>
+        </div>
+      </form>
+    </div>
+    </div>
+
+
+    {{-- Footer --}}
+    @include('layouts.footer')
+  </main>
 </x-layouts.base>
- 
