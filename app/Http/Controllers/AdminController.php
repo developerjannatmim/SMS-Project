@@ -32,8 +32,8 @@ class AdminController extends Controller
   public function student_list()
   {
     $students = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
-    $classes = Classes::get()->where('id', $students->class_id);
-    $sections = Section::get()->where('school_id', $students->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
     return view('admin.student.student_list', compact('students', 'classes', 'sections'));
   }
 
@@ -88,14 +88,48 @@ class AdminController extends Controller
     return view('admin.student.edit_student', ['classes' => $classes, 'sections' => $sections, 'student' => $student]);
   }
 
-  public function student_update(Request $request, $id)
+  public function student_update(Request $request, string $id)
   {
-    //
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('/images/student/', $filename);
+      $photo = $filename;
+    } else {
+      $user_info = User::where('id', $id)->value('user_information');
+      $exsisting_filename = json_decode($user_info)->photo;
+      if($exsisting_filename !== ''){
+        $photo = $exsisting_filename;
+      }else{
+        $photo = '';
+      }
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::where('id', $id)->update([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'section_id' => $data['section_id'],
+      'class_id' => $data['class_id'],
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Student Updated Successfully');
   }
 
-  public function student_destroy($id)
+  public function student_destroy(string $id)
   {
-    //
+    $student = User::find($id);
+    $student->delete();
   }
 
   //School

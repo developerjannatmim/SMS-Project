@@ -14,9 +14,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>SMS Project Dashboard</title>
-            <link rel="stylesheet" href="/css/style.css">
+						<link rel="stylesheet" href="/css/style.css">
         </head>
-
         <body>
             <div class="p-2 mb-0 mt-2">
                 <div class="row">
@@ -55,17 +54,9 @@
                                                         src="/assets/images/user.jpeg" alt="">
                                                     <div class="pl-3 email">
                                                         <strong>{{ $student->name }}</strong>
-                                                        <span style="color: rgb(147,128,139)">
-																													<?php 
-																													if($student->section_id !== ''){
-																														$sections = Section::get()->where('school_id', auth()->user()->school_id);
-																													}
-																														?>
-																													<b style="color: black">Class:</b>
-																													@foreach ($sections as $section)
-																													{{ $student->class_id }}
-																													@endforeach
-																													</span>
+                                                        <span style="color: rgb(147,128,139)"><b
+                                                                style="color: black">Class:
+                                                            </b>{{ $student->class_id }}</span>
                                                         <span><b style="color: black">Section:
                                                             </b>{{ $student->section_id }}</span>
                                                     </div>
@@ -97,7 +88,7 @@
                                                                     href="{{ route('admin.student.edit', $student->id) }}">Edit</a>
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a class="dropdown-item" href="{{ route('admin.student.delete', $student->id) }}">Delete</a>
                                                             </li>
                                                         </ul>
                                                     </div>

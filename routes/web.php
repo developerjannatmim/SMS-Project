@@ -91,7 +91,7 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::post('admin/student', 'student_store')->name('admin.student.store');
     Route::get('admin/student/edit/{id}', 'student_edit')->name('admin.student.edit');
     Route::post('admin/student/{id}', 'student_update')->name('admin.student.update');
-    Route::get('admin/student/delete/{id}', 'student_delete')->name('admin.student.delete');
+    Route::get('admin/student/delete/{id}', 'student_destroy')->name('admin.student.delete');
 
     //Parent users route
     // Route::get('admin/parent', 'parent_list')->name('admin.parent');
