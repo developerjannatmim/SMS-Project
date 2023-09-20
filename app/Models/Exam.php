@@ -23,7 +23,7 @@ class Exam extends Model
         'total_marks', 
         'status', 
         'class_id', 
-        'subject_id', 
+        'section_id', 
         'school_id'
     ];
 
