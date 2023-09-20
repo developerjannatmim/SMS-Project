@@ -71,12 +71,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($student_details as $values)
-                  @endforeach
                   <tr>
-                    <td>{{ $values->name }}</td>
+                    <td></td>
                     <td>
-                      <input class="form-control eForm-control" type="number" id="" name="mark" placeholder="mark" min="0" value="{{ $values->marks }}" required>
+                      <input class="form-control eForm-control" type="number" id="" name="mark" placeholder="mark" min="0" value="" required>
                     </td>
                     <td>
                       <span id=""></span>

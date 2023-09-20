@@ -40,6 +40,7 @@
                             </div>
                         </div>
                       </div>
+
                       <div class="row">
                         <div class="col-md-6 mb-3">
                             <div>
@@ -56,36 +57,43 @@
                                 @foreach ($classes as $class)
                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                                 @endforeach
-                              </section>
-                          </div>
-                      </div>
-                    </div>
-                      <div class="row align-items-center">
-                          <div class="col-md-6 mb-3">
-                              <label for="birthday">Birthday</label>
-                              <div class="input-group">
-                                  <span class="input-group-text"><svg class="icon icon-xs" fill="currentColor"
-                                          viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd"
-                                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                              clip-rule="evenodd"></path>
-                                      </svg></span>
-                                  <input data-datepicker=""
-                                      class="form-control datepicker-input" name="birthday"
-                                      placeholder="yyyy/mm/dd" required>
-                              </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                              <label for="gender">Gender</label>
-                              <select class="form-select mb-0 @error('gender') is-valid @enderror" name="gender"
-                                  aria-label="Gender select example">
-                                  <option selected>Gender</option>
-                                  <option value="Female">Female</option>
-                                  <option value="Male">Male</option>
-                                  <option value="Other">Other</option>
                               </select>
                           </div>
                       </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="password">Password</label>
+                                <input class="form-control @error('password') is-valid @enderror" name="password" type="password"
+                                placeholder="Enter your password" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="birthday" class="eForm-label">Birthday</label>
+                          <input type="date" class="form-control eForm-control" id="eInputDate" name="birthday" value="{{ date('Y-m-d') }}" required/>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <label for="name">Name</label>
+                                <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+                                    placeholder="Enter your name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <div class="form-group">
+                              <label for="email">Email</label>
+                              <input  class="form-control @error('email') is-valid @enderror" name="email" type="email"
+                                  placeholder="name@gmail.com" required>
+                          </div>
+                      </div>
+                    </div>
+
                       <div class="row">
                         <div class="col-sm-6 mb-3">
                           <div class="form-group">
@@ -102,6 +110,7 @@
                               </div>
                           </div>
                       </div>
+
                       <div class="row">
                         <div class="col-md-6 mb-3">
                             <Label for="form-label" class="">Add Photo</Label>
@@ -122,8 +131,9 @@
                         </select>
                     </div>
                       </div>
+
                       <div class="mt-3">
-                          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Save</button>
+                          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Student</button>
                       </div>
                   </form>
               </div>

@@ -77,10 +77,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('admin/student', [AdminController::class, 'student_list'])->name('admin.student');
-Route::get('admin/student/create', [AdminController::class, 'student_create'])->name('admin.student.create');
-Route::post('admin/student', [AdminController::class, 'student_store'])->name('admin.student.store');
-
 //Admin routes start here
 Route::controller(AdminController::class)->middleware(['admin','auth'])->group(function () {
 
@@ -90,9 +86,9 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/admin', 'adminList')->name('admin.admin');
 
     //Student users route
-    // Route::get('admin/student', 'student_list')->name('admin.student');
-    // Route::get('admin/student/create', 'student_create')->name('admin.student.create');
-    // Route::post('admin/student', 'student_store')->name('admin.student.store');
+    Route::get('admin/student', 'student_list')->name('admin.student');
+    Route::get('admin/student/create', 'student_create')->name('admin.student.create');
+    Route::post('admin/student', 'student_store')->name('admin.student.store');
     Route::get('admin/student/edit/{id}', 'student_edit')->name('admin.student.edit');
     Route::post('admin/student/{id}', 'student_update')->name('admin.student.update');
     Route::get('admin/student/delete/{id}', 'student_delete')->name('admin.student.delete');
