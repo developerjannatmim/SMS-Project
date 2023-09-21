@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('classes');
             $table->unsignedBigInteger('section_id')->nullable();
             $table->foreign('section_id')->references('id')->on('sections');
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->unsignedBigInteger('routine_creator');
+            $table->foreign('routine_creator')->references('id')->on('users');
             $table->unsignedBigInteger('school_id');
             $table->foreign('school_id')->references('id')->on('schools');
             $table->integer('starting_hour');

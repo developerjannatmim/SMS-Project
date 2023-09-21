@@ -7,13 +7,9 @@ use App\Models\Exam;
 use App\Models\Grade;
 use App\Models\Mark;
 use App\Models\Section;
-use App\Models\Student;
-use App\Models\Subject;
 use App\Models\User;
-use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use App\Models\School;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -51,7 +47,7 @@ class AdminController extends Controller
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
-      $file->move('/images/student/', $filename);
+      $file->move('students-images/', $filename);
       $photo = $filename;
     } else {
       $photo = '';
@@ -130,14 +126,217 @@ class AdminController extends Controller
   {
     $student = User::find($id);
     $student->delete();
+    return redirect()->back();
   }
 
+  //Guardian
   public function guardian_list()
   {
     $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
     return view('admin.parent.parent_list', compact('parents'));
 
   }
+
+  public function guardian_create()
+  {
+    $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
+    return view('admin.parent.add_parent', compact('parents'));
+
+  }
+
+  public function guardian_store(Request $request)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('parent-images/', $filename);
+      $photo = $filename;
+    } else {
+      $photo = '';
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'child_name' => $data['child_name'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::create([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'password' => $data['password'],
+      'role_id' => '4',
+      'school_id' => auth()->user()->school_id,
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Parent Added Successfully');
+
+  }
+
+  public function guardian_edit(string $id)
+  {
+    $parent = User::find($id);
+    return view('admin.parent.edit_parent', compact('parent'));
+  }
+
+  public function guardian_update(Request $request, string $id)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('parent-images/', $filename);
+      $photo = $filename;
+    } else {
+      $user_info = User::where('id', $id)->value('user_information');
+      $exsisting_filename = json_decode($user_info)->photo;
+      if($exsisting_filename !== ''){
+        $photo = $exsisting_filename;
+      }else{
+        $photo = '';
+      }
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'child_name' => $data['child_name'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::where('id', $id)->update([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Parent Updated Successfully');
+  }
+
+  public function guardian_destroy(string $id)
+  {
+    $parent = User::find($id);
+    $parent->delete();
+    return redirect()->back();
+  }
+
+  //Teacher
+  public function teacher_list()
+  {
+    $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.teacher.teacher_list', compact('teachers', 'classes'));
+
+  }
+
+  public function teacher_create()
+  {
+    $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.teacher.add_teacher', compact('teachers', 'classes'));
+
+  }
+
+  public function teacher_store(Request $request)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('teacher-images/', $filename);
+      $photo = $filename;
+    } else {
+      $photo = '';
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::create([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'password' => $data['password'],
+      'class_id' => $data['class_id'],
+      'role_id' => '2',
+      'school_id' => auth()->user()->school_id,
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Teacher Added Successfully');
+
+  }
+
+  public function teacher_edit(string $id)
+  {
+    $teacher = User::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.teacher.edit_teacher', compact('teacher', 'classes'));
+  }
+
+  public function teacher_update(Request $request, string $id)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('teacher-images/', $filename);
+      $photo = $filename;
+    } else {
+      $user_info = User::where('id', $id)->value('user_information');
+      $exsisting_filename = json_decode($user_info)->photo;
+      if($exsisting_filename !== ''){
+        $photo = $exsisting_filename;
+      }else{
+        $photo = '';
+      }
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::where('id', $id)->update([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'class_id' => $data['class_id'],
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Teacher Updated Successfully');
+  }
+
+  public function teacher_destroy(string $id)
+  {
+    $teacher = User::find($id);
+    $teacher->delete();
+    return redirect()->back();
+  }
+
+
 
   //School
   public function school_list()

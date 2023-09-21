@@ -6,20 +6,11 @@
 
   <main class="content">
     @include('layouts.topbar')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>SMS Project Dashboard</title>
       <link rel="stylesheet" href="/css/style.css">
-    </head>
 
-    <body>
       <div class="p-2 mb-0 mt-2">
-        <div class="row">
+        <div class="row" style="margin-right: 660px">
           <div class="col-12 col-md-4 col-xl-6">
             <p class="mb-0 text-center text-lg-start"><b class="">Parents</b></p>
             <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Parents</small>
@@ -29,13 +20,13 @@
       </div>
 
       <!-- Start Parents area -->
-      <section class="section">
+      <section class="section" style="margin-top: -80px">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
               <div class="table-wrap">
                 <table class="table table-responsive-xl">
-                  <thead>
+                  <thead >
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
@@ -53,17 +44,14 @@
                       // } else {
                       //     $user_image = 'uploads/user-images/thumbnail.png';
                       // }
-                      $childs = DB::table('users')
-                          ->join('students', 'users.id', '=', 'students.user_id')
-                          ->get();
                     ?>
                     <tr class="alert" role="alert">
                       <td class="d-flex align-items-center">
                         <img class="image" width="40" height="40" src="/assets/images/user.jpeg" alt="">
                         <div class="pl-3 email">
                           <strong>{{ $parent->name }}</strong>
-                          <span style="color: rgb(147,128,139)"><b style="color: black">Number of child:
-                            </b>{{ $childs }}</span>
+                          <span style="color: rgb(147,128,139)"><b style="color: black">Name of child:
+                            </b>{{ $info->child_name }}</span>
                         </div>
                       </td>
                       <td>{{ $parent->email }}</td>
@@ -82,13 +70,13 @@
                           </button>
                           <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.parent.create') }}">Add</a>
+                              <a class="dropdown-item" href="{{ route('admin.guardian.create') }}">Add</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.parent.edit', $parent->id) }}">Edit</a>
+                              <a class="dropdown-item" href="{{ route('admin.guardian.edit', $parent->id) }}">Edit</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.parent.delete', $parent->id) }}">Delete</a>
+                              <a class="dropdown-item" href="{{ route('admin.guardian.delete', $parent->id) }}">Delete</a>
                             </li>
                           </ul>
                         </div>
@@ -102,10 +90,6 @@
           </div>
         </div>
       </section>
-    </body>
-
-    </html>
-
 
     {{-- Footer --}}
     @include('layouts.footer')

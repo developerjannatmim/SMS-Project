@@ -9,9 +9,10 @@
 @include('layouts.topbar')
 
 <title>SMS Project Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
 
   <div class="p-2 mb-0 mt-2">
-      <div class="row">
+      <div class="row" style="margin-right: 600px">
           <div class="col-12 col-md-4 col-xl-6">
               <p class="mb-0 text-center text-lg-start"><b class="">Create Parent</b></p>
               <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Parent</small>
@@ -23,7 +24,7 @@
   <div class="bg-white rounded p-4 mb-4 mt-2">
     {{-- <h5>{{auth()->user()->name}}</h5> --}}
     <h2 class="h5 mb-4">Create Parent information</h2>
-      <form action="{{ route('admin.parent.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.guardian.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row">
               <div class="col-md-6 mb-3">
@@ -37,7 +38,7 @@
                   <div class="form-group">
                       <label for="email">Email</label>
                       <input class="form-control @error('email') is-valid @enderror" name="email" type="email"
-                          placeholder="name@gmail.com" required>
+                        placeholder="name@gmail.com" required>
                   </div>
               </div>
           </div>
@@ -47,43 +48,28 @@
                   <div>
                       <label for="password">Password</label>
                       <input class="form-control @error('password') is-valid @enderror" name="password"
-                          type="password" placeholder="Enter your password" required>
+                        type="password" placeholder="Enter your password" required>
                   </div>
               </div>
               <div class="col-md-6 mb-3">
-                  <div class="form-group">
-                      <label for="class_id">Class</label>
-                      <select name="class_id" class="form-select eChoice-multiple-with-remove" required >
-                          <option value="">Select a class</option>
-                          @foreach ($classes as $class)
-                              <option value="{{ $class->id }}">{{ $class->name }}</option>
-                          @endforeach
-                      </select>
-                  </div>
-              </div>
-          </div>
-
-          <div class="row">
-              <div class="col-md-6 mb-3">
-                  <div class="form-group">
-                      <label for="section_id">Section</label>
-                      <select name="section_id" class="form-select eChoice-multiple-with-remove" required >
-                          <option value="">Select a section</option>
-                          @foreach ($sections as $section)
-                              <option value="{{ $section->id }}">{{ $section->name }}</option>
-                          @endforeach
-                      </select>
-                  </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                  <label for="birthday" class="eForm-label">Birthday</label>
-                  <input type="date" class="form-control eForm-control" id="eInputDate" name="birthday"
-                      value="{{ date('Y-m-d') }}" required />
+                <div>
+                    <label for="designation">Designation</label>
+                    <input class="form-control @error('designation') is-valid @enderror" name="designation" type="text"
+                    placeholder="Enter your designation" required>
+                </div>
               </div>
           </div>
 
           <div class="row">
               <div class="col-md-12 mb-3">
+                  <label for="birthday" class="eForm-label">Birthday</label>
+                  <input type="date" class="form-control eForm-control" id="eInputDate" name="birthday"
+                    value="{{ date('Y-m-d') }}" required />
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6 mb-3">
                   <div>
                       <label for="gender" class="eForm-label">Gender</label>
                       <select name="gender" id="gender"
@@ -95,6 +81,13 @@
                       </select>
                   </div>
               </div>
+              <div class="col-md-6 mb-3">
+                <div>
+                    <label for="child_name">Child Name</label>
+                    <input class="form-control @error('child_name') is-valid @enderror" name="child_name" type="text"
+                    placeholder="Enter your child name" required>
+                </div>
+            </div>
           </div>
 
           <div class="row">

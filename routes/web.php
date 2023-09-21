@@ -95,14 +95,19 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
 
     //Parent users route
     Route::get('admin/guardian', 'guardian_list')->name('admin.guardian');
-    Route::post('admin/parent/create',  'parent_create')->name('admin.parent.create');
-    Route::get('admin/parent',  'parent_store')->name('admin.parent.store');
-    Route::get('admin/parent/edit/{id}', 'parent_edit')->name('admin.parent.edit');
-    Route::post('admin/parent/{id}', 'parent_update')->name('admin.parent.update');
-    Route::get('admin/parent/delete/{id}', 'parentDelete')->name('admin.parent.delete');
+    Route::get('admin/guardian/create',  'guardian_create')->name('admin.guardian.create');
+    Route::post('admin/guardian',  'guardian_store')->name('admin.guardian.store');
+    Route::get('admin/guardian/edit/{id}', 'guardian_edit')->name('admin.guardian.edit');
+    Route::post('admin/guardian/{id}', 'guardian_update')->name('admin.guardian.update');
+    Route::get('admin/guardian/delete/{id}', 'guardian_destroy')->name('admin.guardian.delete');
 
     //Teacher users route
-    Route::get('admin/teacher', 'teacherList')->name('admin.teacher');
+    Route::get('admin/teacher', 'teacher_list')->name('admin.teacher');
+    Route::get('admin/teacher/create',  'teacher_create')->name('admin.teacher.create');
+    Route::post('admin/teacher',  'teacher_store')->name('admin.teacher.store');
+    Route::get('admin/teacher/edit/{id}', 'teacher_edit')->name('admin.teacher.edit');
+    Route::post('admin/teacher/{id}', 'teacher_update')->name('admin.teacher.update');
+    Route::get('admin/teacher/delete/{id}', 'teacher_destroy')->name('admin.teacher.delete');
 
     //Routine routes
     Route::get('admin/routine', 'routine')->name('admin.routine');

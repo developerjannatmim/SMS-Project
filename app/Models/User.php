@@ -81,4 +81,9 @@ class User extends Authenticatable
 		return $this->attributes['name'] = ucfirst($value);
 	}
 
+	public function getBirthdayAttribute($date)
+	{
+		return $this->attributes['birthday'] = date('Y-m-d', $date);
+	}
+
 }
