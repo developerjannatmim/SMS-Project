@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreign('school_id')->references('id')->on('schools');
             $table->unsignedBigInteger('section_id')->nullable();
             $table->foreign('section_id')->references('id')->on('sections');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('parents');
             $table->string('password');
             $table->longText('user_information')->nullable();
             $table->timestamp('email_verified_at')->nullable();

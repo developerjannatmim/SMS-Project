@@ -132,8 +132,14 @@ class AdminController extends Controller
     $student->delete();
   }
 
-  //School
+  public function guardian_list()
+  {
+    $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
+    return view('admin.parent.parent_list', compact('parents'));
 
+  }
+
+  //School
   public function school_list()
   {
     $school = School::get();
@@ -186,7 +192,6 @@ class AdminController extends Controller
   }
 
   //Grades
-
   public function gradeList()
   {
     $grades = Grade::get()->where('school_id', auth()->user()->school_id);
