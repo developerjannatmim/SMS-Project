@@ -83,7 +83,12 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/dashboard', 'adminDashboard')->name('admin.dashboard')->middleware('role_id');
 
     //Admin users route
-    Route::get('admin/admin', 'adminList')->name('admin.admin');
+    Route::get('admin/admin', 'admin_list')->name('admin.admin');
+    Route::get('admin/admin/create', 'admin_create')->name('admin.admin.create');
+    Route::post('admin/admin', 'admin_store')->name('admin.admin.store');
+    Route::get('admin/admin/edit/{id}', 'admin_edit')->name('admin.admin.edit');
+    Route::post('admin/admin/{id}', 'admin_update')->name('admin.admin.update');
+    Route::get('admin/admin/delete/{id}', 'admin_destroy')->name('admin.admin.delete');
 
     //Student users route
     Route::get('admin/student', 'student_list')->name('admin.student');

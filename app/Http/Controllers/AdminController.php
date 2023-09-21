@@ -336,7 +336,110 @@ class AdminController extends Controller
     return redirect()->back();
   }
 
+  //Admin
+  public function admin_list()
+  {
+    $admins = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.admin.admin_list', compact('admins', 'classes'));
 
+  }
+
+  public function admin_create()
+  {
+    $admins = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.admin.add_admin', compact('admins', 'classes'));
+
+  }
+
+  public function admin_store(Request $request)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('admin-images/', $filename);
+      $photo = $filename;
+    } else {
+      $photo = '';
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::create([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'password' => $data['password'],
+      'class_id' => $data['class_id'],
+      'role_id' => '2',
+      'school_id' => auth()->user()->school_id,
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Admin Added Successfully');
+
+  }
+
+  public function admin_edit(string $id)
+  {
+    $admin = User::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.admin.edit_admin', compact('admin', 'classes'));
+  }
+
+  public function admin_update(Request $request, string $id)
+  {
+    $data = $request->all();
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('admin-images/', $filename);
+      $photo = $filename;
+    } else {
+      $user_info = User::where('id', $id)->value('user_information');
+      $exsisting_filename = json_decode($user_info)->photo;
+      if($exsisting_filename !== ''){
+        $photo = $exsisting_filename;
+      }else{
+        $photo = '';
+      }
+    }
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => $data['blood_group'],
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'designation' => $data['designation'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::where('id', $id)->update([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'class_id' => $data['class_id'],
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->back()->with('success', 'Admin Updated Successfully');
+  }
+
+  public function admin_destroy(string $id)
+  {
+    $admin = User::find($id);
+    $admin->delete();
+    return redirect()->back();
+  }
 
   //School
   public function school_list()
