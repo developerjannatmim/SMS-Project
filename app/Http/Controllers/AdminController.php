@@ -73,7 +73,7 @@ class AdminController extends Controller
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Student Added Successfully');
+    return redirect()->route('admin.student')->with('success', 'Student Added Successfully');
   }
 
   public function student_edit(string $id)
@@ -95,9 +95,9 @@ class AdminController extends Controller
     } else {
       $user_info = User::where('id', $id)->value('user_information');
       $exsisting_filename = json_decode($user_info)->photo;
-      if($exsisting_filename !== ''){
+      if ($exsisting_filename !== '') {
         $photo = $exsisting_filename;
-      }else{
+      } else {
         $photo = '';
       }
     }
@@ -119,7 +119,7 @@ class AdminController extends Controller
       'class_id' => $data['class_id'],
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Student Updated Successfully');
+    return redirect()->route('admin.student')->with('success', 'Student Updated Successfully');
   }
 
   public function student_destroy(string $id)
@@ -130,6 +130,7 @@ class AdminController extends Controller
   }
 
   //Guardian
+
   public function guardian_list()
   {
     $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
@@ -176,7 +177,7 @@ class AdminController extends Controller
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Parent Added Successfully');
+    return redirect()->route('admin.guardian')->with('success', 'Parent Added Successfully');
 
   }
 
@@ -197,9 +198,9 @@ class AdminController extends Controller
     } else {
       $user_info = User::where('id', $id)->value('user_information');
       $exsisting_filename = json_decode($user_info)->photo;
-      if($exsisting_filename !== ''){
+      if ($exsisting_filename !== '') {
         $photo = $exsisting_filename;
-      }else{
+      } else {
         $photo = '';
       }
     }
@@ -221,7 +222,7 @@ class AdminController extends Controller
       'email' => $data['email'],
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Parent Updated Successfully');
+    return redirect()->route('admin.guardian')->with('success', 'Parent Updated Successfully');
   }
 
   public function guardian_destroy(string $id)
@@ -232,6 +233,7 @@ class AdminController extends Controller
   }
 
   //Teacher
+
   public function teacher_list()
   {
     $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
@@ -280,7 +282,7 @@ class AdminController extends Controller
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Teacher Added Successfully');
+    return redirect()->route('admin.teacher')->with('success', 'Teacher Added Successfully');
 
   }
 
@@ -302,9 +304,9 @@ class AdminController extends Controller
     } else {
       $user_info = User::where('id', $id)->value('user_information');
       $exsisting_filename = json_decode($user_info)->photo;
-      if($exsisting_filename !== ''){
+      if ($exsisting_filename !== '') {
         $photo = $exsisting_filename;
-      }else{
+      } else {
         $photo = '';
       }
     }
@@ -326,7 +328,7 @@ class AdminController extends Controller
       'class_id' => $data['class_id'],
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Teacher Updated Successfully');
+    return redirect()->route('admin.teacher')->with('success', 'Teacher Updated Successfully');
   }
 
   public function teacher_destroy(string $id)
@@ -337,19 +339,18 @@ class AdminController extends Controller
   }
 
   //Admin
+
   public function admin_list()
   {
-    $admins = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.admin.admin_list', compact('admins', 'classes'));
+    $admins = User::get()->where('role_id', 1)->where('school_id', auth()->user()->school_id);
+    return view('admin.admin.admin_list', compact('admins'));
 
   }
 
   public function admin_create()
   {
-    $admins = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.admin.add_admin', compact('admins', 'classes'));
+    $admins = User::get()->where('role_id', 1)->where('school_id', auth()->user()->school_id);
+    return view('admin.admin.add_admin', compact('admins'));
 
   }
 
@@ -371,7 +372,6 @@ class AdminController extends Controller
       'birthday' => date($data['birthday']),
       'phone' => $data['phone'],
       'address' => $data['address'],
-      'designation' => $data['designation'],
       'photo' => $photo
     );
 
@@ -380,20 +380,18 @@ class AdminController extends Controller
       'name' => $data['name'],
       'email' => $data['email'],
       'password' => $data['password'],
-      'class_id' => $data['class_id'],
-      'role_id' => '2',
+      'role_id' => '1',
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Admin Added Successfully');
+    return redirect()->route('admin.admin')->with('success', 'Admin Added Successfully');
 
   }
 
   public function admin_edit(string $id)
   {
     $admin = User::find($id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.admin.edit_admin', compact('admin', 'classes'));
+    return view('admin.admin.edit_admin', compact('admin'));
   }
 
   public function admin_update(Request $request, string $id)
@@ -407,9 +405,9 @@ class AdminController extends Controller
     } else {
       $user_info = User::where('id', $id)->value('user_information');
       $exsisting_filename = json_decode($user_info)->photo;
-      if($exsisting_filename !== ''){
+      if ($exsisting_filename !== '') {
         $photo = $exsisting_filename;
-      }else{
+      } else {
         $photo = '';
       }
     }
@@ -420,7 +418,6 @@ class AdminController extends Controller
       'birthday' => date($data['birthday']),
       'phone' => $data['phone'],
       'address' => $data['address'],
-      'designation' => $data['designation'],
       'photo' => $photo
     );
 
@@ -428,10 +425,9 @@ class AdminController extends Controller
     User::where('id', $id)->update([
       'name' => $data['name'],
       'email' => $data['email'],
-      'class_id' => $data['class_id'],
       'user_information' => $data['user_information']
     ]);
-    return redirect()->back()->with('success', 'Admin Updated Successfully');
+    return redirect()->route('admin.admin')->with('success', 'Admin Updated Successfully');
   }
 
   public function admin_destroy(string $id)
@@ -442,6 +438,7 @@ class AdminController extends Controller
   }
 
   //School
+
   public function school_list()
   {
     $school = School::get();
@@ -494,6 +491,7 @@ class AdminController extends Controller
   }
 
   //Grades
+
   public function gradeList()
   {
     $grades = Grade::get()->where('school_id', auth()->user()->school_id);

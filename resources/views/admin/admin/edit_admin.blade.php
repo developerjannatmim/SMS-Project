@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <div class="p-2 mb-0 mt-2">
-      <div class="row" style="margin-right: 550px">
+      <div class="row" style="margin-right: 450px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Update Teacher</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Update Teacher
+          <p class="mb-0 text-center text-lg-start"><b class="">Update Admin</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Update Admin
               Info</small>
           </p>
         </div>
@@ -22,50 +22,28 @@
     </div>
 
     <div class="bg-white rounded p-4 mb-4 mt-2">
-      {{-- <h5>{{auth()->user()->name}}</h5> --}}
-      <h2 class="h5 mb-4">Update teacher information</h2>
-      <form action="{{ route('admin.teacher.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
+      {{-- <h2 class="h5 mb-4">Update Admin information</h2> --}}
+      <form action="{{ route('admin.admin.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
           <div class="col-md-6 mb-3">
             <div>
               <label for="name">Name</label>
               <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
-                value="{{ $teacher->name }}" required>
+                value="{{ $admin->name }}" required>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="email">Email</label>
               <input class="form-control @error('email') is-valid @enderror" name="email" type="email"
-                value="{{ $teacher->email }}" required>
+                value="{{ $admin->email }}" required>
             </div>
           </div>
         </div>
         <?php
-            $info = json_decode($teacher->user_information);
-            ?>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <div class="form-group">
-              <label for="class_id">Class</label>
-              <select name="class_id" class="form-select eChoice-multiple-with-remove" required
-                onchange="classWiseSection(this.value)">
-                <option value="">Select a class</option>
-                @foreach ($classes as $class)
-                <option value="{{ $class->id }}" {{ $teacher->class_id == $class->id ? 'selected' : ''
-                  }}>{{
-                  $class->name }}
-                </option>
-                @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="birthday">Birthday</label>
-            <input type="date" class="form-control" name="birthday" value="{{ date('Y-m-d') }}" required />
-          </div>
-        </div>
+          $info = json_decode($admin->user_information);
+        ?>
 
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -80,11 +58,8 @@
             </div>
           </div>
           <div class="col-md-6 mb-3">
-            <div>
-              <label for="designation">Designation</label>
-              <input class="form-control @error('designation') is-valid @enderror" name="designation" type="text"
-                value="{{ $info->designation }}" required>
-            </div>
+            <label for="birthday">Birthday</label>
+            <input type="date" class="form-control" name="birthday" value="{{ date('Y-m-d') }}" required />
           </div>
         </div>
 
@@ -128,7 +103,7 @@
         </div>
 
         <div class="mt-3">
-          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Update Teacher Info</button>
+          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Update Admin Info</button>
         </div>
       </form>
     </div>

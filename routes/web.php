@@ -117,6 +117,9 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     //Routine routes
     Route::get('admin/routine', 'routine')->name('admin.routine');
 
+    //School routes
+    Route::get('admin/routine', 'routine')->name('admin.routine');
+
     //Marks route
     Route::get('admin/marks', 'marks')->name('admin.marks');
 

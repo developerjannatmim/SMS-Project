@@ -10,10 +10,10 @@
       <link rel="stylesheet" href="/css/style.css">
   
       <div class="p-2 mb-0 mt-2">
-        <div class="row" style="margin-right: 660px">
+        <div class="row" style="margin-right: 550px">
           <div class="col-12 col-md-4 col-xl-6">
-            <p class="mb-0 text-center text-lg-start"><b class="">admins</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - admins</small>
+            <p class="mb-0 text-center text-lg-start"><b class="">Admin</b></p>
+            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Admin - List</small>
             </p>
           </div>
         </div>
@@ -50,14 +50,6 @@
                         <img class="image" width="40" height="40" src="/assets/images/user.jpeg" alt="">
                         <div class="pl-3 email">
                           <strong>{{ $admin->name }}</strong>
-                          <span style="color: rgb(147,128,139)"><b style="color: black">Class: 
-                            </b>
-                            <select name="" id="">
-                              @foreach ($classes as $class)
-                              <option type="text" value="{{ $class->id }}" {{ $admin->class_id == $class->id ? 'selected':''}}>{{ $class->name }}</option>
-                              @endforeach
-                            </select>
-                          </span>
                         </div>
                       </td>
                       <td>{{ $admin->email }}</td>
