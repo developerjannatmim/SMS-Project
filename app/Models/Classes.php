@@ -21,6 +21,11 @@ class Classes extends Model
         'school_id'
     ];
 
+    public function getNameAttribute( $value )
+    {
+        return $this->attributes[ 'name' ] = ucfirst( $value );
+    }
+
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);

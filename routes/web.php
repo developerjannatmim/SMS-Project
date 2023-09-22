@@ -141,7 +141,12 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/grade/delete/{id}', 'gradeDelete')->name('admin.grade.delete');
 
     //Subject routes
-    Route::get('admin/subject', 'subjectList')->name('admin.subject');
+    Route::get('admin/subject', 'subject_list')->name('admin.subject');
+    Route::get('admin/subject/create', 'create_subject')->name('admin.subject.create');
+    Route::post('admin/subject', 'subject_store')->name('admin.store.subject');
+    Route::get('admin/subject/{id}', 'edit_subject')->name('admin.edit.subject');
+    Route::post('admin/subject/{id}', 'subject_update')->name('admin.subject.update');
+    Route::get('admin/subject/delete/{id}', 'subject_destory')->name('admin.subject.delete');
 
     //Syllabus routes
     Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');

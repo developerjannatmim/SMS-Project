@@ -7,6 +7,7 @@ use App\Models\Exam;
 use App\Models\Grade;
 use App\Models\Mark;
 use App\Models\Section;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\School;
@@ -126,6 +127,7 @@ class AdminController extends Controller
   {
     $student = User::find($id);
     $student->delete();
+    $student = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
     return redirect()->back();
   }
 
@@ -229,6 +231,7 @@ class AdminController extends Controller
   {
     $parent = User::find($id);
     $parent->delete();
+    $parent = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
     return redirect()->back();
   }
 
@@ -335,6 +338,7 @@ class AdminController extends Controller
   {
     $teacher = User::find($id);
     $teacher->delete();
+    $teacher = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
     return redirect()->back();
   }
 
@@ -434,60 +438,31 @@ class AdminController extends Controller
   {
     $admin = User::find($id);
     $admin->delete();
+    $admin = User::get()->where('role_id', 1)->where('school_id', auth()->user()->school_id);
     return redirect()->back();
   }
 
   //School
-
-  public function school_list()
+  public function school_edit()
   {
-    $school = School::get();
-    return view('admin.school.school_list', compact('school'));
+    $school = User::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.school.edit_school', ['school' => $school]);
   }
 
-  public function school_create()
+  public function school_update(Request $request)
   {
-    return view('admin.school.add_school');
-  }
+    $school = User::get()->where('school_id', auth()->user()->school_id);
+    $data = $request->all();
 
-  public function school_store(Request $request)
-  {
-    $request->validate([
-      'title' => 'required',
-      'email' => 'required',
-      'phone' => 'required',
-      'address' => 'required',
-      'school_info' => 'required',
-      'status' => 'required'
+    School::where( $school )->update([
+      'title' => $data['title'],
+      'email' => $data['email'],
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'school_info' => $data['school_info'],
+      'status' => $data['status']
     ]);
-
-    $student = new School;
-    $student = School::create([
-      'title' => $request->title,
-      'email' => $request->email,
-      'phone' => $request->phone,
-      'address' => $request->address,
-      'school_info' => $request->school_info,
-      'status' => $request->status
-    ]);
-
-    $student->save();
-    return redirect()->route('admin.school.school_list')->with('success', 'School Added Successfully');
-  }
-
-  public function school_edit($id)
-  {
-    //
-  }
-
-  public function school_update(Request $request, $id)
-  {
-    //
-  }
-
-  public function school_destroy($id)
-  {
-    //
+    return redirect()->back()->with('success', 'School updated Successfully');
   }
 
   //Grades
@@ -553,8 +528,60 @@ class AdminController extends Controller
     return redirect()->back()->with('message', 'You have successfully delete grade.');
   }
 
-  //Exam
+  //Subject
+  public function subject_list()
+  {
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.subject.subject_list', ['subjects' => $subjects]);
+  }
 
+  public function create_subject()
+  {
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.subject.add_subject', ['classes' => $classes]);
+  }
+
+  public function subject_store(Request $request)
+  {
+    $data = $request->all();
+
+    Subject::create([
+      'name' => $data['name'],
+      'class_id' => $data['class_id'],
+      'school_id' => auth()->user()->school_id,
+    ]);
+    return redirect()->route('admin.subject')->with(['message' => 'You have successfully create a new Subject.']);
+  }
+
+  public function edit_subject(string $id)
+  {
+    $subject = Subject::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.subject.edit_subject', ['subject' => $subject, 'classes' => $classes]);
+  }
+
+  public function subject_update(Request $request, $id)
+  {
+    $data = $request->all();
+
+    Subject::where('id', $id)->update([
+      'name' => $data['name'],
+      'class_id' => $data['class_id'],
+      'school_id' => auth()->user()->school_id,
+    ]);
+
+    return redirect()->route('admin.subject')->with('message', 'You have successfully update Subject.');
+  }
+
+  public function subject_destory($id)
+  {
+    $subject = Subject::find($id);
+    $subject->delete();
+    $subject = Subject::get()->where('school_id', auth()->user()->school_id);
+    return redirect()->back()->with('message', 'You have successfully delete Subject.');
+  }
+
+  //Exam
   public function examList()
   {
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);

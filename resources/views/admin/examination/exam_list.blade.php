@@ -27,7 +27,7 @@
                 <div class="row mt-3">
                   <div class="col-md-3"></div>
                     <div class="col-md-4">
-                      <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
+                      <select name="class_id" id="class_id" required>
                         <option value="">Select a class</option>
                         @foreach ($classes as $class)
                         <option value="{{ $class->id }}">{{ $class->name }}</option>

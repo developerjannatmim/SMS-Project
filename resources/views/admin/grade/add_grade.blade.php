@@ -11,7 +11,7 @@
       <div class="row">
           <div class="col-12 col-md-4 col-xl-6">
               <p class="mb-0 text-center text-lg-start"><b class="">Grades</b></p>
-              <p class="mb-0 text-center text-lg-start"><small class="">Edit - 
+              <p class="mb-0 text-center text-lg-start"><small class="">Add - 
                 Examination - 
                 Grade</small></p>
           </div>

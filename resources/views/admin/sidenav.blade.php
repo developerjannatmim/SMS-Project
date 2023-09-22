@@ -148,7 +148,7 @@
 
             <li class="nav-item {{ request()->is('admin/section*') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('admin.section') }}"><small class="sidebar-text">
-                  Section
+                  Sections
                 </small>
               </a>
             </li>
