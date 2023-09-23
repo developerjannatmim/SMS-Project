@@ -152,12 +152,14 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     //Syllabus routes
     Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
 
-    //Section routes
-    Route::get('admin/section', 'sectionList')->name('admin.section');
-
     //Class list routes
-    Route::get('admin/class_list', 'classList')->name('admin.class_list');
-
+    Route::get('admin/class', 'class_list')->name('admin.class');
+    Route::get('admin/section', 'section_create')->name('admin.section.create');
+    Route::get('admin/class/create', 'create_class')->name('admin.class.create');
+    Route::post('admin/class', 'class_store')->name('admin.store.class');
+    Route::get('admin/class/{id}', 'edit_class')->name('admin.edit.class');
+    Route::post('admin/class/{id}', 'class_update')->name('admin.class.update');
+    Route::get('admin/class/delete/{id}', 'class_destory')->name('admin.class.delete');
 });
 //Admin routes end here
 

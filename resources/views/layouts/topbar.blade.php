@@ -1,3 +1,6 @@
+<?php
+use App\Models\Role;
+?>
 <nav class="bg-white navbar-expand align-items-center justify-content-between w-100 rounded shadow">
   <div class="container-fluid px-0">
     <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
@@ -5,6 +8,9 @@
       </div>
       <!-- Navbar links -->
       <p class="align-items-center mt-3">Paramount Secondary School</p>
+      <?php
+      $role = Role::find(auth()->user()->role_id);
+      ?>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown ms-lg-3">
           <a class="nav-link dropdown-toggle pt-1 px-4 mt-2" href="#" role="button" data-bs-toggle="dropdown"
@@ -12,8 +18,8 @@
             <div class="media d-flex align-items-center">
               <img class="avatar rounded-circle" alt="Image placeholder" src="/assets/img/team/profile-picture-1.jpg">
               <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                <span
-                  class="mb-0 font-small fw-bold text-gray-900">{{  auth()->user()->name ? auth()->user()->name : 'User Name'}}</span>
+                <span class="mb-0 font-small fw-bold text-gray-900">{{  auth()->user()->name ? auth()->user()->name : 'User Name'}}</span><br/>
+                <small class="fw-bold text-gray-400">{{  $role->name ? $role->name : ''}}</small>
               </div>
             </div>
           </a>

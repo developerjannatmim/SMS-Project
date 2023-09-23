@@ -109,7 +109,7 @@
       </li>
 
       <li class="nav-item">
-        <span class="nav-link {{ request()->is('admin/routine*') || request()->is('admin/subject*') || request()->is('admin/syllabus*') || request()->is('admin/grade*') || request()->is('admin/department*') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-apps">
+        <span class="nav-link {{ request()->is('admin/routine*') || request()->is('admin/subject*') || request()->is('admin/syllabus*') || request()->is('admin/grade*') || request()->is('admin/class*') ? 'showMenu' : '' }} d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-apps">
           <span>
             <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path>
@@ -143,9 +143,9 @@
                 </small>
               </a>
             </li>
-            <li class="nav-item {{ request()->is('admin/section*') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('admin.section') }}"><small class="sidebar-text">
-                  Sections
+            <li class="nav-item {{ request()->is('admin/class*') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('admin.class') }}"><small class="sidebar-text">
+                  Class List
                 </small>
               </a>
             </li>

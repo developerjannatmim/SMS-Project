@@ -451,10 +451,9 @@ class AdminController extends Controller
 
   public function school_update(Request $request)
   {
-    $school = User::get()->where('school_id', auth()->user()->school_id);
     $data = $request->all();
 
-    School::where( $school )->update([
+    School::where('id', auth()->user()->school_id)->update([
       'title' => $data['title'],
       'email' => $data['email'],
       'phone' => $data['phone'],
@@ -466,7 +465,6 @@ class AdminController extends Controller
   }
 
   //Grades
-
   public function gradeList()
   {
     $grades = Grade::get()->where('school_id', auth()->user()->school_id);
@@ -579,6 +577,59 @@ class AdminController extends Controller
     $subject->delete();
     $subject = Subject::get()->where('school_id', auth()->user()->school_id);
     return redirect()->back()->with('message', 'You have successfully delete Subject.');
+  }
+
+  //Class
+  public function class_list()
+  {
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.class.class_list', ['sections' => $sections]);
+  }
+
+  public function create_class()
+  {
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.class.add_class', ['classes' => $classes, 'sections' => $sections]);
+  }
+
+  public function class_store(Request $request)
+  {
+    $data = $request->all();
+
+    Classes::create([
+      'name' => $data['name'],
+      'school_id' => auth()->user()->school_id,
+    ]);
+    return redirect()->route('admin.class')->with(['message' => 'You have successfully create a new class.']);
+  }
+
+  public function edit_class(string $id)
+  {
+    $class = Classes::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.class.edit_class', ['class' => $class, 'classes' => $classes]);
+  }
+
+  public function class_update(Request $request, $id)
+  {
+    $data = $request->all();
+
+    Classes::where('id', $id)->update([
+      'name' => $data['name'],
+      'class_id' => $data['class_id'],
+      'school_id' => auth()->user()->school_id,
+    ]);
+
+    return redirect()->route('admin.class')->with('message', 'You have successfully update class.');
+  }
+
+  public function class_destory($id)
+  {
+    $class = Classes::find($id);
+    $class->delete();
+    $class = Classes::get()->where('school_id', auth()->user()->school_id);
+    return redirect()->back()->with('message', 'You have successfully delete class.');
   }
 
   //Exam

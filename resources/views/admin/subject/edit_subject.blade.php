@@ -14,7 +14,7 @@
       <div class="row" style="margin-right: 550px">
         <div class="col-12 col-md-4 col-xl-6">
           <p class="mb-0 text-center text-lg-start"><b class="">Subject</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Add - New
+          <p class="mb-0 text-center text-lg-start"><small class="">Edit -
               Subject</small></p>
         </div>
       </div>

@@ -10,8 +10,17 @@ class Role extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+		'name'
+	];
+
     public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getNameAttribute($value)
+	{
+		return $this->attributes['name'] = ucfirst($value);
+	}
 }

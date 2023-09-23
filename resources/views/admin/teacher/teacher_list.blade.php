@@ -47,7 +47,7 @@
                       ?>
                   <tr class="alert" role="alert">
                     <td class="d-flex align-items-center">
-                      <img class="image" width="40" height="40" src="/assets/images/user.jpeg" alt="">
+                      <img class="image" style="border-radius: 50px" width="40" height="40" src="/assets/images/user.jpeg" alt="">
                       <div class="pl-3 email">
                         <strong>{{ $teacher->name }}</strong>
                         <span style="color: rgb(147,128,139)"><b style="color: black">Class: 
