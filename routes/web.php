@@ -118,7 +118,8 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/routine', 'routine')->name('admin.routine');
 
     //School routes
-    Route::get('admin/routine', 'routine')->name('admin.routine');
+    Route::get('admin/school/info', 'school_edit')->name('admin.school.info');
+    Route::post('admin/school/update', 'school_update')->name('admin.school.update');
 
     //Marks route
     Route::get('admin/marks', 'marks')->name('admin.marks');

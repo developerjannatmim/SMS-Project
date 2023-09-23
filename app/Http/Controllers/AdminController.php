@@ -445,8 +445,8 @@ class AdminController extends Controller
   //School
   public function school_edit()
   {
-    $school = User::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.school.edit_school', ['school' => $school]);
+    $school = School::find(auth()->user()->school_id);
+    return view('admin.settings.school_settings', ['school' => $school]);
   }
 
   public function school_update(Request $request)
@@ -524,7 +524,7 @@ class AdminController extends Controller
   {
     $grade = Grade::find($id);
     $grade->delete();
-    $grades = Grade::get()->where('school_id', auth()->user()->school_id);
+    $grade = Grade::get()->where('school_id', auth()->user()->school_id);
     return redirect()->back()->with('message', 'You have successfully delete grade.');
   }
 
