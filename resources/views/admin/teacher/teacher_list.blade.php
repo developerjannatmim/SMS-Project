@@ -20,7 +20,8 @@
     </div>
 
     <!-- Start teachers area -->
-    <section class="section" style="margin-top: -80px">
+    <section class="section" style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.teacher.create') }}" style="margin-left: 940px; margin-top: -50px">+ Add</a>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -76,9 +77,6 @@
                           Actions
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
-                          <li>
-                            <a class="dropdown-item" href="{{ route('admin.teacher.create') }}">Add</a>
-                          </li>
                           <li>
                             <a class="dropdown-item" href="{{ route('admin.teacher.edit', $teacher->id) }}">Edit</a>
                           </li>

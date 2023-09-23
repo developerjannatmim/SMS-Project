@@ -588,48 +588,79 @@ class AdminController extends Controller
 
   public function create_class()
   {
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    $sections = Section::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.class.add_class', ['classes' => $classes, 'sections' => $sections]);
+    return view('admin.class.add_class');
   }
 
   public function class_store(Request $request)
   {
     $data = $request->all();
 
-    Classes::create([
-      'name' => $data['name'],
-      'school_id' => auth()->user()->school_id,
-    ]);
-    return redirect()->route('admin.class')->with(['message' => 'You have successfully create a new class.']);
+    $duplicate_class_name = Classes::get()->where('name', $data['name'])->where('school_id', auth()->user()->school_id);
+
+    if(count($duplicate_class_name) == 0){
+      $id = Classes::create([
+        'name' => $data['name'],
+        'school_id' => auth()->user()->school_id
+      ])->id;
+
+      Section::create([
+        'name' => 'A',
+        'class_id' => $id,
+        'school_id' => auth()->user()->school_id
+      ]);
+
+      return redirect()->route('admin.class')->with(['message' => 'You have successfully create a new class.']);
+    }else {
+      return redirect()->back()->with('error', 'sorry already the class name is exisist');
+    }
+
   }
 
+  //Section
+  public function edit_section(string $id)
+  {
+    $section = Section::find($id);
+    return view('admin.class.edit_section', compact('section'));
+  }
+
+  public function section_update(Request $request, string $id)
+  {
+    $data = $request->all();
+
+    Section::where('id', $id)->update([
+      'name' => $data['name'],
+      'school_id' => auth()->user()->school_id
+    ]);
+    return redirect()->route('admin.class');
+  }
+ //Section end
   public function edit_class(string $id)
   {
     $class = Classes::find($id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.class.edit_class', ['class' => $class, 'classes' => $classes]);
+    return view('admin.class.edit_class', ['class' => $class]);
   }
 
   public function class_update(Request $request, $id)
   {
     $data = $request->all();
 
-    Classes::where('id', $id)->update([
-      'name' => $data['name'],
-      'class_id' => $data['class_id'],
-      'school_id' => auth()->user()->school_id,
-    ]);
+    $duplicate_class_name = Classes::get()->where('name', $data['name'])->where('school_id', auth()->user()->school_id);
 
-    return redirect()->route('admin.class')->with('message', 'You have successfully update class.');
+    if( count($duplicate_class_name) == 0 ){
+      Classes::where('id', $id)->update([
+        'name' => $data['name'],
+        'school_id' => auth()->user()->school_id,
+      ]);
+      return redirect()->route('admin.class')->with('message', 'You have successfully update class.');
+    }
+    return redirect()->back()->with('error', 'sorry already the class name is exisist');
   }
 
   public function class_destory($id)
   {
-    $class = Classes::find($id);
-    $class->delete();
-    $class = Classes::get()->where('school_id', auth()->user()->school_id);
-    return redirect()->back()->with('message', 'You have successfully delete class.');
+    // $class = Classes::find($id);
+    // $class->delete();
+    // return redirect()->back()->with('message', 'You have successfully delete class.');
   }
 
   //Exam

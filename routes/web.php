@@ -152,9 +152,12 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     //Syllabus routes
     Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
 
+    //Section
+    Route::get('admin/section/edit/{id}', 'edit_section')->name('admin.edit.section');
+    Route::post('admin/section/update/{id}', 'section_update')->name('admin.update.section');
+
     //Class list routes
     Route::get('admin/class', 'class_list')->name('admin.class');
-    Route::get('admin/section', 'section_create')->name('admin.section.create');
     Route::get('admin/class/create', 'create_class')->name('admin.class.create');
     Route::post('admin/class', 'class_store')->name('admin.store.class');
     Route::get('admin/class/{id}', 'edit_class')->name('admin.edit.class');

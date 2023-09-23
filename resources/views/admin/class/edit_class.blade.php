@@ -20,40 +20,27 @@
         </div>
       </div>
   
-      <div class="bg-white rounded p-4 mb-4 mt-2">
-        {{-- <h5>{{auth()->user()->name}}</h5> --}}
-        <div class="export-btn-area">
-        <a class="export_btn" type="button" href="{{ route('admin.class') }}" style="margin-left: 850px">Back</a>
-        </div>
-        <form action="{{ route('admin.class.update', $class->id) }}" method="POST">
-          @csrf
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div>
-                <label for="name">Name</label>
-                <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
-                  value="{{ $class->name }}" required>
+      <section class="section" style="margin-top: -120px">
+        <a class="btn btn-primary" type="button" href="{{ route('admin.class') }}" style="margin-left: 940px; margin-top: -50px">Back</a>
+        <div class="bg-white rounded p-4 mb-4 mt-2">
+          <form action="{{ route('admin.class.update', $class->id) }}" method="POST">
+            @csrf
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div>
+                  <label for="name">Name</label>
+                  <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+                    value="{{ $class->name }}" required>
+                </div>
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <div class="form-group">
-                <label for="class_id">Class</label>
-                <select name="class_id" class="form-select eChoice-multiple-with-remove" required
-                    onchange="classWiseSection(this.value)">
-                    <option value="">Select a class</option>
-                    @foreach ($classes as $class)
-                        <option value="{{ $class->id }}" {{ $class->class_id == $class->id ? 'selected':'' }}>{{ $class->name }}</option>
-                    @endforeach
-                </select>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary btn-gray-800 mt-2 animate-up-2">Update class</button>
             </div>
-            </div>
-          </div>
-          <div class="mt-3">
-            <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Update class</button>
-          </div>
-        </form>
-      </div>
-      </div>
+          </form>
+        </div>
+        </div>
+      </section>
   
       {{-- Footer --}}
       @include('layouts.footer')

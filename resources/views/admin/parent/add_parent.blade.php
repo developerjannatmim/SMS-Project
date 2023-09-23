@@ -21,9 +21,10 @@
       </div>
   </div>
 
+  <section class="section" style="margin-top: -120px">
+    <a class="btn btn-primary" type="button" href="{{ route('admin.guardian') }}"
+      style="margin-left: 940px; margin-top: -45px">Back</a>
   <div class="bg-white rounded p-4 mb-4 mt-2">
-    {{-- <h5>{{auth()->user()->name}}</h5> --}}
-    <h2 class="h5 mb-4">Create Parent information</h2>
       <form action="{{ route('admin.guardian.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row">
@@ -130,11 +131,12 @@
           </div>
 
           <div class="mt-3">
-              <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Parent Info</button>
+              <button type="submit" class="btn btn-primary mt-2 animate-up-2">Add New Parent Info</button>
           </div>
       </form>
     </div>
   </div>
+  </section>
 
 
         {{-- Footer --}}
