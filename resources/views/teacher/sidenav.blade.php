@@ -100,7 +100,7 @@
 
           <li class="nav-item">
               <span
-                  class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('teacher/marks') || request()->is('teacher/grade') ? 'showMenu' : '' }}"
+                  class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('teacher/marks') || request()->is('teacher/grade') || request()->is('teacher/exam') ? 'showMenu' : '' }}"
                   data-bs-toggle="collapse" data-bs-target="#submenu-app" aria-expanded="false">
                   <span>
                       <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor"
@@ -122,11 +122,15 @@
                   <ul class="flex-column nav">
                       <li class="nav-item {{ request()->is('teacher/marks') ? 'active' : '' }}">
                           <a class="nav-link" href="{{ route('teacher.marks') }}"><small
-                                  class="sidebar-text">Marks</small></a>
+                            class="sidebar-text">Marks</small></a>
                       </li>
                       <li class="nav-item {{ request()->is('teacher/grade') ? 'active' : '' }}">
                           <a class="nav-link" href="{{ route('teacher.grade_list') }}"><small class="sidebar-text">Grades</small></a>
                       </li>
+                      <li class="nav-item {{ request()->is('teacher/exam') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('teacher.exam_list') }}"><small
+                          class="sidebar-text">Exam List</small></a>
+                    </li>
                   </ul>
               </div>
           </li>

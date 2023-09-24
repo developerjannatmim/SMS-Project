@@ -801,4 +801,9 @@ class AdminController extends Controller
     return view('admin.marks.marks_list', ['student_details' => $student_details, 'classes' => $classes, 'sections' => $sections, 'marks' => $marks]);
   }
 
+  public function create_routine()
+  {
+    return view('admin.routine.add_routine');
+  }
+
 }

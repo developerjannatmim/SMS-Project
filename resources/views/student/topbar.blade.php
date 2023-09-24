@@ -7,7 +7,7 @@ use App\Models\Role;
       <div class="d-flex align-items-center">
       </div>
       <!-- Navbar links -->
-      <p class="align-items-center mt-3">Paramount Secondary School</p>
+      <p class="mt-3 mb-0" style="margin-left: 350px">Paramount Secondary School</p>
       <?php
       $role = Role::find(auth()->user()->role_id);
       ?>

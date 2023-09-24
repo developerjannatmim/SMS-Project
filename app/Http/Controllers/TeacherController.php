@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Grade;
+use App\Models\Exam;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -83,4 +85,12 @@ class TeacherController extends Controller
       $grades = Grade::get()->where('school_id', auth()->user()->school_id);
       return view('teacher.grade.grade_list', ['grades' => $grades]);
     }
+
+  //Exam List
+  public function examList()
+  {
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $exams = Exam::get()->where('school_id', auth()->user()->school_id);
+    return view('teacher.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
+  }
 }

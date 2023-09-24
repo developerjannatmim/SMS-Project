@@ -116,6 +116,11 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
 
     //Routine routes
     Route::get('admin/routine', 'routine')->name('admin.routine');
+    Route::get('admin/routine/create', 'create_routine')->name('admin.routine.create');
+    Route::post('admin/routine/', 'store_routine')->name('admin.routine.store');
+    Route::get('admin/routine/edit/{id}', 'edit_routine')->name('admin.routine.edit');
+    Route::post('admin/routine/update/{id}', 'update_routine')->name('admin.routine.update');
+    Route::get('admin/routine/delete/{id}', 'routine_destroy')->name('admin.routine.delete');
 
     //School routes
     Route::get('admin/school/info', 'school_edit')->name('admin.school.info');
@@ -123,6 +128,11 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
 
     //Marks route
     Route::get('admin/marks', 'marks')->name('admin.marks');
+    Route::get('admin/marks/create', 'create_marks')->name('admin.marks.create');
+    Route::post('admin/marks/', 'store_marks')->name('admin.marks.store');
+    Route::get('admin/marks/edit/{id}', 'edit_marks')->name('admin.marks.edit');
+    Route::post('admin/marks/update/{id}', 'update_marks')->name('admin.marks.update');
+    Route::get('admin/marks/delete/{id}', 'marks_destroy')->name('admin.marks.delete');
 
     //Exam route
     Route::get('admin/exam', 'examList')->name('admin.exam');
@@ -151,6 +161,11 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
 
     //Syllabus routes
     Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
+    Route::get('admin/syllabus/create', 'create_syllabus')->name('admin.syllabus.create');
+    Route::post('admin/syllabus/', 'store_syllabus')->name('admin.syllabus.store');
+    Route::get('admin/syllabus/edit/{id}', 'edit_syllabus')->name('admin.syllabus.edit');
+    Route::post('admin/syllabus/update/{id}', 'update_syllabus')->name('admin.syllabus.update');
+    Route::get('admin/syllabus/delete/{id}', 'syllabus_destroy')->name('admin.syllabus.delete');
 
     //Section
     Route::get('admin/section/edit/{id}', 'edit_section')->name('admin.edit.section');
@@ -181,8 +196,11 @@ Route::controller(TeacherController::class)->middleware(['teacher','auth'])->gro
     //Marks routes
     Route::get('teacher/marks', 'marks')->name('teacher.marks');
 
+    //Exam routes
+    Route::get('teacher/exam', 'examList')->name('teacher.exam_list');
+
     //Grade routes
-    Route::get('teacher/grade', 'grade')->name('teacher.grade_list');
+    Route::get('teacher/grade', 'gradeList')->name('teacher.grade_list');
 
     //Routine routes
     Route::get('teacher/routine', 'routine')->name('teacher.routine');

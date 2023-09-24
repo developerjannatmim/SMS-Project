@@ -49,22 +49,22 @@
 
             <div class="fpb-7">
                 <label for="starting_date" class="eForm-label">Starting date</label>
-                <input type="date" class="form-control eForm-control" id="starting_date" name ="starting_date" min="0" value="{{ date('Y-m-d', $exam->starting_date ) }}" placeholder="Mark upto" required>
+                <input type="date" class="form-control eForm-control" id="starting_date" name ="starting_date" min="0" value="{{ $exam->starting_date }}" placeholder="Mark upto" required>
             </div>
 
             <div class="fpb-7">
                 <label for="starting_time" class="eForm-label">Starting time</label>
-                <input type="time" class="form-control eForm-control" id="starting_time" name ="starting_time" min="0" value="{{ date('H:i', $exam->starting_time ) }}" required>
+                <input type="time" class="form-control eForm-control" id="starting_time" name ="starting_time" min="0" value="{{ $exam->starting_time }}" required>
             </div>
 
             <div class="fpb-7">
                 <label for="ending_date" class="eForm-label">Ending date</label>
-                <input type="date" class="form-control eForm-control" id="ending_date" name = "ending_date" min="0" value="{{ date('Y-m-d', $exam->ending_date ) }}" placeholder="Mark upto" required>
+                <input type="date" class="form-control eForm-control" id="ending_date" name = "ending_date" min="0" value="{{ $exam->ending_date }}" placeholder="Mark upto" required>
             </div>
 
             <div class="fpb-7">
                 <label for="ending_time" class="eForm-label">Ending time</label>
-                <input type="time" class="form-control eForm-control" id="ending_time" name = "ending_time" min="0" value="{{ date('H:i', $exam->ending_time ) }}" placeholder="Mark upto" required>
+                <input type="time" class="form-control eForm-control" id="ending_time" name = "ending_time" min="0" value="{{ $exam->ending_time }}" placeholder="Mark upto" required>
             </div>
 
             <div class="fpb-7">

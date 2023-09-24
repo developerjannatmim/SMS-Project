@@ -44,7 +44,7 @@
                 <div class="card-body rounded mb-3" style="background-color: rgb(255,255,255)">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0"><b>Full Name</b></h6>
                     </div>
                     <div class="col-sm-9 text-dark">
                       {{ auth()->user()->name }}
@@ -53,7 +53,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0"><b>Email</b></h6>
                     </div>
                     <div class="col-sm-9 text-dark">
                       {{ auth()->user()->email }}
@@ -62,7 +62,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
+                      <h6 class="mb-0"><b>Phone</b></h6>
                     </div>
                     <div class="col-sm-9 text-dark">
                       {{ json_decode(auth()->user()->user_information, true)['phone'] }}
@@ -71,7 +71,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile</h6>
+                      <h6 class="mb-0"><b>Mobile</b></h6>
                     </div>
                     <div class="col-sm-9 text-dark">
                       {{ json_decode(auth()->user()->user_information, true)['phone'] }}
@@ -80,7 +80,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
+                      <h6 class="mb-0"><b>Address</b></h6>
                     </div>
                     <div class="col-sm-9 text-dark">
                         {{ json_decode(auth()->user()->user_information, true)['address'] }}
