@@ -1,3 +1,4 @@
+@include('parent.topbar')
 <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
   <div class="sidebar-inner px-2 pt-3">
       <div
@@ -56,7 +57,7 @@
 
           <li class="nav-item">
               <span
-                  class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('parent/teacherlist*')||request()->is('parent/childlist*') ? 'showMenu':'' }}"
+                  class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('parent/teacherlist*')||request()->is('parent/studentlist*') ? 'showMenu':'' }}"
                   data-bs-toggle="collapse" data-bs-target="#submenu-laravel" aria-expanded="false">
                   <span>
                       <span class="sidebar-icon"><i class="fab fa-laravel me-2" style="color: #fb503b;"></i></span>
@@ -73,12 +74,12 @@
                   <ul class="flex-column nav">
                       <li class="nav-item {{ (request()->is('parent/teacherlist*')) ? 'active' : '' }}">
                           <a class="nav-link" href="{{ route('parent.teacherlist') }}"><small class="sidebar-text">
-                                  Teacher
+                                  Teachers
                               </small></a>
                       </li>
-                      <li class="nav-item {{ request()->is('parent/childlist*') ? 'active' : '' }}">
-                          <a class="nav-link" href="{{ route('parent.childlist') }}"><small class="sidebar-text">
-                                  Child
+                      <li class="nav-item {{ request()->is('parent/studentlist*') ? 'active' : '' }}">
+                          <a class="nav-link" href="{{ route('parent.studentlist') }}"><small class="sidebar-text">
+                                  Students
                               </small></a>
                       </li>
                   </ul>
@@ -175,7 +176,7 @@
                                   clip-rule="evenodd"></path>
                               <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
                           </svg></span>
-                      <span class="sidebar-text">Profile</span>
+                      <span class="sidebar-text">User Profile</span>
                   </span>
                   <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg">
@@ -188,7 +189,7 @@
               <div class="multi-level collapse" role="list" id="submenu-pages" aria-expanded="false">
                   <ul class="flex-column nav">
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('profile-example') }}">
+                          <a class="nav-link" href="{{ route('parent.profile') }}">
                               <small class="sidebar-text">Profile</small>
                           </a>
                       </li>

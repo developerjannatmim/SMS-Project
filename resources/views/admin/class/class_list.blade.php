@@ -22,7 +22,6 @@
             </div>
         </div>
         
-
         <!-- Start classs area -->
         <section class="section" style="margin-top: -120px">
           <a class="btn btn-primary" type="button" href="{{ route('admin.class.create') }}" style="margin-left: 940px; margin-top: -50px">+ Add</a>

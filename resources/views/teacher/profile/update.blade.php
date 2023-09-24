@@ -2,7 +2,7 @@
   {{-- Nav --}}
   @include('layouts.nav')
   {{-- SideNav --}}
-  @include('student.sidenav')
+  @include('teacher.sidenav')
 
   <main class="content">
 
@@ -14,7 +14,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="student"
+                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="teacher"
                     class="rounded-circle p-1 bg-primary" width="110">
                   <div class="mt-2">
                     <h4>John Doe</h4>
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-lg-8">
-            <form action="{{ route('student.profile.update', $student->id ) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('teacher.profile.update', $teacher->id ) }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card">
                 <div class="card-body">

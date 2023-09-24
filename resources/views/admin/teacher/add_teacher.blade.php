@@ -60,22 +60,7 @@
                             </div>
                         </div>
                     </div>
-    
-                    <div class="row">
-                      <div class="col-md-12 mb-3">
-                        <div class="form-group">
-                            <label for="class_id">Class</label>
-                            <select name="class_id" class="form-select eChoice-multiple-with-remove" required
-                                onchange="classWiseSection(this.value)">
-                                <option value="">Select a class</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    </div>
-    
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div>

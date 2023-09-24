@@ -2,7 +2,7 @@
     {{-- Nav --}}
     @include('layouts.nav')
     {{-- SideNav --}}
-    @include('student.sidenav')
+    @include('parent.sidenav')
   
     <main class="content">
       <title>SMS Project Dashboard</title>

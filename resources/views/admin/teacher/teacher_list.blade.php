@@ -51,14 +51,6 @@
                       <img class="image" style="border-radius: 50px" width="40" height="40" src="/assets/images/user.jpeg" alt="">
                       <div class="pl-3 email">
                         <strong>{{ $teacher->name }}</strong>
-                        <span style="color: rgb(147,128,139)"><b style="color: black">Class: 
-                          </b>
-                          <select name="" id="">
-                            @foreach ($classes as $class)
-                            <option type="text" value="{{ $class->id }}" {{ $teacher->class_id == $class->id ? 'selected':''}}>{{ $class->name }}</option>
-                            @endforeach
-                          </select>
-                        </span>
                       </div>
                     </td>
                     <td>{{ $teacher->email }}</td>

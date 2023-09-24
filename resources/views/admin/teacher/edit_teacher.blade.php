@@ -47,23 +47,9 @@
             $info = json_decode($teacher->user_information);
             ?>
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="form-group">
-                <label for="class_id">Class</label>
-                <select name="class_id" class="form-select eChoice-multiple-with-remove" required
-                  onchange="classWiseSection(this.value)">
-                  <option value="">Select a class</option>
-                  @foreach ($classes as $class)
-                  <option value="{{ $class->id }}" {{ $teacher->class_id == $class->id ? 'selected' : '' }}>{{
-                    $class->name }}
-                  </option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
               <label for="birthday">Birthday</label>
-              <input type="date" class="form-control" name="birthday" value="{{ date('Y-m-d') }}" required />
+              <input type="date" class="form-control" name="birthday" value="{{ $info->birthday }}" required />
             </div>
           </div>
 

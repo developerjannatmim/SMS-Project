@@ -24,6 +24,56 @@ class AdminController extends Controller
     }
   }
 
+  public function profile()
+  {
+    return view('admin.profile.view');
+  }
+
+  public function profile_edit(string $id)
+  {
+    $admin = User::find($id);
+    return view('admin.profile.update', compact('admin'));
+  }
+
+  public function profile_update(Request $request, string $id)
+  {
+    $data = $request->all();
+
+    if (!empty($data['photo'])) {
+      $file = $data['photo'];
+      $filename = time() . '-' . $file->getClientOriginalExtension();
+      $file->move('admin-images/', $filename);
+      $photo = $filename;
+    } else {
+      $user_info = User::where('id', $id)->value('user_information');
+      $exsisting_filename = json_decode($user_info)->photo;
+      if ($exsisting_filename !== '') {
+        $photo = $exsisting_filename;
+      } else {
+        $photo = '';
+      }
+    }
+    $user_info = User::where('id', $id)->value('user_information');
+
+    $info = array(
+      'gender' => $data['gender'],
+      'blood_group' => json_decode($user_info)->blood_group,
+      'birthday' => date($data['birthday']),
+      'phone' => $data['phone'],
+      'address' => $data['address'],
+      'photo' => $photo
+    );
+
+    $data['user_information'] = json_encode($info);
+    User::where('id', $id)->update([
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'user_information' => $data['user_information']
+    ]);
+    return redirect()->route('admin.admin')->with('success', 'Profile Updated Successfully');
+  }
+
+
   //Student
 
   public function student_list()
@@ -268,7 +318,7 @@ class AdminController extends Controller
     $info = array(
       'gender' => $data['gender'],
       'blood_group' => $data['blood_group'],
-      'birthday' => date($data['birthday']),
+      'birthday' => $data['birthday'],
       'phone' => $data['phone'],
       'address' => $data['address'],
       'designation' => $data['designation'],
@@ -280,7 +330,6 @@ class AdminController extends Controller
       'name' => $data['name'],
       'email' => $data['email'],
       'password' => $data['password'],
-      'class_id' => $data['class_id'],
       'role_id' => '2',
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
@@ -292,8 +341,8 @@ class AdminController extends Controller
   public function teacher_edit(string $id)
   {
     $teacher = User::find($id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.teacher.edit_teacher', compact('teacher', 'classes'));
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.teacher.edit_teacher', compact('teacher', 'subjects'));
   }
 
   public function teacher_update(Request $request, string $id)
@@ -317,7 +366,7 @@ class AdminController extends Controller
     $info = array(
       'gender' => $data['gender'],
       'blood_group' => $data['blood_group'],
-      'birthday' => date($data['birthday']),
+      'birthday' => $data['birthday'],
       'phone' => $data['phone'],
       'address' => $data['address'],
       'designation' => $data['designation'],
@@ -328,7 +377,6 @@ class AdminController extends Controller
     User::where('id', $id)->update([
       'name' => $data['name'],
       'email' => $data['email'],
-      'class_id' => $data['class_id'],
       'user_information' => $data['user_information']
     ]);
     return redirect()->route('admin.teacher')->with('success', 'Teacher Updated Successfully');

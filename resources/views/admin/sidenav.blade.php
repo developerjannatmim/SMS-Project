@@ -1,3 +1,5 @@
+
+@include('admin.topbar')
 <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
   <div class="sidebar-inner px-2 pt-3">
     <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
@@ -170,7 +172,7 @@
         <div class="multi-level collapse" role="list" id="submenu-pages" aria-expanded="false">
           <ul class="flex-column nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('profile-example') }}">
+              <a class="nav-link" href="{{ route('admin.profile') }}">
                 <small class="sidebar-text">Profile</small>
               </a>
             </li>
@@ -204,3 +206,4 @@
     </ul>
   </div>
 </nav>
+

@@ -6,7 +6,6 @@
   
   <main class="content">
   
-  @include('layouts.topbar')
 <title>SMS Project Dashboard</title>
 
 <div class="p-2 mb-0 mt-2">

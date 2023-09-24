@@ -163,6 +163,12 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/class/{id}', 'edit_class')->name('admin.edit.class');
     Route::post('admin/class/{id}', 'class_update')->name('admin.class.update');
     Route::get('admin/class/delete/{id}', 'class_destory')->name('admin.class.delete');
+
+    //Profile
+    Route::get('admin/profile', 'profile')->name('admin.profile');
+    Route::get('admin/profile/edit/{id}', 'profile_edit')->name('admin.profile.edit');
+    Route::post('admin/profile/update/{id}', 'profile_update')->name('admin.profile.update');
+    Route::any('admin/password/{action_type}', 'password')->name('admin.password');
 });
 //Admin routes end here
 
@@ -190,7 +196,8 @@ Route::controller(TeacherController::class)->middleware(['teacher','auth'])->gro
 
     //Profile
     Route::get('teacher/profile', 'profile')->name('teacher.profile');
-    Route::post('teacher/profile/update', 'profile_update')->name('teacher.profile.update');
+    Route::get('teacher/profile/edit/{id}', 'profile_edit')->name('teacher.profile.edit');
+    Route::post('teacher/profile/update/{id}', 'profile_update')->name('teacher.profile.update');
     Route::any('teacher/password/{action_type}', 'password')->name('teacher.password');
 
 });
@@ -204,7 +211,7 @@ Route::controller(ParentController::class)->middleware(['parent','auth'])->group
 
     //User routes
     Route::get('parent/teacherlist', 'teacherList')->name('parent.teacherlist');
-    Route::get('parent/childlist', 'childList')->name('parent.childlist');
+    Route::get('parent/studentlist', 'studentList')->name('parent.studentlist');
 
     //Grade rotues
     Route::get('parent/grade', 'gradeList')->name('parent.grade_list');
@@ -223,7 +230,8 @@ Route::controller(ParentController::class)->middleware(['parent','auth'])->group
 
     //Profile
     Route::get('parent/profile', 'profile')->name('parent.profile');
-    Route::post('parent/profile/update', 'profile_update')->name('parent.profile.update');
+    Route::get('parent/profile/edit/{id}', 'profile_edit')->name('parent.profile.edit');
+    Route::post('parent/profile/update/{id}', 'profile_update')->name('parent.profile.update');
     Route::any('parent/password/{action_type}', 'password')->name('parent.password');
 
 });
@@ -254,8 +262,8 @@ Route::controller(StudentController::class)->middleware(['student','auth'])->gro
 
     //Profile
     Route::get('student/profile', 'profile')->name('student.profile');
-    Route::get('student/profile/edit', 'profile_edit')->name('student.profile.edit');
-    Route::post('student/profile/update', 'profile_update')->name('student.profile.update');
+    Route::get('student/profile/edit/{id}', 'profile_edit')->name('student.profile.edit');
+    Route::post('student/profile/update/{id}', 'profile_update')->name('student.profile.update');
     Route::any('student/password/{action_type}', 'password')->name('student.password');
 });
 //Student routes end here

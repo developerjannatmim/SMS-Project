@@ -5,7 +5,6 @@
     @include('admin.sidenav')
   
     <main class="content">
-      @include('layouts.topbar')
       <title>SMS Project Dashboard</title>
       <link rel="stylesheet" href="/css/style.css">
   
@@ -63,7 +62,7 @@
                         </div>
                       </td>
                       <td class="text-start">
-                        <div class="adminTable-action ms-0">
+                        <div class="ms-0">
                           <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Actions
@@ -72,8 +71,13 @@
                             <li>
                               <a class="dropdown-item" href="{{ route('admin.admin.edit', $admin->id) }}">Edit</a>
                             </li>
+                            {{-- @if(auth()->user())
                             <li>
                               <a class="dropdown-item" href="{{ route('admin.admin.delete', $admin->id) }}">Delete</a>
+                            </li>
+                            @endif --}}
+                            <li>
+                              <a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a>
                             </li>
                           </ul>
                         </div>

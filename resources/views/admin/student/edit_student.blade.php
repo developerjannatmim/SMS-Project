@@ -81,7 +81,7 @@
           <div class="col-md-6 mb-3">
             <label for="birthday" class="eForm-label">Birthday</label>
             <input type="date" class="form-control eForm-control inputDate" id="birthday" name="birthday"
-              value="{{ date('Y-m-d') }}" required />
+              value="{{ $info->birthday }}" required />
           </div>
         </div>
 

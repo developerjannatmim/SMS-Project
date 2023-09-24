@@ -1,4 +1,4 @@
-{{-- <?php
+<?php
 use App\Models\Role;
 ?>
 <nav class="bg-white navbar-expand align-items-center justify-content-between w-100 rounded shadow">
@@ -24,7 +24,7 @@ use App\Models\Role;
             </div>
           </a>
           <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-            <a class="dropdown-item d-flex align-items-center" href="{{ route('student.profile') }}">
+            <a class="dropdown-item d-flex align-items-center" href="{{ route('parent.profile') }}">
               <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -41,4 +41,4 @@ use App\Models\Role;
       </ul>
     </div>
   </div>
-</nav> --}}
+</nav>

@@ -5,8 +5,6 @@
   @include('admin.sidenav')
 
   <main class="content">
-
-    @include('layouts.topbar')
     <title>SMS Project Dashboard</title>
     <link rel="stylesheet" href="/css/style.css">
 
@@ -61,7 +59,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="birthday">Birthday</label>
-              <input type="date" class="form-control" name="birthday" value="{{ date('Y-m-d') }}" required />
+              <input type="date" class="form-control" name="birthday" value="{{ $info->birthday }}" required />
             </div>
           </div>
   
@@ -81,7 +79,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="row">
             <div class="col-md-6 mb-3">
               <Label for="form-label" class="">Add Photo</Label>

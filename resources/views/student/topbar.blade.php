@@ -1,4 +1,4 @@
-{{-- <?php
+<?php
 use App\Models\Role;
 ?>
 <nav class="bg-white navbar-expand align-items-center justify-content-between w-100 rounded shadow">
@@ -41,4 +41,4 @@ use App\Models\Role;
       </ul>
     </div>
   </div>
-</nav> --}}
+</nav>

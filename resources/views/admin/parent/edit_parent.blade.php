@@ -56,7 +56,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="birthday">Birthday</label>
-            <input type="date" class="form-control" name="birthday" value="{{ date('Y-m-d') }}" required />
+            <input type="date" class="form-control" name="birthday" value="{{ $info->birthday }}" required />
           </div>
         </div>
 
