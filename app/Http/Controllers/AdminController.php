@@ -881,7 +881,8 @@ class AdminController extends Controller
 
   public function syllabus()
   {
-    return view('admin.syllabus.syllabus_list');
+    $syllabuses = Syllabus::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.syllabus.syllabus_list', ['syllabuses' => $syllabuses]);
   }
 
   public function create_syllabus()
@@ -916,9 +917,13 @@ class AdminController extends Controller
     return redirect()->route('admin.syllabus');
   }
 
-  public function edit_syllabus()
+  public function edit_syllabus(string $id)
   {
-    return view('admin.syllabus.syllabus_list');
+    $syllabus = Syllabus::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.syllabus.edit_syllabus', ['syllabus' => $syllabus, 'subjects' => $subjects, 'classes' => $classes, 'sections' => $sections]);
   }
 
   public function update_syllabus()
