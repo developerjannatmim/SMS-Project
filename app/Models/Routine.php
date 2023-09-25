@@ -16,13 +16,15 @@ class Routine extends Model
     */
     protected $fillable = [
         'class_id',
+        'section_id',
         'subject_id',
-        'starting_hour',
-        'ending_hour',
-        'starting_minute',
-        'ending_minute',
+        'routine_creator',
+        'room_id',
         'day',
-        'teacher_id',
+        'starting_hour',
+        'starting_minute',
+        'ending_hour',
+        'ending_minute',
         'school_id'
     ];
 }

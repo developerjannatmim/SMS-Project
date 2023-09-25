@@ -806,8 +806,7 @@ class AdminController extends Controller
   //Routine
   public function routine()
   {
-    $routine = Routine::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.routine.routine', compact('routine'));
+    return view('admin.routine.routine');
   }
   public function create_routine()
   {
@@ -822,34 +821,61 @@ class AdminController extends Controller
   public function store_routine(Request $request)
   {
     $data = $request->all();
+
     Routine::create([
       'class_id' => $data['class_id'],
       'section_id' => $data['section_id'],
       'subject_id' => $data['subject_id'],
       'routine_creator' => $data['routine_creator'],
-      'class_room_id' => $data['class_room_id'],
+      'room_id' => $data['room_id'],
       'day' => $data['day'],
       'starting_hour' => $data['starting_hour'],
       'starting_minute' => $data['starting_minute'],
       'ending_hour' => $data['ending_hour'],
       'ending_minute' => $data['ending_minute'],
+      'school_id' => auth()->user()->school_id
     ]);
+    
     return redirect()->route('admin.routine');
   }
 
   public function edit_routine(string $id)
   {
-    return view('admin.routine.add_routine');
+    $routine = Routine::find($id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $class_rooms = ClassRoom::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    $routine_creator = User::where('role_id', 2)->where('school_id', auth()->user()->school_id)->get();
+    return view('admin.routine.edit_routine', ['routine' => $routine, 'classes' => $classes, 'sections' => $sections, 'class_rooms' => $class_rooms, 'subjects' => $subjects, 'routine_creator' => $routine_creator]);
   }
 
   public function update_routine(Request $request, string $id)
   {
-    return view('admin.routine.add_routine');
+    $data = $request->all();
+
+    Routine::where('id', $id)->update([
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'subject_id' => $data['subject_id'],
+      'routine_creator' => $data['routine_creator'],
+      'room_id' => $data['room_id'],
+      'day' => $data['day'],
+      'starting_hour' => $data['starting_hour'],
+      'starting_minute' => $data['starting_minute'],
+      'ending_hour' => $data['ending_hour'],
+      'ending_minute' => $data['ending_minute'],
+      'school_id' => auth()->user()->school_id
+    ]);
+
+    return redirect()->route('admin.routine');
   }
 
   public function routine_destroy(string $id)
   {
-    return view('admin.routine.add_routine');
+    $routine = Routine::find($id);
+    $routine->delete();
+    return redirect()->route('admin.routine');
   }
 
 }

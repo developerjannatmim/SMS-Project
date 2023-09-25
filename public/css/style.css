@@ -444,8 +444,7 @@ pre {
     word-break: normal; }
 
 .pre-scrollable {
-  max-height: 340px;
-  overflow-y: scroll; }
+  max-height: 340px; }
 
 .container {
   width: 100%;
@@ -8166,9 +8165,6 @@ h1, h2, h3, h4, h5,
   background-repeat: no-repeat;
   background-position: center center; }
 
-.table-wrap {
-  overflow-x: scroll; }
-
 .table {
   font-family: "Poppins", Arial, sans-serif;
   min-width: 1000px !important;
@@ -8294,3 +8290,73 @@ h1, h2, h3, h4, h5,
   color: #40bfc1; }
   .checkbox-primary input:checked ~ .checkmark:after {
     color: #40bfc1; }
+
+/*routine css*/
+.classTime-item {
+  background-color: #f1faff;
+  border: 1px dashed rgba(0, 163, 255, 0.4);
+  border-radius: 5px;
+  padding: 16px 20px;
+  min-width: 206px;
+}
+
+.class_routine_content {
+  padding-top: 1.5rem!important;
+}
+
+.classRoutines-item {
+  border-bottom: 1px dashed #dedede;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.classRoutines-item .title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23px;
+  color: #181c32;
+  min-width: 130px;
+}
+
+.classTime-items {
+  gap: 20px;
+}
+.d-flex {
+  display: flex!important;
+}
+
+.classTime-item {
+  background-color: #f1faff;
+  border: 1px dashed rgba(0, 163, 255, 0.4);
+  border-radius: 5px;
+  padding: 16px 20px;
+  min-width: 206px;
+}
+.classTime-item .subjectName {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  color: #181c32;
+  padding-bottom: 10px;
+}
+.ms-auto {
+  margin-left: auto!important;
+}
+
+.text-16px {
+  font-size: 16px !important;
+}
+.ps-2 {
+  padding-left: 0.5rem!important;
+}
+a {
+  text-decoration: none;
+  color: #9e9e9e;
+}
+i {
+  font-size: 15px !important;
+  background-color: transparent;
+}
+.info {
+  color: black;
+}

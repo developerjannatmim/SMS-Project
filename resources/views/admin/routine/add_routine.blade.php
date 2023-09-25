@@ -18,7 +18,7 @@
         </div>
 
         <section class="section" style="margin-top: -120px">
-            <a class="btn btn-primary" type="button" href="#"
+            <a class="btn btn-primary" type="button" href="{{ route('admin.routine') }}"
                 style="margin-left: 940px; margin-top: -45px">Back</a>
             <div class="bg-white rounded p-4 mb-4 mt-2">
                 <form method="POST" class="d-block ajaxForm" action="{{ route('admin.routine.store') }}">
@@ -69,8 +69,8 @@
                         </div>
 
                         <div class="fpb-7">
-                            <label for="class_room_id" class="eForm-label">Class room</label>
-                            <select name="class_room_id" id="class_room_id_on_routine_creation"
+                            <label for="room_id" class="eForm-label">Class room</label>
+                            <select name="room_id" id="room_id"
                                 class="form-select eForm-select eChoice-multiple-with-remove" required>
                                 <option value="">Select a class room</option>
                                 @foreach ($class_rooms as $class_room)
