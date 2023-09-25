@@ -160,7 +160,7 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::get('admin/subject/delete/{id}', 'subject_destory')->name('admin.subject.delete');
 
     //Syllabus routes
-    Route::get('admin/syllabus', 'list_of_syllabus')->name('admin.syllabus');
+    Route::get('admin/syllabus', 'syllabus')->name('admin.syllabus');
     Route::get('admin/syllabus/create', 'create_syllabus')->name('admin.syllabus.create');
     Route::post('admin/syllabus/', 'store_syllabus')->name('admin.syllabus.store');
     Route::get('admin/syllabus/edit/{id}', 'edit_syllabus')->name('admin.syllabus.edit');

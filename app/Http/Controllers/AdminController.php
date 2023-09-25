@@ -10,6 +10,7 @@ use App\Models\Mark;
 use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
+use App\Models\Syllabus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\School;
@@ -877,5 +878,58 @@ class AdminController extends Controller
     $routine->delete();
     return redirect()->route('admin.routine');
   }
+
+  public function syllabus()
+  {
+    return view('admin.syllabus.syllabus_list');
+  }
+
+  public function create_syllabus()
+  {
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.syllabus.add_syllabus', ['subjects' => $subjects, 'classes' => $classes, 'sections' => $sections]);
+  }
+
+  public function store_syllabus(Request $request)
+  {
+    $data = $request->all();
+
+    if(!empty($data['image'])){
+      $file = $data['image'];
+      $filename = time(). '.'. $file->getClientOriginalExtension();
+      $file->move('syllabus_images/', $filename);
+      $image = $filename;
+    }else {
+      $image = '';
+    }
+
+    Syllabus::create([
+      'title' => $data['title'],
+      'file' => $image,
+      'subject_id' => $data['subject_id'],
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'school_id' => auth()->user()->school_id
+    ]);
+    return redirect()->route('admin.syllabus');
+  }
+
+  public function edit_syllabus()
+  {
+    return view('admin.syllabus.syllabus_list');
+  }
+
+  public function update_syllabus()
+  {
+    return view('admin.syllabus.syllabus_list');
+  }
+
+  public function syllabus_destroy()
+  {
+    return view('admin.syllabus.syllabus_list');
+  }
+
 
 }
