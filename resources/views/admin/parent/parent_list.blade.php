@@ -21,7 +21,7 @@
 
       <!-- Start Parents area -->
       <section class="section" style="margin-top: -120px">
-        <a class="btn btn-primary" type="button" href="{{ route('admin.guardian.create') }}" style="margin-left: 940px; margin-top: -50px">+ Add</a>
+        <a class="btn btn-primary" type="button" href="{{ route('admin.guardian.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
         <div class="container">
           <div class="row">
             <div class="col-md-12">

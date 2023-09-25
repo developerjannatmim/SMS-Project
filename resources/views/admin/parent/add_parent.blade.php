@@ -23,7 +23,7 @@
 
   <section class="section" style="margin-top: -120px">
     <a class="btn btn-primary" type="button" href="{{ route('admin.guardian') }}"
-      style="margin-left: 940px; margin-top: -45px">Back</a>
+      style="margin-left: 880px; margin-top: -45px">Back</a>
   <div class="bg-white rounded p-4 mb-4 mt-2">
       <form action="{{ route('admin.guardian.store') }}" method="POST" enctype="multipart/form-data">
           @csrf

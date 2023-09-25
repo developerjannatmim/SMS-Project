@@ -21,10 +21,9 @@
     </div>
 
     <div class="bg-white rounded p-4 mb-4 mt-2">
-      {{-- <h5>{{auth()->user()->name}}</h5> --}}
       <div class="export-btn-area">
       <h5 class="">Add New Subject</h5>
-      <a class="export_btn" type="button" href="{{ route('admin.subject') }}" style="margin-left: 850px">Back</a>
+      <a class="export_btn" type="button" href="{{ route('admin.subject') }}" style="margin-left: 880px">Back</a>
       </div>
       <form action="{{ route('admin.store.subject') }}" method="POST">
         @csrf
