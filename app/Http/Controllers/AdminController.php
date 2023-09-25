@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\ClassRoom;
 use App\Models\Exam;
 use App\Models\Grade;
 use App\Models\Mark;
+use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
 use App\Models\User;
@@ -801,7 +803,51 @@ class AdminController extends Controller
     return view('admin.marks.marks_list', ['student_details' => $student_details, 'classes' => $classes, 'sections' => $sections, 'marks' => $marks]);
   }
 
+  //Routine
+  public function routine()
+  {
+    $routine = Routine::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.routine.routine', compact('routine'));
+  }
   public function create_routine()
+  {
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $class_rooms = ClassRoom::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    $routine_creator = User::where('role_id', 2)->where('school_id', auth()->user()->school_id)->get();
+    return view('admin.routine.add_routine', ['classes' => $classes, 'sections' => $sections, 'class_rooms' => $class_rooms, 'subjects' => $subjects, 'routine_creator' => $routine_creator]);
+  }
+
+  public function store_routine(Request $request)
+  {
+    $data = $request->all();
+    Routine::create([
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'subject_id' => $data['subject_id'],
+      'routine_creator' => $data['routine_creator'],
+      'class_room_id' => $data['class_room_id'],
+      'day' => $data['day'],
+      'starting_hour' => $data['starting_hour'],
+      'starting_minute' => $data['starting_minute'],
+      'ending_hour' => $data['ending_hour'],
+      'ending_minute' => $data['ending_minute'],
+    ]);
+    return redirect()->route('admin.routine');
+  }
+
+  public function edit_routine(string $id)
+  {
+    return view('admin.routine.add_routine');
+  }
+
+  public function update_routine(Request $request, string $id)
+  {
+    return view('admin.routine.add_routine');
+  }
+
+  public function routine_destroy(string $id)
   {
     return view('admin.routine.add_routine');
   }

@@ -23,6 +23,10 @@ return new class extends Migration
             $table->foreign('routine_creator')->references('id')->on('users');
             $table->unsignedBigInteger('school_id');
             $table->foreign('school_id')->references('id')->on('schools');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('class_rooms');
             $table->integer('starting_hour');
             $table->integer('ending_hour');
             $table->integer('starting_minute');

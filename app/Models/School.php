@@ -34,4 +34,9 @@ class School extends Model
         return $this->hasMany(Department::class);
     }
 
+    public function class_room(): HasMany
+    {
+        return $this->hasMany(ClassRoom::class);
+    }
+
 }
