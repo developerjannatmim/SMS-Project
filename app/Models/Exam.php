@@ -16,16 +16,14 @@ class Exam extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'exam_type', 
-        'starting_date', 
-        'starting_time', 
-        'ending_date', 
-        'ending_time', 
-        'total_marks', 
-        'status', 
-        'class_id', 
-        'section_id', 
+        'name',
+        'exam_type',
+        'starting_time',
+        'ending_time',
+        'total_marks',
+        'status',
+        'class_id',
+        'section_id',
         'school_id'
     ];
 
@@ -43,7 +41,7 @@ class Exam extends Model
     {
         return $this->hasMany(Grade::class);
     }
-    
+
     protected $table = 'exam';
 
     public function getStartingDateAttribute($date)

@@ -47,14 +47,6 @@ use App\Models\Exam;
 							</select>
 						</div>
 					</div>
-
-					@php
-						$starting_time = Exam::where('starting_time', $exam->starting_time )->get();
-						$str_date = $starting_time->starting_date;
-						$str_time = $starting_time->starting_time;
-						
-					@endphp
-
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="section_id" class="eForm-label">Section</label>
@@ -69,30 +61,16 @@ use App\Models\Exam;
 						</div>
 
 						<div class="col-md-6 mb-3">
-							<label for="starting_date" class="eForm-label">Starting date</label>
-							<input type="date" class="form-control eForm-control" id="starting_date" name="starting_date" min="0"
-								value="{{ $str_date }}" placeholder="Mark upto" required>
+							<label for="starting_time" class="eForm-label">Starting Date-Time</label>
+							<input type="datetime-local" class="form-control eForm-control" id="starting_time" name="starting_time" min="0"
+								value="{{ $exam->starting_time }}" placeholder="Mark upto" required>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="starting_time" class="eForm-label">Starting time</label>
-							<input type="time" class="form-control eForm-control" id="starting_time" name="starting_time" min="0"
-								value="{{ $str_time }}" required>
-						</div>
-
-						<div class="col-md-6 mb-3">
-							<label for="ending_date" class="eForm-label">Ending date</label>
-							<input type="date" class="form-control eForm-control" id="ending_date" name="ending_date" min="0"
-								value="{{ $exam->ending_date }}" required>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="ending_time" class="eForm-label">Ending time</label>
-							<input type="time" class="form-control eForm-control" id="ending_time" name="ending_time" min="0"
+							<label for="ending_time" class="eForm-label">Ending Date-Time</label>
+							<input type="datetime-local" class="form-control eForm-control" id="ending_time" name="ending_time" min="0"
 								value="{{ $exam->ending_time }}" required>
 						</div>
 

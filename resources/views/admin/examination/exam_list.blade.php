@@ -71,11 +71,11 @@
                           </li>
                           <li>
                             <a class="dropdown-item"
-                              href="{{ route('admin.edit.exam', ['id' => $exam->id]) , 'Edit Exam'}}">Edit</a>
+                              href="{{ route('admin.edit.exam', ['id' => $exam->id])}}">Edit</a>
                           </li>
                           <li>
                             <a class="dropdown-item"
-                              href="{{ route('admin.exam.delete', ['id' => $exam->id]) , 'undefined'}}">Delete</a>
+                              href="{{ route('admin.exam.delete', ['id' => $exam->id])}}">Delete</a>
                           </li>
                         </ul>
                       </div>

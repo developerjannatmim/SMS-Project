@@ -64,29 +64,14 @@
 
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="starting_date" class="eForm-label">Starting date</label>
-              <input type="date" class="form-control eForm-control" id="starting_date" name="starting_date" min="0"
-                value="{{ date('Y-m-d') }}" placeholder="Mark upto" required>
-            </div>
-
-            <div class="col-md-6 mb-3">
               <label for="starting_time" class="eForm-label">Starting time</label>
-              <input type="time" class="form-control eForm-control" id="starting_time" name="starting_time" min="0"
-                value="{{ date('H:i') }}" required>
+              <input type="datetime-local" class="form-control eForm-control" id="starting_time" name="starting_time" min="0"
+                 required>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="ending_date" class="eForm-label">Ending date</label>
-              <input type="date" class="form-control eForm-control" id="ending_date" name="ending_date" min="0"
-                value="{{ date('Y-m-d') }}" placeholder="Mark upto" required>
-            </div>
-
             <div class="col-md-6 mb-3">
               <label for="ending_time" class="eForm-label">Ending time</label>
-              <input type="time" class="form-control eForm-control" id="ending_time" name="ending_time" min="0"
-                value="{{ date('H:i') }}" placeholder="Mark upto" required>
+              <input type="datetime-local" class="form-control eForm-control" id="ending_time" name="ending_time" min="0"
+               placeholder="Mark upto" required>
             </div>
           </div>
 

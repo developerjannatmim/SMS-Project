@@ -735,9 +735,7 @@ class AdminController extends Controller
     $exam = Exam::create([
       'name' => $data['exam_name'],
       'exam_type' => $data['exam_type'],
-      'starting_date' => $data['starting_date'],
       'starting_time' => $data['starting_time'],
-      'ending_date' => $data['ending_date'],
       'ending_time' => $data['ending_time'],
       'total_marks' => $data['total_marks'],
       'status' => 'pending',
@@ -765,9 +763,7 @@ class AdminController extends Controller
     Exam::where('id', $id)->update([
       'name' => $data['exam_name'],
       'exam_type' => 'offline',
-      'starting_date' => $data['starting_date'],
       'starting_time' => $data['starting_time'],
-      'ending_date' => $data['ending_date'],
       'ending_time' => $data['ending_time'],
       'total_marks' => $data['total_marks'],
       'status' => 'pending',
@@ -786,15 +782,15 @@ class AdminController extends Controller
     return redirect()->back()->with('message', 'You have successfully delete exam.');
   }
 
-  // public function classWiseExam($id)
-  // {
-  //   $id = array('class_id');
-  //   $exams = Exam::where([
-  //     'class_id' => $id
-  //   ])->first();
-  //   $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-  //   return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
-  // }
+  public function classWiseExam($id)
+  {
+    $id = array('class_id');
+    $exams = Exam::where([
+      'class_id' => $id
+    ])->first();
+    $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+    return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
+  }
 
   //Marks
 
