@@ -47,7 +47,7 @@
                                               <div class="col-12 col-xl-7 px-xl-0">
                                                   <div class="d-none d-sm-block">
                                                           <h2 class="h6 text-gray-400 mb-0">Students</h2>
-                                                          <h3 class="fw-extrabold mb-2">20</h3>
+                                                          <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 3)->where('school_id', auth()->user()->school_id)->get()->count() }}</h3>
                                                   </div>
                                                   <small class="d-flex align-items-center text-gray-500">
                                                       Total Student
@@ -75,7 +75,7 @@
                                                   <div class="col-12 col-xl-7 px-xl-0">
                                                       <div class="d-none d-sm-block">
                                                               <h2 class="h6 text-gray-400 mb-0">Teachers</h2>
-                                                              <h3 class="fw-extrabold mb-2">10</h3>
+                                                              <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 2)->where('school_id', auth()->user()->school_id)->get()->count() }}</h3>
                                                       </div>
                                                       <small class="d-flex align-items-center text-gray-500">
                                                           Total Teacher
@@ -107,7 +107,7 @@
                                           <div class="col-12 col-xl-7 px-xl-0">
                                               <div class="d-none d-sm-block">
                                                       <h2 class="h6 text-gray-400 mb-0">Parents</h2>
-                                                      <h3 class="fw-extrabold mb-2">20</h3>
+                                                      <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 4)->where('school_id', auth()->user()->school_id)->get()->count() }}</h3>
                                               </div>
                                               <small class="d-flex align-items-center text-gray-500">
                                                   Total Parent
