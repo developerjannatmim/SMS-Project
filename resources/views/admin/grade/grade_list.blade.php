@@ -63,10 +63,10 @@
                             class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                           >
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.edit.grade', ['id' => $grade->id]) , 'Edit Grade'}}">Edit</a>
+                              <a class="dropdown-item" href="{{ route('admin.edit.grade', ['id' => $grade->id]) }}">Edit</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.grade.delete', ['id' => $grade->id]) , 'undefined'}}">Delete</a>
+                              <a class="dropdown-item" href="{{ route('admin.grade.delete', ['id' => $grade->id]) }}">Delete</a>
                             </li>
                           </ul>
                       </div>
