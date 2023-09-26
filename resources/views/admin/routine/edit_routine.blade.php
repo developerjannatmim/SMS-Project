@@ -5,6 +5,7 @@
   @include('admin.sidenav')
 
   <main class="content">
+    <link rel="stylesheet" href="/css/style.css">
 
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 550px">
@@ -23,8 +24,8 @@
       <div class="bg-white rounded p-4 mb-4 mt-2">
         <form method="POST" class="d-block ajaxForm" action="{{ route('admin.routine.update', $routine->id ) }}">
           @csrf
-          <div class="form-row">
-            <div class="fpb-7">
+          <div class="row">
+            <div class="col-md-6 mb-3">
               <label for="class_id">Class</label>
               <select name="class_id" id="class_id" required
                 class="form-select eForm-select eChoice-multiple-with-remove">
@@ -35,7 +36,7 @@
               </select>
             </div>
 
-            <div class="fpb-7">
+            <div class="col-md-6 mb-3">
               <label for="section_id" class="eForm-label">Section</label>
               <select name="section_id" id="section_id_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -45,8 +46,10 @@
                 @endforeach
               </select>
             </div>
+          </div>
 
-            <div class="fpb-7">
+          <div class="row">
+            <div class="col-md-6 mb-3">
               <label for="subject_id" class="eForm-label">Subject</label>
               <select name="subject_id" id="subject_id_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -57,7 +60,7 @@
               </select>
             </div>
 
-            <div class="fpb-7">
+            <div class="col-md-6 mb-3">
               <label for="routine_creator" class="eForm-label">Teacher</label>
               <select name="routine_creator" id="teacher_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -67,8 +70,10 @@
                 @endforeach
               </select>
             </div>
+          </div>
 
-            <div class="fpb-7">
+          <div class="row">
+            <div class="col-md-6 mb-3">
               <label for="room_id" class="eForm-label">Class room</label>
               <select name="room_id" id="room_id" class="form-select eForm-select eChoice-multiple-with-remove"
                 required>
@@ -79,7 +84,7 @@
               </select>
             </div>
 
-            <div class="fpb-7">
+            <div class="col-md-6 mb-3">
               <label for="day" class="eForm-label">Day</label>
               <select name="day" id="day_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -93,8 +98,10 @@
                 <option value="friday" {{ $routine->day ==  'friday' ? 'selected':'' }}>Friday</option>
               </select>
             </div>
+          </div>
 
-            <div class="fpb-7">
+          <div class="row">
+            <div class="col-md-6 mb-3">
               <label for="starting_hour" class="eForm-label">Starting hour</label>
               <select name="starting_hour" id="starting_hour_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -119,7 +126,7 @@
               </select>
             </div>
 
-            <div class="fpb-7">
+            <div class="col-md-6 mb-3">
               <label for="starting_minute" class="eForm-label">Starting minute</label>
               <select name="starting_minute" id="starting_minute_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -129,8 +136,10 @@
                 <?php } ?>
               </select>
             </div>
+          </div>
 
-            <div class="fpb-7">
+          <div class="row">
+            <div class="col-md-6 mb-3">
               <label for="ending_hour" class="eForm-label">Ending hour</label>
               <select name="ending_hour" id="ending_hour_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -156,7 +165,7 @@
               </select>
             </div>
 
-            <div class="fpb-7">
+            <div class="col-md-6 mb-3">
               <label for="ending_minute" class="eForm-label">Ending minute</label>
               <select name="ending_minute" id="ending_minute_on_routine_creation"
                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -166,8 +175,9 @@
                 <?php } ?>
               </select>
             </div>
+          </div>
 
-            <div class="fpb-7 pt-2">
+            <div class="col-md-6 mb-3 pt-2">
               <button class="btn btn-primary" type="submit">Update class routine</button>
             </div>
 

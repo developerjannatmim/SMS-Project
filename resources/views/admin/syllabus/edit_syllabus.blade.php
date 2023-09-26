@@ -5,7 +5,8 @@
     @include('admin.sidenav')
 
     <main class="content">
-
+        <link rel="stylesheet" href="/css/style.css">
+        
         <div class="p-2 mb-0 mt-2">
             <div class="row" style="margin-right: 550px">
                 <div class="col-12 col-md-4 col-xl-6">
@@ -24,14 +25,14 @@
                 <form method="POST"
                     action="{{ route('admin.syllabus.update', $syllabus->id) }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-row">
-                        <div class="fpb-7">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="title" class="eForm-label">Title</label>
                             <input class="form-control @error('title') is-valid @enderror" type="text" name="title"
                                 id="title" value="{{ $syllabus->title }}" required>
                         </div>
 
-                        <div class="fpb-7">
+                        <div class="col-md-6 mb-3">
                             <label for="class_id">Class</label>
                             <select name="class_id" id="class_id" required
                                 class="form-select eForm-select eChoice-multiple-with-remove">
@@ -43,8 +44,10 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
 
-                        <div class="fpb-7">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="section_id" class="eForm-label">Section</label>
                             <select name="section_id" id="section_id_on_syllabus_creation"
                                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -57,7 +60,7 @@
                             </select>
                         </div>
 
-                        <div class="fpb-7">
+                        <div class="col-md-6 mb-3">
                             <label for="subject_id" class="eForm-label">Subject</label>
                             <select name="subject_id" id="subject_id_on_syllabus_creation"
                                 class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -69,14 +72,17 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
 
-                        <div class="fpb-7">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="form-label" class="eForm-label">Upload Syllabus</label>
                             <input class="form-control @error('image') is-valid @enderror" type="file" name="image"
-                                value="{{ $syllabus->file }}">
+                            value="{{ $syllabus->file }}">
                         </div>
+                    </div>
 
-                        <div class="fpb-7 pt-2">
+                        <div class="col-md-6 mb-3 pt-2">
                             <button class="btn btn-primary" type="submit">Update class syllabus</button>
                         </div>
 

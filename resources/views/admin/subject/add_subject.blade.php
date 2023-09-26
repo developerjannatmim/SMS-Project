@@ -20,11 +20,10 @@
       </div>
     </div>
 
+    <section class="section" style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.subject') }}"
+        style="margin-left: 880px; margin-top: -45px">Back</a>
     <div class="bg-white rounded p-4 mb-4 mt-2">
-      <div class="export-btn-area">
-      <h5 class="">Add New Subject</h5>
-      <a class="export_btn" type="button" href="{{ route('admin.subject') }}" style="margin-left: 880px">Back</a>
-      </div>
       <form action="{{ route('admin.store.subject') }}" method="POST">
         @csrf
         <div class="row">
@@ -32,7 +31,7 @@
             <div>
               <label for="name">Name</label>
               <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
-                placeholder="Provide subject name" required>
+                placeholder="Provide a subject name" required>
             </div>
           </div>
           <div class="col-md-6 mb-3">
@@ -49,11 +48,12 @@
           </div>
         </div>
         <div class="mt-3">
-          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Subject</button>
+          <button type="submit" class="btn btn-primary mt-2 animate-up-2">Add New Subject</button>
         </div>
       </form>
     </div>
-    </div>
+  </div>
+  </section>
 
     {{-- Footer --}}
     @include('layouts.footer')

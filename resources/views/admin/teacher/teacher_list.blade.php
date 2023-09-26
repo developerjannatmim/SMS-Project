@@ -73,7 +73,7 @@
                             <a class="dropdown-item" href="{{ route('admin.teacher.edit', $teacher->id) }}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="{{ route('admin.teacher.delete', $teacher->id) }}">Delete</a>
+                            <a onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')" class="dropdown-item" href="{{ route('admin.teacher.delete', $teacher->id) }}">Delete</a>
                           </li>
                         </ul>
                       </div>

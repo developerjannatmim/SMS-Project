@@ -62,7 +62,7 @@
                               href="{{ route('admin.syllabus.edit', ['id' => $syllabus->id] ) }}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item"
+                            <a class="dropdown-item" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                               href="{{ route('admin.syllabus.delete', ['id' => $syllabus->id] ) }}">Delete</a>
                           </li>
                         </ul>

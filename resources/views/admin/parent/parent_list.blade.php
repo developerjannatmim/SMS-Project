@@ -74,7 +74,7 @@
                               <a class="dropdown-item" href="{{ route('admin.guardian.edit', $parent->id) }}">Edit</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.guardian.delete', $parent->id) }}">Delete</a>
+                              <a onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')" class="dropdown-item" href="{{ route('admin.guardian.delete', $parent->id) }}">Delete</a>
                             </li>
                           </ul>
                         </div>

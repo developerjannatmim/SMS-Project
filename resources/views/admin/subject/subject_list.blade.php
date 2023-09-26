@@ -7,7 +7,6 @@
   @include('admin.sidenav')
 
   <main class="content">
-    @include('layouts.topbar')
     <title>SMS Project Dashboard</title>
     <link rel="stylesheet" href="/css/style.css">
 
@@ -23,7 +22,8 @@
     </div>
 
     <!-- Start Subjects area -->
-    <section class="section " style="margin-top: -80px">
+    <section class="section " style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.subject.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
@@ -55,14 +55,10 @@
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
                           <li>
                             <a class="dropdown-item"
-                              href="{{ route('admin.subject.create')}}">Add</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item"
                               href="{{ route('admin.edit.subject', ['id' => $subject->id] )}}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item"
+                            <a class="dropdown-item" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                               href="{{ route('admin.subject.delete', ['id' => $subject->id] )}}">Delete</a>
                           </li>
                         </ul>

@@ -57,7 +57,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -141,7 +141,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -225,7 +225,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -309,7 +309,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -393,7 +393,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -477,7 +477,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>
@@ -561,7 +561,7 @@ use App\Models\ClassRoom;
                           href="{{ route('admin.routine.edit', ['id' => $perday_routine['id']]) }}">Edit</a>
                       </li>
                       <li>
-                        <a class="text-16px ps-2"
+                        <a class="text-16px ps-2" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                           href="{{ route('admin.routine.delete', ['id' => $perday_routine['id']]) }}">Delete</a>
                       </li>
                     </ul>

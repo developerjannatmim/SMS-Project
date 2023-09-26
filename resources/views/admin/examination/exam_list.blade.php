@@ -67,14 +67,11 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
                           <li>
-                            <a class="dropdown-item" href="{{ route('admin.exam.create') }}">Add</a>
-                          </li>
-                          <li>
                             <a class="dropdown-item"
                               href="{{ route('admin.edit.exam', ['id' => $exam->id])}}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item"
+                            <a class="dropdown-item" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
                               href="{{ route('admin.exam.delete', ['id' => $exam->id])}}">Delete</a>
                           </li>
                         </ul>

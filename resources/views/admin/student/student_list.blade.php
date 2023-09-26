@@ -86,7 +86,7 @@ use App\Models\Section;
                             <a class="dropdown-item" href="{{ route('admin.student.edit', $student->id) }}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="{{ route('admin.student.delete', $student->id) }}">Delete</a>
+                            <a onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')" class="dropdown-item" href="{{ route('admin.student.delete', $student->id) }}">Delete</a>
                           </li>
                         </ul>
                       </div>

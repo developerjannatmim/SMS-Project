@@ -73,7 +73,7 @@
         </div>
 
         <div class="mt-3">
-          <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Update school info</button>
+          <button type="submit" class="btn btn-primary mt-2 animate-up-2">Update school info</button>
         </div>
       </form>
     </div>

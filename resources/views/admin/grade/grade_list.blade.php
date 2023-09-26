@@ -66,7 +66,7 @@
                               <a class="dropdown-item" href="{{ route('admin.edit.grade', ['id' => $grade->id]) }}">Edit</a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="{{ route('admin.grade.delete', ['id' => $grade->id]) }}">Delete</a>
+                              <a onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')" class="dropdown-item" href="{{ route('admin.grade.delete', ['id' => $grade->id]) }}">Delete</a>
                             </li>
                           </ul>
                       </div>

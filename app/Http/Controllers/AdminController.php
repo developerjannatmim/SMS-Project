@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\School;
 
+
 class AdminController extends Controller
 {
   public function adminDashboard()
