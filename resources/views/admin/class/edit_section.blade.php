@@ -21,7 +21,7 @@
     </div>
 
     <section class="section" style="margin-top: -120px">
-      <a class="btn btn-primary" type="button" href="{{ route('admin.class') }}" style="margin-left: 940px; margin-top: -50px">Back</a>
+      <a class="btn btn-primary" type="button" href="{{ route('admin.class') }}" style="margin-left: 880px; margin-top: -50px">Back</a>
       <div class="bg-white rounded p-4 mb-4 mt-2">
         <form action="{{ route('admin.update.section', $section->id ) }}" method="POST">
           @csrf

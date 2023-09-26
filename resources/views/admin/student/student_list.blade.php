@@ -1,3 +1,8 @@
+<?php 
+use App\Models\Classes; 
+use App\Models\Section; 
+
+?>
 <x-layouts.base>
   {{-- Nav --}}
   @include('layouts.nav')
@@ -22,7 +27,7 @@
 
     <!-- Start Students area -->
     <section class="section " style="margin-top: -120px">
-      <a class="btn btn-primary" type="button" href="{{ route('admin.student.create') }}" style="margin-left: 940px; margin-top: -50px">+ Add</a>
+      <a class="btn btn-primary" type="button" href="{{ route('admin.student.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -40,6 +45,14 @@
                   @foreach ($students as $student)
                   <?php
                       $info = json_decode($student->user_information);
+                      $class = Classes::get()
+                        ->where('id', $student->class_id)
+                        ->first();
+
+                      $section = Section::get()
+                      ->where('id', $student->section_id)
+                      ->first();
+
                       ?>
                   <tr class="alert" role="alert">
                     <td class="d-flex align-items-center">
@@ -47,25 +60,9 @@
                       <div class="pl-3 email">
                         <strong>{{ $student->name }}</strong>
                         <span style="color: rgb(147,128,139)"><b style="color: black">Class:
-                          </b>
-                          <select name="" id="">
-                            @foreach ($classes as $class)
-                            <option value="{{ $class->id }}" {{ $student->class_id == $class->id ? 'selected' : '' }}>{{
-                              $class->name }}
-                            </option>
-                            @endforeach
-                          </select>
-                        </span>
+                          </b> {{ $class->name }} </span>
                         <span><b style="color: black">Section:
-                          </b>
-                          <select name="" id="">
-                            @foreach ($sections as $section)
-                            <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected' : ''
-                              }}>{{
-                              $section->name }}
-                            </option>
-                            @endforeach
-                          </select>
+                          </b>{{ $section->name }}
                         </span>
                       </div>
                     </td>

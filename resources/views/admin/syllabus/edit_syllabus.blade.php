@@ -19,7 +19,7 @@
 
     <section class="section" style="margin-top: -120px">
       <a class="btn btn-primary" type="button" href="{{ route('admin.syllabus') }}"
-        style="margin-left: 940px; margin-top: -45px">Back</a>
+        style="margin-left: 880px; margin-top: -45px">Back</a>
       <div class="bg-white rounded p-4 mb-4 mt-2">
         <form method="POST" class="d-block ajaxForm" action="{{ route('admin.syllabus.update', $syllabus->id ) }}">
           @csrf
@@ -64,7 +64,7 @@
 
             <div class="fpb-7">
               <label for="form-label" class="eForm-label">Upload Syllabus</label>
-              <input type="file" name="image" value="{{ $syllabus->file }}">
+              <input class="form-control @error('image') is-valid @enderror" type="file" name="image" value="{{ $syllabus->file }}">
             </div>
 
             <div class="fpb-7 pt-2">

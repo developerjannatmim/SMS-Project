@@ -1,3 +1,4 @@
+<?php use App\Models\Subject; ?>
 <x-layouts.base>
   {{-- Nav --}}
   @include('layouts.nav')
@@ -40,11 +41,16 @@
                 </thead>
                 <tbody>
                   @foreach($syllabuses as $syllabus)
+                  <?php
+                  $subject = Subject::get()
+                      ->where('id', $syllabus->subject_id)
+                      ->first();
+                  ?>
                   <tr>
                     <th scope="row" class="scope">{{ $loop->index + 1 }}</th>
                     <td>{{ $syllabus->title }}</td>
                     <td>{{ $syllabus->file }}</td>
-                    <td>{{ $syllabus->subject_id }}</td>
+                    <td>{{ $subject->name }}</td>
                     <td class="text-start">
                       <div class="adminTable-action ms-0">
                         <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2"
