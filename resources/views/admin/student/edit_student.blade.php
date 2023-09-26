@@ -14,8 +14,8 @@
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 550px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Update Student</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Update Student Info</small>
+          <p class="mb-0 text-center text-lg-start"><b class="">Student</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Update - Users - Student Info</small>
           </p>
         </div>
       </div>

@@ -10,10 +10,10 @@
       <link rel="stylesheet" href="/css/style.css">
 
       <div class="p-2 mb-0 mt-2">
-        <div class="row" style="margin-right: 660px">
+        <div class="row" style="margin-right: 600px">
           <div class="col-12 col-md-4 col-xl-6">
             <p class="mb-0 text-center text-lg-start"><b class="">Parents</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Parents</small>
+            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Parents List</small>
             </p>
           </div>
         </div>

@@ -10,7 +10,7 @@
   <div class="p-2 mb-0 mt-2">
     <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
-            <p class="mb-0 text-center text-lg-start"><b class="">Grades</b></p>
+            <p class="mb-0 text-center text-lg-start"><b class="">Grade</b></p>
             <p class="mb-0 text-center text-lg-start"><small class="">Edit - 
               Examination - 
               Grade</small></p>
@@ -18,7 +18,10 @@
     </div>
 </div>
 
-<div class="">
+<section class="section" style="margin-top: -120px">
+    <a class="btn btn-primary" type="button" href="{{ route('admin.guardian') }}"
+      style="margin-left: 880px; margin-top: -45px">Back</a>
+  <div class="bg-white rounded p-4 mb-4 mt-2">
   <form method="POST" action="{{ route('admin.grade.update', ['id' => $grade->id]) }}">
       @csrf 
       <div class="form-row">
@@ -48,6 +51,8 @@
       </div>
   </form>
 </div>
+</div>
+</section>
 
 {{-- Footer --}}
 @include('layouts.footer')

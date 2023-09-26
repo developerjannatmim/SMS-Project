@@ -17,8 +17,8 @@ use App\Models\Section;
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 600px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Student List</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Student
+          <p class="mb-0 text-center text-lg-start"><b class="">Students</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Students
               List</small>
           </p>
         </div>

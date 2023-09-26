@@ -5,6 +5,7 @@
   @include('admin.sidenav')
 
   <main class="content">
+    <link rel="stylesheet" href="/css/style.css">
 
   @include('layouts.topbar')
   @if ($message = session('message'))
@@ -23,7 +24,8 @@
     </div>
 </div>
 
-    <section class="ftco-section mt-3">
+    <section class="section" style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.grade.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
@@ -60,9 +62,6 @@
                           <ul
                             class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                           >
-                          <li>
-                            <a class="dropdown-item" href="{{ route('admin.grade.create') }}">Add</a>
-                          </li>
                             <li>
                               <a class="dropdown-item" href="{{ route('admin.edit.grade', ['id' => $grade->id]) , 'Edit Grade'}}">Edit</a>
                             </li>

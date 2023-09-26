@@ -25,7 +25,7 @@ use App\Models\ClassRoom;
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 550px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Create Routine</b></p>
+          <p class="mb-0 text-center text-lg-start"><b class="">Class Routine</b></p>
           <p class="mb-0 text-center text-lg-start"><small class="">Home - Academic - Class
               Routine</small>
           </p>

@@ -14,8 +14,8 @@
         <div class="p-2 mb-0 mt-2">
             <div class="row" style="margin-right: 600px">
                 <div class="col-12 col-md-4 col-xl-6">
-                    <p class="mb-0 text-center text-lg-start"><b class="">Create Teacher</b></p>
-                    <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Teacher</small>
+                    <p class="mb-0 text-center text-lg-start"><b class="">Teacher</b></p>
+                    <p class="mb-0 text-center text-lg-start"><small class="">Add - Users - Teacher Info</small>
                     </p>
                 </div>
             </div>

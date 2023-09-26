@@ -13,8 +13,8 @@
     <div class="p-2 mt-3">
       <div class="row" style="margin-right: 500px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Subject List</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Subject
+          <p class="mb-0 text-center text-lg-start"><b class="">Subjects</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Subjects
               List</small>
           </p>
         </div>

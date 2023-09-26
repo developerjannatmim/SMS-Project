@@ -12,7 +12,7 @@
         <div class="row" style="margin-right: 660px">
           <div class="col-12 col-md-4 col-xl-6">
             <p class="mb-0 text-center text-lg-start"><b class="">Teachers</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Home - Teacher List</small>
+            <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Teachers List</small>
             </p>
           </div>
         </div>

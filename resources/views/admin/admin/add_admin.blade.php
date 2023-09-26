@@ -10,9 +10,9 @@
 		<link rel="stylesheet" href="/css/style.css">
 
 		<div class="p-2 mb-0 mt-2">
-			<div class="row" style="margin-right: 550px">
+			<div class="row" style="margin-right: 40px">
 				<div class="col-12 col-md-4 col-xl-6">
-					<p class="mb-0 text-center text-lg-start"><b class="">Create Admin</b></p>
+					<p class="mb-0 text-center text-lg-start"><b class="">Admin</b></p>
 					<p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Admin</small>
 					</p>
 				</div>
@@ -21,7 +21,7 @@
 
 		<section class="section" style="margin-top: -120px">
 			<a class="btn btn-primary" type="button" href="{{ route('admin.admin') }}"
-				style="margin-left: 940px; margin-top: -45px">Back</a>
+				style="margin-left: 900px; margin-top: -45px">Back</a>
 			<div class="bg-white rounded p-4 mb-4 mt-2">
 				{{-- <h5>{{auth()->user()->name}}</h5> --}}
 				<h2 class="h5 mb-4">Create Admin information</h2>
@@ -114,7 +114,7 @@
 					</div>
 
 					<div class="mt-3">
-						<button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Add New Admin Info</button>
+						<button type="submit" class="btn btn-primary mt-2 animate-up-2">Add New Admin Info</button>
 					</div>
 				</form>
 			</div>

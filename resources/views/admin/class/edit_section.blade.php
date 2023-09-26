@@ -15,7 +15,7 @@
         <div class="col-12 col-md-4 col-xl-6">
           <p class="mb-0 text-center text-lg-start"><b>Section</b></p>
           <p class="mb-0 text-center text-lg-start"><small class="">Edit -
-            Section</small></p>
+            Academic - Section Name</small></p>
         </div>
       </div>
     </div>

@@ -6,16 +6,14 @@
 
 <main class="content">
 
-@include('layouts.topbar')
-
 <title>SMS Project Dashboard</title>
 <link rel="stylesheet" href="/css/style.css">
 
   <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 600px">
           <div class="col-12 col-md-4 col-xl-6">
-              <p class="mb-0 text-center text-lg-start"><b class="">Create Parent</b></p>
-              <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Create Parent</small>
+              <p class="mb-0 text-center text-lg-start"><b class="">Parent</b></p>
+              <p class="mb-0 text-center text-lg-start"><small class="">Add - Users - Parent Info</small>
               </p>
           </div>
       </div>

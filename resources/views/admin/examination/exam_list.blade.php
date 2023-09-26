@@ -5,21 +5,21 @@
   @include('admin.sidenav')
 
   <main class="content">
-
-    @include('layouts.topbar')
+    <link rel="stylesheet" href="/css/style.css">
 
     <div class="p-2 mb-0 mt-2">
       <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
           <p class="mb-0 text-center text-lg-start"><b class="">School Exam</b></p>
           <p class="mb-0 text-center text-lg-start"><small class="">Home -
-              Examination - School Exam</small></p>
+              Examination - School Exam List</small></p>
         </div>
       </div>
     </div>
 
 
-    <section class="ftco-section mt-3">
+    <section class="section" style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.exam.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
@@ -27,7 +27,7 @@
               <div class="row mt-3">
                 <div class="col-md-3"></div>
                 <div class="col-md-4">
-                  <select name="class_id" id="class_id" required>
+                  <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
                     <option value="">Select a class</option>
                     @foreach ($classes as $class)
                     <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -35,7 +35,7 @@
                   </select>
                 </div>
                 <div class="col-md-2">
-                  <button type="submit" class="btn eBtn btn-primary">Filter</button>
+                  <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-2"></div>

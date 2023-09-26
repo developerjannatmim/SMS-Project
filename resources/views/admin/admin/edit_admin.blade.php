@@ -11,7 +11,7 @@
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-right: 450px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Update Admin</b></p>
+          <p class="mb-0 text-center text-lg-start"><b class="">Admin</b></p>
           <p class="mb-0 text-center text-lg-start"><small class="">Home - Users - Update Admin
               Info</small>
           </p>
@@ -103,7 +103,7 @@
           </div>
   
           <div class="mt-3">
-            <button type="submit" class="btn btn-gray-800 mt-2 animate-up-2">Update Admin Info</button>
+            <button type="submit" class="btn btn-primary mt-2 animate-up-2">Update Admin Info</button>
           </div>
         </form>
       </div>

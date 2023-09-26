@@ -735,8 +735,10 @@ class AdminController extends Controller
     $exam = Exam::create([
       'name' => $data['exam_name'],
       'exam_type' => $data['exam_type'],
-      'starting_time' => strtotime($data['starting_date'] . '' . $data['starting_time']),
-      'ending_time' => strtotime($data['ending_date'] . '' . $data['ending_time']),
+      'starting_date' => $data['starting_date'],
+      'starting_time' => $data['starting_time'],
+      'ending_date' => $data['ending_date'],
+      'ending_time' => $data['ending_time'],
       'total_marks' => $data['total_marks'],
       'status' => 'pending',
       'class_id' => $data['class_id'],
@@ -763,8 +765,10 @@ class AdminController extends Controller
     Exam::where('id', $id)->update([
       'name' => $data['exam_name'],
       'exam_type' => 'offline',
-      'starting_time' => strtotime(date($data['starting_date']) . '' . $data['starting_time']),
-      'ending_time' => strtotime(date($data['ending_date']) . '' . $data['ending_time']),
+      'starting_date' => $data['starting_date'],
+      'starting_time' => $data['starting_time'],
+      'ending_date' => $data['ending_date'],
+      'ending_time' => $data['ending_time'],
       'total_marks' => $data['total_marks'],
       'status' => 'pending',
       'class_id' => $data['class_id'],
@@ -782,15 +786,15 @@ class AdminController extends Controller
     return redirect()->back()->with('message', 'You have successfully delete exam.');
   }
 
-  public function classWiseExam($id)
-  {
-    $id = array('class_id');
-    $exams = Exam::where([
-      'class_id' => $id
-    ])->first();
-    $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-    return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
-  }
+  // public function classWiseExam($id)
+  // {
+  //   $id = array('class_id');
+  //   $exams = Exam::where([
+  //     'class_id' => $id
+  //   ])->first();
+  //   $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+  //   return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
+  // }
 
   //Marks
 
@@ -879,6 +883,7 @@ class AdminController extends Controller
     return redirect()->route('admin.routine');
   }
 
+  //Syllabus
   public function syllabus()
   {
     $syllabuses = Syllabus::get()->where('school_id', auth()->user()->school_id);
@@ -926,14 +931,40 @@ class AdminController extends Controller
     return view('admin.syllabus.edit_syllabus', ['syllabus' => $syllabus, 'subjects' => $subjects, 'classes' => $classes, 'sections' => $sections]);
   }
 
-  public function update_syllabus()
+  public function update_syllabus(Request $request, string $id)
   {
-    return view('admin.syllabus.syllabus_list');
+    $data = $request->all();
+
+    if(!empty($data['image'])){
+      $file = $data['image'];
+      $filename = time(). '.'. $file->getClientOriginalExtension();
+      $file->move('syllabus_images/', $filename);
+      $image = $filename;
+    }else {
+      $exisisting_image = Syllabus::where('id', $id)->value('file');
+      if($exisisting_image !== ''){
+        $image = $exisisting_image;
+      }else {
+        $image = '';
+      }
+    }
+
+    Syllabus::where('id', $id)->update([
+      'title' => $data['title'],
+      'file' => $image,
+      'subject_id' => $data['subject_id'],
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'school_id' => auth()->user()->school_id
+    ]);
+    return redirect()->route('admin.syllabus');
   }
 
-  public function syllabus_destroy()
+  public function syllabus_destroy(string $id)
   {
-    return view('admin.syllabus.syllabus_list');
+    $syllabus = Syllabus::find($id);
+    $syllabus->delete();
+    return redirect()->route('admin.syllabus');
   }
 
 

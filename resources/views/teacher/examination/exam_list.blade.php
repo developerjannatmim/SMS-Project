@@ -10,9 +10,9 @@
     <div class="mb-0 mt-3" style="margin-right: 600px">
       <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">School Exam</b></p>
+          <p class="mb-0 text-center text-lg-start"><b class="">School Exams</b></p>
           <p class="mb-0 text-center text-lg-start"><small class="">Home -
-            Academic - School Exam</small></p>
+            Academic - School Exams</small></p>
         </div>
       </div>
     </div>

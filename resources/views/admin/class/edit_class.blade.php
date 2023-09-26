@@ -14,8 +14,8 @@
         <div class="row" style="margin-right: 550px">
           <div class="col-12 col-md-4 col-xl-6">
             <p class="mb-0 text-center text-lg-start"><b class="">Class</b></p>
-            <p class="mb-0 text-center text-lg-start"><small class="">Edit -
-            Class</small></p>
+            <p class="mb-0 text-center text-lg-start"><small class="">Edit - Academic - 
+            Class Name</small></p>
           </div>
         </div>
       </div>

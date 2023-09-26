@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <div class="p-2 mb-0 mt-2">
-      <div class="row" style="margin-right: 600px">
+      <div class="row" style="margin-right: 500px">
         <div class="col-12 col-md-4 col-xl-6">
           <p class="mb-0 text-center text-lg-start"><b>Class</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Add - New
-              Class</small></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Add -
+              Academic - New Class Name</small></p>
         </div>
       </div>
     </div>

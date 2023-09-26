@@ -6,25 +6,24 @@
   @include('admin.sidenav')
 
   <main class="content">
-
-    @include('layouts.topbar')
+    <link rel="stylesheet" href="/css/style.css">
+    
     @if ($message = session('message'))
     <div class="alert alert-success">
       {{ $message }}
     </div>
     @endif
     <div class="p-2 mb-0 mt-2">
-      <div class="row">
+      <div class="row" style="margin-right: 600px">
         <div class="col-12 col-md-4 col-xl-6">
-          <p class="mb-0 text-center text-lg-start"><b class="">Syllabus</b></p>
-          <p class="mb-0 text-center text-lg-start"><small class="">Home -
-              Academic -
-              Syllabus</small></p>
+          <p class="mb-0 text-center text-lg-start"><b class="">Class Syllabus</b></p>
+          <p class="mb-0 text-center text-lg-start"><small class="">Home - Academic - Class Syllabus</small></p>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section mt-3">
+    <section class="section" style="margin-top: -120px">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.syllabus.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
@@ -43,8 +42,8 @@
                   @foreach($syllabuses as $syllabus)
                   <?php
                   $subject = Subject::get()
-                      ->where('id', $syllabus->subject_id)
-                      ->first();
+                    ->where('id', $syllabus->subject_id)
+                    ->first();
                   ?>
                   <tr>
                     <th scope="row" class="scope">{{ $loop->index + 1 }}</th>
@@ -58,9 +57,6 @@
                           Actions
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
-                          <li>
-                            <a class="dropdown-item" href="{{ route('admin.syllabus.create') }}">Add</a>
-                          </li>
                           <li>
                             <a class="dropdown-item"
                               href="{{ route('admin.syllabus.edit', ['id' => $syllabus->id] ) }}">Edit</a>

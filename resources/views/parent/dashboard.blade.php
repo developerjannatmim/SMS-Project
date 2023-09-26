@@ -7,7 +7,8 @@
   <main class="content">
 
     <title>SMS Project Dashboard</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" />
     <div class="p-2 mb-0 mt-2">
       <div class="row">
         <div class="col-12 col-md-4 col-xl-6">
@@ -53,7 +54,7 @@
                   </div>
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
-                      <h2 class="h6 text-gray-400 mb-0">Students</h2>
+                      <h2 class="h6 text-gray-400 mb-0">Students <a href="{{ route('admin.student') }}"><i class="fa-solid fa-arrow-right-long" style="color: rgb(59,195,249); margin-left: 60px; background-color:rgb(217, 244, 255); padding: 3px; border-radius: 50px"></i></a></h2>
                       <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 3)->where('school_id',
                         auth()->user()->school_id)->get()->count() }}</h3>
                     </div>
@@ -89,7 +90,7 @@
                   </div>
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
-                      <h2 class="h6 text-gray-400 mb-0">Teachers</h2>
+                      <h2 class="h6 text-gray-400 mb-0">Teachers <a href="{{ route('admin.teacher') }}"><i class="fa-solid fa-arrow-right-long" style="color: rgb(72,237,35); margin-left: 60px; background-color:rgb(211, 255, 202); padding: 3px; border-radius: 50px"></i></a></h2>
                       <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 2)->where('school_id',
                         auth()->user()->school_id)->get()->count() }}</h3>
                     </div>
@@ -129,7 +130,7 @@
                   </div>
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
-                      <h2 class="h6 text-gray-400 mb-0">Parents</h2>
+                      <h2 class="h6 text-gray-400 mb-0">Parents <a href="{{ route('admin.guardian') }}"><i class="fa-solid fa-arrow-right-long" style="color: rgb(242, 238, 19); margin-left: 70px; background-color:rgb(255, 254, 225); padding: 3px; border-radius: 50px"></i></a></h2>
                       <h3 class="fw-extrabold mb-2">{{ DB::table('users')->where('role_id', 4)->where('school_id',
                         auth()->user()->school_id)->get()->count() }}</h3>
                     </div>
@@ -165,7 +166,7 @@
                   </div>
                   <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
-                      <h2 class="h6 text-gray-400 mb-0">Staff</h2>
+                      <h2 class="h6 text-gray-400 mb-0">Staff <a href="#"><i class="fa-solid fa-arrow-right-long" style="color: rgb(247, 36, 106); margin-left: 95px; background-color:rgb(255, 225, 230); padding: 3px; border-radius: 50px"></i></a></h2>
                       <h3 class="fw-extrabold mb-2">7</h3>
                     </div>
                     <small class="d-flex align-items-center text-gray-500">

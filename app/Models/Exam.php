@@ -18,7 +18,9 @@ class Exam extends Model
     protected $fillable = [
         'name', 
         'exam_type', 
+        'starting_date', 
         'starting_time', 
+        'ending_date', 
         'ending_time', 
         'total_marks', 
         'status', 
@@ -43,4 +45,24 @@ class Exam extends Model
     }
     
     protected $table = 'exam';
+
+    public function getStartingDateAttribute($date)
+	{
+		return $this->attributes['starting_date'] = date('Y-m-d', $date);
+	}
+
+    public function getEndingDateAttribute($date)
+	{
+		return $this->attributes['ending_date'] = date('Y-m-d', $date);
+	}
+
+    // public function getEndingTimeAttribute($date)
+	// {
+	// 	return $this->attributes['ending_time'] = date('H:i', $date);
+	// }
+
+    // public function getStartingTimeAttribute($date)
+	// {
+	// 	return $this->attributes['starting_time'] = date('H:i', $date);
+	// }
 }
