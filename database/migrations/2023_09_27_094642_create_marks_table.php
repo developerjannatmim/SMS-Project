@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->unsignedBigInteger('school_id');
+            $table->foreign('school_id')->references('id')->on('schools');
             $table->integer('marks');
             $table->string('grade_point');
             $table->string('comment');

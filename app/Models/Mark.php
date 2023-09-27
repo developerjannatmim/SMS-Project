@@ -12,8 +12,12 @@ class Mark extends Model
     protected $fillable = [
         'user_id',
         'exam_id',
+        'class_id',
+        'section_id',
+        'subject_id',
         'marks',
         'grade_point',
+        'school_id',
         'comment'
     ];
 

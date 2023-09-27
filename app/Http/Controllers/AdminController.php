@@ -794,9 +794,14 @@ class AdminController extends Controller
   public function marks()
   {
     $marks = Mark::get()->where('school_id', auth()->user()->school_id);
-    // $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
-    // $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    // $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    // $data = $request->all();
+    // $page_data['class_id'] = $data['class_id'];
+    // $page_data['section_id'] = $data['section_id'];
+    // $page_data['subject_id'] = $data['subject_id'];
+    
+    // $page_data['class_name'] = Classes::find($data['class_id'])->name;
+    // $page_data['section_name'] = Section::find($data['section_id'])->name;
+    // $page_data['subject_name'] = Subject::find($data['subject_id'])->name;
 
     return view('admin.marks.marks_list', ['marks' => $marks]);
   }
@@ -817,9 +822,13 @@ class AdminController extends Controller
     Mark::create([
       'user_id' => $data['user_id'],
       'exam_id' => $data['exam_id'],
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'subject_id' => $data['subject_id'],
       'marks' => $data['marks'],
       'grade_point' => $data['grade_point'],
-      'comment' => $data['comment']
+      'comment' => $data['comment'],
+      'school_id' => auth()->user()->school_id
     ]);
 
     return redirect()->route('admin.marks');
