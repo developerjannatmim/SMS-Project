@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('marks');
             $table->string('grade_point');
             $table->string('comment');
+            $table->timestamps();
         });
     }
 

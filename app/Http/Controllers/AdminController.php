@@ -793,12 +793,36 @@ class AdminController extends Controller
   //Marks
   public function marks()
   {
-    $student_details = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
     $marks = Mark::get();
+    $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
     $sections = Section::get()->where('school_id', auth()->user()->school_id);
 
-    return view('admin.marks.marks_list', ['student_details' => $student_details, 'classes' => $classes, 'sections' => $sections, 'marks' => $marks]);
+    return view('admin.marks.marks_list', ['students_name' => $students_name, 'classes' => $classes, 'sections' => $sections, 'marks' => $marks]);
+  }
+
+  public function create_marks()
+  {
+    $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
+    $exams = Exam::get()->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.marks.add_mark', ['students_name' => $students_name, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects, 'exams' => $exams]);
+  }
+
+  public function store_marks(Request $request)
+  {
+    $data = $request->all();
+    Mark::create([
+      'user_id' => $data['user_id'],
+      'exam_id' => $data['exam_id'],
+      'marks' => $data['marks'],
+      'grade_point' => $data['grade_point'],
+      'comment' => $data['comment']
+    ]);
+
+    return redirect()->route('admin.marks');
   }
 
   //Routine
