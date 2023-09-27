@@ -494,22 +494,24 @@ class AdminController extends Controller
   //School
   public function school_edit()
   {
-    $school = School::find(auth()->user()->school_id);
+    //$school = School::find(auth()->user()->school_id);
+    $school = auth()->user()->school;
     return view('admin.settings.school_settings', ['school' => $school]);
   }
 
   public function school_update(Request $request)
   {
-    $data = $request->all();
+    //$data = $request->all();
+    $data = $request->only('title', 'email', 'phone', 'address', 'school_info', 'status');
 
-    School::where('id', auth()->user()->school_id)->update([
-      'title' => $data['title'],
-      'email' => $data['email'],
-      'phone' => $data['phone'],
-      'address' => $data['address'],
-      'school_info' => $data['school_info'],
-      'status' => $data['status']
-    ]);
+    School::where('id', auth()->user()->school_id)->update($data);
+      // 'title' => $data['title'],
+      // 'email' => $data['email'],
+      // 'phone' => $data['phone'],
+      // 'address' => $data['address'],
+      // 'school_info' => $data['school_info'],
+      // 'status' => $data['status']
+
     return redirect()->back()->with('success', 'School updated Successfully');
   }
 
@@ -794,16 +796,11 @@ class AdminController extends Controller
   public function marks()
   {
     $marks = Mark::get()->where('school_id', auth()->user()->school_id);
-    // $data = $request->all();
-    // $page_data['class_id'] = $data['class_id'];
-    // $page_data['section_id'] = $data['section_id'];
-    // $page_data['subject_id'] = $data['subject_id'];
-    
-    // $page_data['class_name'] = Classes::find($data['class_id'])->name;
-    // $page_data['section_name'] = Section::find($data['section_id'])->name;
-    // $page_data['subject_name'] = Subject::find($data['subject_id'])->name;
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
 
-    return view('admin.marks.marks_list', ['marks' => $marks]);
+    return view('admin.marks.marks_list', ['marks' => $marks, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects]);
   }
 
   public function create_marks()
@@ -832,6 +829,27 @@ class AdminController extends Controller
     ]);
 
     return redirect()->route('admin.marks');
+  }
+
+  public function edit_marks(string $id)
+  {
+    $mark = Mark::find($id);
+    $exams = Exam::get()->where('school_id', auth()->user()->school_id);
+    $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+    return view('admin.marks.edit_mark', ['mark' => $mark, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects, 'students_name' => $students_name, 'exams' => $exams]);
+  }
+
+  public function update_marks(Request $request, string $id)
+  {
+
+  }
+
+  public function marks_destroy(string $id)
+  {
+
   }
 
   //Routine

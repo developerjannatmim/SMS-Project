@@ -36,23 +36,27 @@ use App\Models\Subject;
                   <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove"
                     required>
                     <option value="">Select a class</option>
-
-                    <option value=""></option>
-
+                    @foreach ($classes as $class)
+                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-3">
                   <select name="section_id" id="section_id"
                     class="form-select eForm-select eChoice-multiple-with-remove" required>
                     <option value="">Select a section</option>
-                    <option value=""></option>
+                    @foreach ($sections as $section)
+                    <option value="{{ $section->id }}">{{ $section->name }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-3">
                   <select name="subject_id" id="subject_id"
                     class="form-select eForm-select eChoice-multiple-with-remove" required>
                     <option value="">Select a subject</option>
-                    <option value=""></option>
+                    @foreach ($subjects as $subject)
+                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-3">
@@ -61,25 +65,12 @@ use App\Models\Subject;
                 <div style="background-color: rgb(239,240,245)"
                   class="att-report-banner d-flex justify-content-center justify-content-md-between align-items-center flex-wrap mt-4 mb-4 rounded">
                   <div class="att-report-summary order-1">
-                    {{-- @foreach ($marks as $mark)
-                    @php
-                      $class = Classes::get()
-                      ->where('id', $mark->class_id)
-                      ->first();
-                      $section = Section::get()
-                      ->where('id', $mark->section_id)
-                      ->first();
-                      $subject = Subject::get()
-                      ->where('id', $mark->section_id)
-                      ->first();
-                    @endphp --}}
                     <h4 class="title">Manage marks</h4>
-                    <p class="summary-item">Class:<span>{{-- $class->name --}}</span></p>
-                    <p class="summary-item">Section:<span>{{-- $section->name --}}</span></p>
-                    <p class="summary-item">Subject:<span>{{-- $subject->name --}}</span>
+                    <p class="summary-item">Class: <small><b></b></small></p>
+                    <p class="summary-item">Section: <small><b></b></small></p>
+                    <p class="summary-item">Subject: <small><b></b></small>
                     </p>
                   </div>
-                  {{-- @endforeach --}}
                   <div class="att-banner-img order-0 order-md-1">
                     <img src="/assets/images/attendance-report-banner.png" alt="report-banner" />
                   </div>
@@ -103,20 +94,20 @@ use App\Models\Subject;
                       ->first();
                   @endphp
                   <tr>
-                    <td>{{ $students->name }}</td>
+                    <td class="d-flex justify-content-center">{{ $students->name }}</td>
                     <td>
                       <input class="form-control eForm-control" type="number" id="marks" name="marks" value="{{ $mark->marks }}"
                         min="0" required>
                     </td>
                     <td>
-                      <span id="">{{ $mark->grade_point }}</span>
+                      <span class="d-flex justify-content-center">{{ $mark->grade_point }}</span>
                     </td>
                     <td>
                       <input class="form-control eForm-control" type="text" id="" name="comment" value="{{ $mark->comment }}"
                         required>
                     </td>
                     <td class="text-center">
-                      <button class="btn btn-success"><i class="bi bi-check2-circle"></i></button>
+                      <a class="btn btn-primary" href="{{ route('admin.marks.edit', $mark->id ) }}">Edit</a>
                     </td>
                   </tr>
                   @endforeach
