@@ -19,6 +19,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exam');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes');
+            $table->unsignedBigInteger('section_id');
+            $table->foreign('section_id')->references('id')->on('sections');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->integer('marks');
             $table->string('grade_point');
             $table->string('comment');
