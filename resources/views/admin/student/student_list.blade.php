@@ -45,6 +45,7 @@ use App\Models\Section;
                   @foreach ($students as $student)
                   <?php
                       $info = json_decode($student->user_information);
+                      $user_image = $info->photo;
                       $class = Classes::get()
                         ->where('id', $student->class_id)
                         ->first();
@@ -56,7 +57,9 @@ use App\Models\Section;
                       ?>
                   <tr class="alert" role="alert">
                     <td class="d-flex align-items-center">
-                      <img class="image" style="border-radius: 50px" width="40" height="40" src="/assets/images/user.jpeg" alt="">
+                      @if(!empty($user_image))
+                      <img class="image" style="border-radius: 50px" width="40" height="40" src="{{ url('students-images/'.$user_image ) }}" alt="">
+                      @endif
                       <div class="pl-3 email">
                         <strong>{{ $student->name }}</strong>
                         <span style="color: rgb(147,128,139)"><b style="color: black">Class:

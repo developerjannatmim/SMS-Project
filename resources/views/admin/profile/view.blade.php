@@ -29,7 +29,13 @@
               <div class="card mt-1" style="background-color: rgb(255,255,255)">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <?php
+                      $info = json_decode(auth()->user()->user_information);
+                      $user_image = $info->photo;
+                    ?>
+                    @if(!empty($user_image))
+                    <img src="{{ url('*'.$user_image) }}" alt="Admin" class="rounded-circle" width="150">
+                    @endif
                     <div class="mt-4">
                       <h4 class="title"><b>{{ auth()->user()->name }}</b></h4>
                       <p class="text-muted mb-1">Admin</p>

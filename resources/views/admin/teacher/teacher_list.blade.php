@@ -38,17 +38,14 @@
                 <tbody>
                   @foreach ($teachers as $teacher)
                   <?php
-                        $info = json_decode($teacher->user_information);
-                        // $user_image = $info->photo;
-                        // if (!empty($user_image)) {
-                        //     $user_image = 'uploads/user-images/'.$info->photo;
-                        // } else {
-                        //     $user_image = 'uploads/user-images/thumbnail.png';
-                        // }
-                      ?>
+                    $info = json_decode($teacher->user_information);
+                    $user_image = $info->photo;
+                  ?>
                   <tr class="alert" role="alert">
                     <td class="d-flex align-items-center">
-                      <img class="image" style="border-radius: 50px" width="40" height="40" src="/assets/images/user.jpeg" alt="">
+                      @if(!empty($user_image))
+                      <img class="image" style="border-radius: 50px" width="40" height="40" src="{{ url('teacher-images/'.$user_image ) }}" alt="">
+                      @endif
                       <div class="pl-3 email">
                         <strong>{{ $teacher->name }}</strong>
                       </div>
