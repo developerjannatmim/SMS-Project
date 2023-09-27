@@ -63,10 +63,9 @@ use App\Models\Section;
                       <div class="pl-3 email">
                         <strong>{{ $student->name }}</strong>
                         <span style="color: rgb(147,128,139)"><b style="color: black">Class:
-                          </b> {{ $class->name }} </span>
+                          </b>{{ $class->name }}</span>
                         <span><b style="color: black">Section:
-                          </b>{{ $section->name }}
-                        </span>
+                          </b>{{ $section->name }}</span>
                       </div>
                     </td>
                     <td>{{ $student->email }}</td>

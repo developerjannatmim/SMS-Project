@@ -79,13 +79,10 @@ class AdminController extends Controller
 
 
   //Student
-
   public function student_list()
   {
     $students = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    $sections = Section::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.student.student_list', compact('students', 'classes', 'sections'));
+    return view('admin.student.student_list', ['students' => $students]);
   }
 
   public function student_create()
@@ -123,8 +120,8 @@ class AdminController extends Controller
       'email' => $data['email'],
       'password' => $data['password'],
       'role_id' => '3',
-      'section_id' => $data['section_id'],
       'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
       'school_id' => auth()->user()->school_id,
       'user_information' => $data['user_information']
     ]);
@@ -794,10 +791,9 @@ class AdminController extends Controller
   }
 
   //Marks
-
   public function marks()
   {
-    $student_details = User::get()->where('role_id', 3);
+    $student_details = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
     $marks = Mark::get();
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
     $sections = Section::get()->where('school_id', auth()->user()->school_id);

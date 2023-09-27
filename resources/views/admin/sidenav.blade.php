@@ -35,8 +35,7 @@
         </span>
         <div class="multi-level collapse" role="list" id="submenu-laravel" aria-expanded="false">
           <ul class="flex-column nav">
-            <li class="nav-item {{ request()->is('admin/admin*') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('admin.admin') }}"><small class="sidebar-text">
+            <li class="nav-item {{ request()->is('admin/admin*') ? 'active' : '' }}"><a  class="nav-link" href="{{ route('admin.admin') }}"><small class="sidebar-text">
                   Admin
                 </small></a>
             </li>
