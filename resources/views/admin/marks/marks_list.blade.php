@@ -19,15 +19,25 @@
     </div>
 
     <div class="mark_report_content" id="mark_report">
+      <a class="btn btn-primary" type="button" href="{{ route('admin.marks.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
+            @foreach ($marks as $mark)
+            @php
+              $class = Classes::get()
+                ->where('id', $mark->class_id)
+                ->first();
+              $section = Section::get()
+                ->where('id', $mark->section_id)
+                ->first();
+            @endphp
             <div class="table-wrap">
               <div class="row mt-3">
                 <div class="col-md-3">
                   <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
                     <option value="">Select a class</option>
-
+                    
                     <option value=""></option>
 
                   </select>
@@ -50,9 +60,9 @@
                 <div style="background-color: rgb(239,240,245)" class="att-report-banner d-flex justify-content-center justify-content-md-between align-items-center flex-wrap mt-4 mb-4 rounded">
                   <div class="att-report-summary order-1">
                     <h4 class="title">Manage marks</h4>
-                    <p class="summary-item">Class<span></span></p>
-                    <p class="summary-item">Section<span></span></p>
-                    <p class="summary-item">Subject<span></span>
+                    <p class="summary-item">Class<span>{{  }}</span></p>
+                    <p class="summary-item">Section<span>{{  }}</span></p>
+                    <p class="summary-item">Subject<span>{{  }}</span>
                     </p>
                   </div>
                   <div class="att-banner-img order-0 order-md-1">
@@ -89,7 +99,9 @@
                 </tbody>
               </table>
             </div>
+            @endforeach
           </div>
+          
         </div>
       </div>
     </div>

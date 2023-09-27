@@ -793,12 +793,12 @@ class AdminController extends Controller
   //Marks
   public function marks()
   {
-    $marks = Mark::get();
-    $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
-    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $marks = Mark::get()->where('school_id', auth()->user()->school_id);
+    // $students_name = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
+    // $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    // $sections = Section::get()->where('school_id', auth()->user()->school_id);
 
-    return view('admin.marks.marks_list', ['students_name' => $students_name, 'classes' => $classes, 'sections' => $sections, 'marks' => $marks]);
+    return view('admin.marks.marks_list', ['marks' => $marks]);
   }
 
   public function create_marks()
