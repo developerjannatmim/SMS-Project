@@ -51,9 +51,8 @@
                     <td>{{ $class->name }}</td>
                     <td>{{ $section->name }}</td>
                     <td class="text-start">
-                      <div class="adminTable-action ms-0">
-                        <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2"
-                          data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="ms-0">
+                        <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2 form-select" data-bs-toggle="dropdown" aria-expanded="false">
                           Actions
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">

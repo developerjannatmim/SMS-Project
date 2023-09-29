@@ -42,6 +42,16 @@ class AdminController extends Controller
   public function profile_update(Request $request, string $id)
   {
     $data = $request->all();
+    
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email',
+      'gender' => 'required',
+      'birthday' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'photo' => 'required'
+    ]);
 
     if (!empty($data['photo'])) {
       $file = $data['photo'];
@@ -74,7 +84,7 @@ class AdminController extends Controller
       'email' => $data['email'],
       'user_information' => $data['user_information']
     ]);
-    return redirect()->route('admin.admin')->with('success', 'Profile Updated Successfully');
+    return redirect()->back()->with('success', 'Profile Updated Successfully');
   }
 
 
@@ -95,6 +105,19 @@ class AdminController extends Controller
   public function student_store(Request $request)
   {
     $data = $request->all();
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique',
+      'password' => 'required|min:6',
+      'gender' => 'required',
+      'birthday' => 'required',
+      'blood_group' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'photo' => 'required'
+    ]);
 
     if (!empty($data['photo'])) {
       $file = $data['photo'];
@@ -139,6 +162,7 @@ class AdminController extends Controller
   public function student_update(Request $request, string $id)
   {
     $data = $request->all();
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -201,6 +225,21 @@ class AdminController extends Controller
   public function guardian_store(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique',
+      'password' => 'required|min:6',
+      'gender' => 'required',
+      'birthday' => 'required',
+      'blood_group' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'child_name' => 'required',
+      'designation' => 'required',
+      'photo' => 'required'
+    ]);
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -307,6 +346,20 @@ class AdminController extends Controller
   public function teacher_store(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique',
+      'password' => 'required|min:6',
+      'gender' => 'required',
+      'birthday' => 'required',
+      'blood_group' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'designation' => 'required',
+      'photo' => 'required'
+    ]);
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -410,6 +463,19 @@ class AdminController extends Controller
   public function admin_store(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique',
+      'password' => 'required|min:6',
+      'gender' => 'required',
+      'birthday' => 'required',
+      'blood_group' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'photo' => 'required'
+    ]);
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -450,6 +516,7 @@ class AdminController extends Controller
   public function admin_update(Request $request, string $id)
   {
     $data = $request->all();
+    
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -501,16 +568,17 @@ class AdminController extends Controller
 
   public function school_update(Request $request)
   {
-    //$data = $request->all();
-    $data = $request->only('title', 'email', 'phone', 'address', 'school_info', 'status');
+    $validated = $request->validate([
+      'title' => 'required',
+      'email' => 'required|email|unique',
+      'address' => 'required',
+      'school_info' => 'required',
+      'status' => 'required'
+    ]);
 
+    $data = $request->only('title', 'email', 'address', 'school_info', 'status');
+  
     School::where('id', auth()->user()->school_id)->update($data);
-      // 'title' => $data['title'],
-      // 'email' => $data['email'],
-      // 'phone' => $data['phone'],
-      // 'address' => $data['address'],
-      // 'school_info' => $data['school_info'],
-      // 'status' => $data['status']
 
     return redirect()->back()->with('success', 'School updated Successfully');
   }
@@ -530,6 +598,13 @@ class AdminController extends Controller
   public function gradeStore(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'grade_point' => 'required',
+      'mark_from' => 'required',
+      'mark_upto' => 'required'
+    ]);
 
     $duplicate_grade_check = Grade::get()->where('name', $data['grade'])->where('school_id', auth()->user()->school_id);
 
@@ -558,6 +633,7 @@ class AdminController extends Controller
   public function gradeUpdate(Request $request, $id)
   {
     $data = $request->all();
+
     Grade::where('id', $id)->update([
       'name' => $data['grade'],
       'grade_point' => $data['grade_point'],
@@ -593,6 +669,11 @@ class AdminController extends Controller
   public function subject_store(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'class_id' => 'required'
+    ]);
 
     Subject::create([
       'name' => $data['name'],
@@ -645,6 +726,10 @@ class AdminController extends Controller
   public function class_store(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+    ]);
 
     $duplicate_class_name = Classes::get()->where('name', $data['name'])->where('school_id', auth()->user()->school_id);
 
@@ -732,6 +817,17 @@ class AdminController extends Controller
   public function examStore(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'name' => 'required',
+      'exam_type' => 'required',
+      'starting_time' => 'required',
+      'ending_time' => 'required',
+      'total_marks' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required'
+    ]);
+
     $exam = Exam::create([
       'name' => $data['exam_name'],
       'exam_type' => $data['exam_type'],
@@ -760,6 +856,7 @@ class AdminController extends Controller
   public function examUpdate(Request $request, $id)
   {
     $data = $request->all();
+
     Exam::where('id', $id)->update([
       'name' => $data['exam_name'],
       'exam_type' => 'offline',
@@ -816,6 +913,18 @@ class AdminController extends Controller
   public function store_marks(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'user_id' => 'required',
+      'exam_id' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'subject_id' => 'required',
+      'marks' => 'required',
+      'grade_point' => 'required',
+      'comment' => 'required'
+    ]);
+
     Mark::create([
       'user_id' => $data['user_id'],
       'exam_id' => $data['exam_id'],
@@ -844,12 +953,28 @@ class AdminController extends Controller
 
   public function update_marks(Request $request, string $id)
   {
+    $data = $request->all();
 
+    Mark::where('id', $id)->update([
+      'user_id' => $data['user_id'],
+      'exam_id' => $data['exam_id'],
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'subject_id' => $data['subject_id'],
+      'marks' => $data['marks'],
+      'grade_point' => $data['grade_point'],
+      'comment' => $data['comment'],
+      'school_id' => auth()->user()->school_id
+    ]);
+
+    return redirect()->route('admin.marks');
   }
 
   public function marks_destroy(string $id)
   {
-
+    $mark = Mark::find($id);
+    $mark->delete();
+    return redirect()->route('admin.marks');
   }
 
   //Routine
@@ -870,6 +995,19 @@ class AdminController extends Controller
   public function store_routine(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'routine_creator' => 'required',
+      'room_id' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'subject_id' => 'required',
+      'day' => 'required',
+      'starting_hour' => 'required',
+      'starting_minute' => 'required',
+      'ending_hour' => 'required',
+      'ending_minute' => 'required'
+    ]);
 
     Routine::create([
       'class_id' => $data['class_id'],
@@ -945,6 +1083,14 @@ class AdminController extends Controller
   public function store_syllabus(Request $request)
   {
     $data = $request->all();
+
+    $validated = $request->validate([
+      'title' => 'required',
+      'file' => 'required',
+      'subject_id' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required'
+    ]);
 
     if(!empty($data['image'])){
       $file = $data['image'];
