@@ -53,7 +53,7 @@
                       <div class="adminTable-action ms-0">
                           <button
                             type="button"
-                            class="btn btn-primary dropdown-toggle table-action-btn-2"
+                            class="btn btn-primary dropdown-toggle table-action-btn-2 form-select"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                           >

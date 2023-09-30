@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                   <?php
                     $info = json_decode($admin->user_information);
                     $user_image = $info->photo;
-                    ?>
+                  ?>
                   <tr class="alert" role="alert">
                     <td class="d-flex align-items-center">
                       @if(!empty($user_image))
@@ -84,8 +84,8 @@ use Illuminate\Support\Facades\Auth;
                     </td>
                     <td class="text-start">
                       <div class="ms-0">
-                        <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2"
-                          data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle table-action-btn-2
+                         form-select" data-bs-toggle="dropdown" aria-expanded="false">
                           Actions
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
