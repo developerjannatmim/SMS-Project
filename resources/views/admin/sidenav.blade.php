@@ -33,9 +33,9 @@
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg></span>
         </span>
-        <div class="multi-level collapse" role="list" id="submenu-laravel" aria-expanded="false">
+        <div class="multi-level collapse { show }" role="list" id="submenu-laravel" aria-expanded="false">
           <ul class="flex-column nav">
-            <li class="nav-item {{ request()->is('admin/admin*') ? 'active' : '' }}"><a  class="nav-link" href="{{ route('admin.admin') }}"><small class="sidebar-text">
+            <li class="nav-item  {{ request()->is('admin/admin*') ? 'active' : '' }}"><a  class="nav-link" href="{{ route('admin.admin') }}"><small class="sidebar-text">
                   Admin
                 </small></a>
             </li>
@@ -57,6 +57,7 @@
           </ul>
         </div>
       </li>
+
 
       <li class="nav-item">
         <span class="nav-link collapsed d-flex justify-content-between align-items-center {{ request()->is('admin/marks') || request()->is('admin/grade') ? 'showMenu' : '' }}" data-bs-toggle="collapse" data-bs-target="#submenu-app" aria-expanded="false">
@@ -181,4 +182,5 @@
     </ul>
   </div>
 </nav>
+
 

@@ -32,6 +32,7 @@ use App\Models\Subject;
           <div class="col-md-12">
             <div class="table-wrap">
               <div class="row mt-3">
+                
                 <div class="col-md-3">
                   <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove"
                     required>
@@ -62,6 +63,7 @@ use App\Models\Subject;
                 <div class="col-md-3">
                   <button type="submit" class="btn eBtn btn-primary">Filter</button>
                 </div>
+
                 <div style="background-color: rgb(239,240,245)"
                   class="att-report-banner d-flex justify-content-center justify-content-md-between align-items-center flex-wrap mt-4 mb-4 rounded">
                   <div class="att-report-summary order-1">

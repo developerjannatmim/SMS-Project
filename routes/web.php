@@ -122,7 +122,7 @@ Route::controller(AdminController::class)->middleware(['admin','auth'])->group(f
     Route::post('admin/routine/update/{id}', 'update_routine')->name('admin.routine.update');
     Route::get('admin/routine/delete/{id}', 'routine_destroy')->name('admin.routine.delete');
 
-    //School routes
+    //School route
     Route::get('admin/school/info', 'school_edit')->name('admin.school.info');
     Route::post('admin/school/update', 'school_update')->name('admin.school.update');
 

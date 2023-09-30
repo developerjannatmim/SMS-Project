@@ -31,6 +31,23 @@ use App\Models\Section;
       <div class="container">
         <div class="row">
           <div class="col-md-12">
+            <div class="search-filter-area mb-3 mt-4 d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15">
+              <form action="{{ route('admin.student') }}" >
+                <div
+                  class="search-input d-flex justify-content-start align-items-center"
+                >
+                  <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    value="{{ $search }}"
+                    placeholder="Search user"
+                    class="form-control"
+                  />
+                  <button type="submit" class="btn btn-primary" style="margin-left: 5px">search</button>
+                </div>
+              </form>
+            </div>
             <div class="table-wrap">
               <table class="table table-responsive-xl">
                 <thead>

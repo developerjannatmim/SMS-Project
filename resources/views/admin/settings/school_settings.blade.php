@@ -63,13 +63,23 @@
                 value="{{ $school->school_info }}" required>
             </div>
           </div>
-          <div class="col-md-6 mb-3">
-            <div class="form">
-              <label for="status">Status</label>
-              <input class="form-control @error('status') is-valid @enderror" name="status" type="text"
-                value="{{ $school->status }}" required>
+          @if( Auth()->user()->school_id == 1 )
+          <div class="col-md-3 mb-3" style="margin-top:40px">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label for="status">
+                <input type="radio" name="status" id="status" autocomplete="off" checked>Active
+              </label>
             </div>
           </div>
+          @elseif( Auth()->user()->school_id == 2 )
+          <div class="col-md-3 mb-3">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label for="status">
+                <input type="radio" name="status" id="status" autocomplete="off" checked>Active
+              </label>
+            </div>
+          </div>
+          @endif
         </div>
 
         <div class="mt-3">

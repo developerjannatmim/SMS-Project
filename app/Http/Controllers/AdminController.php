@@ -12,8 +12,10 @@ use App\Models\Section;
 use App\Models\Subject;
 use App\Models\Syllabus;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\School;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -79,10 +81,25 @@ class AdminController extends Controller
 
 
   //Student
-  public function student_list()
+  public function student_list(Request $request)
   {
-    $students = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
-    return view('admin.student.student_list', ['students' => $students]);
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $students = User::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 3);
+      })->orWhere(function ($query) use($search) {
+        $query->where('email', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 3);
+      })->paginate(5);
+
+    }else {
+      $students = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
+    }
+    return view('admin.student.student_list', ['students' => $students, 'search' => $search]);
   }
 
   public function student_create()
@@ -184,10 +201,25 @@ class AdminController extends Controller
 
   //Guardian
 
-  public function guardian_list()
+  public function guardian_list(Request $request)
   {
-    $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
-    return view('admin.parent.parent_list', compact('parents'));
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $parents = User::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 4);
+      })->orWhere(function ($query) use($search) {
+        $query->where('email', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 4);
+      })->paginate(5);
+
+    }else {
+      $parents = User::get()->where('role_id', 4)->where('school_id', auth()->user()->school_id);
+    }
+    return view('admin.parent.parent_list', ['parents' =>$parents, 'search' => $search]);
 
   }
 
@@ -288,11 +320,26 @@ class AdminController extends Controller
 
   //Teacher
 
-  public function teacher_list()
+  public function teacher_list(Request $request)
   {
-    $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $teachers = User::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 2);
+      })->orWhere(function ($query) use($search) {
+        $query->where('email', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 2);
+      })->paginate(5);
+
+    }else {
+      $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
+    }
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.teacher.teacher_list', compact('teachers', 'classes'));
+    return view('admin.teacher.teacher_list', compact('teachers', 'classes', 'search'));
 
   }
 
@@ -393,10 +440,26 @@ class AdminController extends Controller
 
   //Admin
 
-  public function admin_list()
+  public function admin_list(Request $request)
   {
-    $admins = User::get()->where('role_id', 1)->where('school_id', auth()->user()->school_id);
-    return view('admin.admin.admin_list', compact('admins'));
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $admins = User::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 1);
+      })->orWhere(function ($query) use($search) {
+        $query->where('email', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id)
+        ->where('role_id', 1);
+      })->paginate(5);
+
+    }else {
+      $admins = User::where('role_id', 1)->where('school_id', auth()->user()->school_id)->paginate(5);
+    }
+
+    return view('admin.admin.admin_list', ['admins'=> $admins, 'search' => $search]);
 
   }
 
@@ -578,10 +641,20 @@ class AdminController extends Controller
   }
 
   //Subject
-  public function subject_list()
+  public function subject_list(Request $request)
   {
-    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.subject.subject_list', ['subjects' => $subjects]);
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $subjects = Subject::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id);
+      })->paginate(5);
+
+    }else {
+      $subjects = Subject::where('school_id', auth()->user()->school_id)->paginate(5);
+    }
+    return view('admin.subject.subject_list', ['subjects' => $subjects, 'search' => $search]);
   }
 
   public function create_subject()
@@ -631,10 +704,23 @@ class AdminController extends Controller
   }
 
   //Class
-  public function class_list()
+  public function class_list(Request $request)
   {
+    $search = $request['search'] ?? '';
+    
+    if($search != ''){
+      
+      $class_list = Classes::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id);
+      })->paginate(5);
+      
+    }else {
+      $class_list = Classes::where('school_id', auth()->user()->school_id)->paginate(5);
+    }
     $sections = Section::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.class.class_list', ['sections' => $sections]);
+
+    return view('admin.class.class_list', ['sections' => $sections, 'class_list' => $class_list, 'search' => $search]);
   }
 
   public function create_class()
@@ -715,11 +801,21 @@ class AdminController extends Controller
   }
 
   //Exam
-  public function examList()
+  public function examList(Request $request)
   {
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $exams = Exam::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id);
+      })->paginate(5);
+
+    }else {
+      $exams = Exam::where('school_id', auth()->user()->school_id)->paginate(5);
+    }
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    $exams = Exam::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
+    return view('admin.examination.exam_list', ['exams' => $exams, 'classes' => $classes, 'search' => $search]);
   }
 
   public function createExam()
@@ -884,7 +980,7 @@ class AdminController extends Controller
       'ending_minute' => $data['ending_minute'],
       'school_id' => auth()->user()->school_id
     ]);
-    
+
     return redirect()->route('admin.routine');
   }
 
@@ -928,10 +1024,21 @@ class AdminController extends Controller
   }
 
   //Syllabus
-  public function syllabus()
+  public function syllabus(Request $request)
   {
-    $syllabuses = Syllabus::get()->where('school_id', auth()->user()->school_id);
-    return view('admin.syllabus.syllabus_list', ['syllabuses' => $syllabuses]);
+    $search = $request['search'] ?? '';
+
+    if($search != ''){
+      $syllabuses = Syllabus::where(function ($query) use($search) {
+        $query->where('title', 'LIKE', "%{$search}%")
+        ->where('school_id', auth()->user()->school_id);
+      })->paginate(5);
+
+    }else {
+      $syllabuses = Syllabus::where('school_id', auth()->user()->school_id)->paginate(5);
+    }
+
+    return view('admin.syllabus.syllabus_list', ['syllabuses' => $syllabuses, 'search' => $search]);
   }
 
   public function create_syllabus()

@@ -23,22 +23,25 @@
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
+            <div class="search-filter-area mb-3 mt-4 d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15">
+              <form action="{{ route('admin.exam') }}" >
+                <div
+                  class="search-input d-flex justify-content-start align-items-center"
+                >
+                  <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    value="{{ $search }}"
+                    placeholder="Search name"
+                    class="form-control"
+                  />
+                  <button type="submit" class="btn btn-primary" style="margin-left: 5px">search</button>
+                </div>
+              </form>
+            </div>
             <div class="table-wrap">
               <div class="row mt-3">
-                <div class="col-md-3"></div>
-                <div class="col-md-4">
-                  <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
-                    <option value="">Select a class</option>
-                    @foreach ($classes as $class)
-                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-primary">Filter</button>
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-2"></div>
               </div>
               <table class="table mt-3">
                 <thead class="thead-primary">

@@ -23,10 +23,20 @@
 
     <!-- Start Subjects area -->
     <section class="section " style="margin-top: -120px">
-      <a class="btn btn-primary" type="button" href="{{ route('admin.subject.create') }}" style="margin-left: 880px; margin-top: -50px">+ Add</a>
+      <a class="btn btn-primary" type="button" href="{{ route('admin.subject.create') }}"
+        style="margin-left: 880px; margin-top: -50px">+ Add</a>
       <div class="container bg-white rounded">
         <div class="row">
           <div class="col-md-12">
+            <div class="search-filter-area mb-3 mt-4 d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15">
+              <form action="{{ route('admin.subject') }}">
+                <div class="search-input d-flex justify-content-start align-items-center">
+                  <input type="text" id="search" name="search" value="{{ $search }}" placeholder="Search subject"
+                    class="form-control" />
+                  <button type="submit" class="btn btn-primary" style="margin-left: 5px">search</button>
+                </div>
+              </form>
+            </div>
             <div class="table-wrap">
               <table class="table mt-3">
                 <thead class="thead-primary">
@@ -38,10 +48,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($subjects as $subject)
+                  @foreach ($subjects as $subject)
                   <?php
-                  $class = Classes::get()->where('id', $subject->class_id)->first();
-                  ?>
+                                        $class = Classes::get()
+                                            ->where('id', $subject->class_id)
+                                            ->first();
+                                        ?>
                   <tr>
                     <th scope="row" class="scope">{{ $loop->index + 1 }}</th>
                     <td>{{ $subject->name }}</td>
@@ -55,11 +67,12 @@
                         <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action">
                           <li>
                             <a class="dropdown-item"
-                              href="{{ route('admin.edit.subject', ['id' => $subject->id] )}}">Edit</a>
+                              href="{{ route('admin.edit.subject', ['id' => $subject->id]) }}">Edit</a>
                           </li>
                           <li>
-                            <a class="dropdown-item" onclick="return confirm('{{__('Are you sure you want to delete this article ?')}}')"
-                              href="{{ route('admin.subject.delete', ['id' => $subject->id] )}}">Delete</a>
+                            <a class="dropdown-item"
+                              onclick="return confirm('{{ __('Are you sure you want to delete this article ?') }}')"
+                              href="{{ route('admin.subject.delete', ['id' => $subject->id]) }}">Delete</a>
                           </li>
                         </ul>
                       </div>

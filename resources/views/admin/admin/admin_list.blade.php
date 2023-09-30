@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
   <main class="content">
     <title>SMS Project Dashboard</title>
     <link rel="stylesheet" href="/css/style.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" /> --}}
 
     <div class="p-2 mb-0 mt-2">
       <div class="row" style="margin-left: 3px">
@@ -29,6 +30,23 @@ use Illuminate\Support\Facades\Auth;
       <div class="container">
         <div class="row">
           <div class="col-md-12">
+            <div class="search-filter-area mb-3 mt-4 d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15">
+              <form action="{{ route('admin.admin') }}" >
+                <div
+                  class="search-input d-flex justify-content-start align-items-center"
+                >
+                  <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    value="{{ $search }}"
+                    placeholder="Search user"
+                    class="form-control"
+                  />
+                  <button type="submit" class="btn btn-primary" style="margin-left: 5px">search</button>
+                </div>
+              </form>
+            </div>
             <div class="table-wrap">
               <table class="table table-responsive-xl">
                 <thead>
@@ -98,5 +116,6 @@ use Illuminate\Support\Facades\Auth;
 
     {{-- Footer --}}
     @include('layouts.footer')
+
   </main>
 </x-layouts.base>
