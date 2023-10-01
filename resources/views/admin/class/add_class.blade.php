@@ -32,7 +32,7 @@
         </div>
         @endif
     
-        <!-- Way 1: Display All Error Messages -->
+        <!-- Way 1: Display All Error Messages   -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
