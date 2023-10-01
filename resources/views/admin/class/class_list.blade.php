@@ -1,4 +1,4 @@
-<?php use App\Models\Classes; ?>
+<?php use App\Models\Section; ?>
 
 <x-layouts.base>
   {{-- Nav --}}
@@ -57,10 +57,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($sections as $section)
+                  @foreach ($classes as $class)
                   <?php
-                    $class = Classes::get()
-                        ->where('id', $section->class_id)
+                    $section = Section::get()
+                        ->where('id', $class->section_id)
                         ->first();
                     ?>
                   <tr>

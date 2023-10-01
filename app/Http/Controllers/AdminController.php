@@ -794,21 +794,18 @@ class AdminController extends Controller
     $search = $request['search'] ?? '';
 
     if($search != ''){
-      $class = DB::table('classes')
-      ->join('sections', 'classes.id', '=', 'sections.class_id')
-      ->select('classes.*')
-      ->get();
 
-      $sections = Section::where(function ($query) use($search) {
-        $query->where('class_id', 'LIKE', "%{$search}%")
+      $classes = Classes::where(function ($query) use($search) {
+        $query->where('name', 'LIKE', "%{$search}%")
         ->where('school_id', auth()->user()->school_id);
       })->paginate(5);
 
     }else {
-      $sections = Section::where('school_id', auth()->user()->school_id)->paginate(5);
+      $classes = Classes::where('school_id', auth()->user()->school_id)->paginate(5);
       }
+      $sections = Section::get()->where('school_id', auth()->user()->school_id);
 
-    return view('admin.class.class_list', ['sections' => $sections, 'search' => $search]);
+    return view('admin.class.class_list', ['sections' => $sections, 'classes' => $classes, 'search' => $search]);
   }
 
   public function create_class()
