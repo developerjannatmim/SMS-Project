@@ -819,11 +819,9 @@ class AdminController extends Controller
   public function class_store(Request $request)
   {
     $validated = $request->validate([
-      'name' => 'required',
-      'class_id' => 'required'
+      'name' => 'required'
     ],[
-      'name.required' => 'Name field is required.',
-      'class_id.required' => 'Class Id field is required.'
+      'name.required' => 'Name field is required.'
   ]);
 
     $duplicate_class_name = Classes::get()->where('name', $validated['name'])->where('school_id', auth()->user()->school_id);
