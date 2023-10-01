@@ -23,20 +23,40 @@
       <a class="btn btn-primary" type="button" href="{{ route('admin.syllabus') }}"
         style="margin-left: 880px; margin-top: -45px">Back</a>
       <div class="bg-white rounded p-4 mb-4 mt-2">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
+    
+        <!-- Way 1: Display All Error Messages -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.syllabus.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="col-md-6 mb-3">
               <div>
                 <label for="title" class="eForm-label">Title</label>
-                <input class="form-control @error('title') is-valid @enderror" name="title" type="text"
+                <input class="form-control @error('title') is-invalid @enderror" name="title" type="text"
                   placeholder="Enter syllabus title" required>
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label for="form-label" class="eForm-label">Syllabus</label>
-                <input class="form-control @error('image') is-valid @enderror" type="file" name="image"
+                <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
                 placeholder="Add Syllabus Image...">
               </div>
             </div>

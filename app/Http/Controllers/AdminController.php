@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\School;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 
 class AdminController extends Controller
@@ -111,10 +112,29 @@ class AdminController extends Controller
 
   public function student_store(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique:users',
+      'password' => 'required|min:6',
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+      'gender' => 'required',
+      'blood_group' => 'required',
+      'birthday' => 'required',
+      'phone' => 'required',
+      'address' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'password.required' => 'Password field is required.',
+      'email.required' => 'Email field is required.',
+      'email.email' => 'Email field must be email address.'
+  ]);
 
-    if (!empty($data['photo'])) {
-      $file = $data['photo'];
+  $validated['password'] = bcrypt($validated['password']);
+
+    if (!empty($validated['photo'])) {
+      $file = $validated['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
       $file->move('students-images/', $filename);
       $photo = $filename;
@@ -123,25 +143,27 @@ class AdminController extends Controller
     }
 
     $info = array(
-      'gender' => $data['gender'],
-      'blood_group' => $data['blood_group'],
-      'birthday' => date($data['birthday']),
-      'phone' => $data['phone'],
-      'address' => $data['address'],
+      'gender' => $validated['gender'],
+      'blood_group' => $validated['blood_group'],
+      'birthday' => date($validated['birthday']),
+      'phone' => $validated['phone'],
+      'address' => $validated['address'],
       'photo' => $photo
     );
 
-    $data['user_information'] = json_encode($info);
+    $validated['user_information'] = json_encode($info);
+
     User::create([
-      'name' => $data['name'],
-      'email' => $data['email'],
-      'password' => $data['password'],
+      'name' => $validated['name'],
+      'email' => $validated['email'],
+      'password' => $validated['password'],
+      'class_id' => $validated['class_id'],
+      'section_id' => $validated['section_id'],
       'role_id' => '3',
-      'class_id' => $data['class_id'],
-      'section_id' => $data['section_id'],
       'school_id' => auth()->user()->school_id,
-      'user_information' => $data['user_information']
+      'user_information' => $validated['user_information']
     ]);
+
     return redirect()->route('admin.student')->with('success', 'Student Added Successfully');
   }
 
@@ -156,6 +178,7 @@ class AdminController extends Controller
   public function student_update(Request $request, string $id)
   {
     $data = $request->all();
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -232,9 +255,29 @@ class AdminController extends Controller
 
   public function guardian_store(Request $request)
   {
-    $data = $request->all();
-    if (!empty($data['photo'])) {
-      $file = $data['photo'];
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique:users',
+      'password' => 'required|min:6',
+      'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+      'gender' => 'required',
+      'blood_group' => 'required',
+      'birthday' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'child_name' => 'required',
+      'designation' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'password.required' => 'Password field is required.',
+      'email.required' => 'Email field is required.',
+      'email.email' => 'Email field must be email address.'
+  ]);
+
+  $validated['password'] = bcrypt($validated['password']);
+
+    if (!empty($validated['photo'])) {
+      $file = $validated['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
       $file->move('parent-images/', $filename);
       $photo = $filename;
@@ -243,24 +286,24 @@ class AdminController extends Controller
     }
 
     $info = array(
-      'gender' => $data['gender'],
-      'blood_group' => $data['blood_group'],
-      'birthday' => date($data['birthday']),
-      'phone' => $data['phone'],
-      'address' => $data['address'],
-      'child_name' => $data['child_name'],
-      'designation' => $data['designation'],
+      'gender' => $validated['gender'],
+      'blood_group' => $validated['blood_group'],
+      'birthday' => date($validated['birthday']),
+      'phone' => $validated['phone'],
+      'address' => $validated['address'],
+      'child_name' => $validated['child_name'],
+      'designation' => $validated['designation'],
       'photo' => $photo
     );
 
-    $data['user_information'] = json_encode($info);
+    $validated['user_information'] = json_encode($info);
     User::create([
-      'name' => $data['name'],
-      'email' => $data['email'],
-      'password' => $data['password'],
+      'name' => $validated['name'],
+      'email' => $validated['email'],
+      'password' => $validated['password'],
       'role_id' => '4',
       'school_id' => auth()->user()->school_id,
-      'user_information' => $data['user_information']
+      'user_information' => $validated['user_information']
     ]);
     return redirect()->route('admin.guardian')->with('success', 'Parent Added Successfully');
 
@@ -353,9 +396,26 @@ class AdminController extends Controller
 
   public function teacher_store(Request $request)
   {
-    $data = $request->all();
-    if (!empty($data['photo'])) {
-      $file = $data['photo'];
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique:users',
+      'password' => 'required|min:6',
+      'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+      'gender' => 'required',
+      'blood_group' => 'required',
+      'birthday' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
+      'designation' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'password.required' => 'Password field is required.',
+      'email.required' => 'Email field is required.',
+      'email.email' => 'Email field must be email address.'
+  ]);
+
+    if (!empty($validated['photo'])) {
+      $file = $validated['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
       $file->move('teacher-images/', $filename);
       $photo = $filename;
@@ -364,23 +424,23 @@ class AdminController extends Controller
     }
 
     $info = array(
-      'gender' => $data['gender'],
-      'blood_group' => $data['blood_group'],
-      'birthday' => $data['birthday'],
-      'phone' => $data['phone'],
-      'address' => $data['address'],
-      'designation' => $data['designation'],
+      'gender' => $validated['gender'],
+      'blood_group' => $validated['blood_group'],
+      'birthday' => $validated['birthday'],
+      'phone' => $validated['phone'],
+      'address' => $validated['address'],
+      'designation' => $validated['designation'],
       'photo' => $photo
     );
 
-    $data['user_information'] = json_encode($info);
+    $validated['user_information'] = json_encode($info);
     User::create([
-      'name' => $data['name'],
-      'email' => $data['email'],
-      'password' => $data['password'],
+      'name' => $validated['name'],
+      'email' => $validated['email'],
+      'password' => $validated['password'],
       'role_id' => '2',
       'school_id' => auth()->user()->school_id,
-      'user_information' => $data['user_information']
+      'user_information' => $validated['user_information']
     ]);
     return redirect()->route('admin.teacher')->with('success', 'Teacher Added Successfully');
 
@@ -472,9 +532,25 @@ class AdminController extends Controller
 
   public function admin_store(Request $request)
   {
-    $data = $request->all();
-    if (!empty($data['photo'])) {
-      $file = $data['photo'];
+    $validated = $request->validate([
+      'name' => 'required',
+      'email' => 'required|email|unique:users',
+      'password' => 'required|min:6',
+      'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+      'gender' => 'required',
+      'blood_group' => 'required',
+      'birthday' => 'required',
+      'phone' => 'required',
+      'address' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'password.required' => 'Password field is required.',
+      'email.required' => 'Email field is required.',
+      'email.email' => 'Email field must be email address.'
+  ]);
+
+    if (!empty($validated['photo'])) {
+      $file = $validated['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
       $file->move('admin-images/', $filename);
       $photo = $filename;
@@ -483,22 +559,22 @@ class AdminController extends Controller
     }
 
     $info = array(
-      'gender' => $data['gender'],
-      'blood_group' => $data['blood_group'],
-      'birthday' => date($data['birthday']),
-      'phone' => $data['phone'],
-      'address' => $data['address'],
+      'gender' => $validated['gender'],
+      'blood_group' => $validated['blood_group'],
+      'birthday' => date($validated['birthday']),
+      'phone' => $validated['phone'],
+      'address' => $validated['address'],
       'photo' => $photo
     );
 
-    $data['user_information'] = json_encode($info);
+    $validated['user_information'] = json_encode($info);
     User::create([
-      'name' => $data['name'],
-      'email' => $data['email'],
-      'password' => $data['password'],
+      'name' => $validated['name'],
+      'email' => $validated['email'],
+      'password' => $validated['password'],
       'role_id' => '1',
       'school_id' => auth()->user()->school_id,
-      'user_information' => $data['user_information']
+      'user_information' => $validated['user_information']
     ]);
     return redirect()->route('admin.admin')->with('success', 'Admin Added Successfully');
 
@@ -513,6 +589,7 @@ class AdminController extends Controller
   public function admin_update(Request $request, string $id)
   {
     $data = $request->all();
+
     if (!empty($data['photo'])) {
       $file = $data['photo'];
       $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -557,23 +634,15 @@ class AdminController extends Controller
   //School
   public function school_edit()
   {
-    //$school = School::find(auth()->user()->school_id);
     $school = auth()->user()->school;
     return view('admin.settings.school_settings', ['school' => $school]);
   }
 
   public function school_update(Request $request)
   {
-    //$data = $request->all();
     $data = $request->only('title', 'email', 'phone', 'address', 'school_info', 'status');
 
     School::where('id', auth()->user()->school_id)->update($data);
-      // 'title' => $data['title'],
-      // 'email' => $data['email'],
-      // 'phone' => $data['phone'],
-      // 'address' => $data['address'],
-      // 'school_info' => $data['school_info'],
-      // 'status' => $data['status']
 
     return redirect()->back()->with('success', 'School updated Successfully');
   }
@@ -592,16 +661,26 @@ class AdminController extends Controller
 
   public function gradeStore(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'name' => 'required',
+      'grade_point' => 'required',
+      'mark_from' => 'required',
+      'mark_upto' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'grade_point.required' => 'Grade Point field is required.',
+      'mark_from.required' => 'Mark From field is required.',
+      'mark_upto.required' => 'Mark Upto field is required.'
+  ]);
 
-    $duplicate_grade_check = Grade::get()->where('name', $data['grade'])->where('school_id', auth()->user()->school_id);
+    $duplicate_grade_check = Grade::get()->where('name', $validated['grade'])->where('school_id', auth()->user()->school_id);
 
     if (count($duplicate_grade_check) == 0) {
       Grade::create([
-        'name' => $data['grade'],
-        'grade_point' => $data['grade_point'],
-        'mark_from' => $data['mark_from'],
-        'mark_upto' => $data['mark_upto'],
+        'name' => $validated['grade'],
+        'grade_point' => $validated['grade_point'],
+        'mark_from' => $validated['mark_from'],
+        'mark_upto' => $validated['mark_upto'],
         'school_id' => auth()->user()->school_id,
       ]);
 
@@ -665,11 +744,17 @@ class AdminController extends Controller
 
   public function subject_store(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'name' => 'required',
+      'class_id' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'class_id.required' => 'Class Id field is required.'
+  ]);
 
     Subject::create([
-      'name' => $data['name'],
-      'class_id' => $data['class_id'],
+      'name' => $validated['name'],
+      'class_id' => $validated['class_id'],
       'school_id' => auth()->user()->school_id,
     ]);
     return redirect()->route('admin.subject')->with(['message' => 'You have successfully create a new Subject.']);
@@ -707,18 +792,18 @@ class AdminController extends Controller
   public function class_list(Request $request)
   {
     $search = $request['search'] ?? '';
-    
+
     if($search != ''){
       $class = DB::table('classes')
       ->join('sections', 'classes.id', '=', 'sections.class_id')
       ->select('classes.*')
       ->get();
-      
+
       $sections = Section::where(function ($query) use($search) {
         $query->where('class_id', 'LIKE', "%{$search}%")
         ->where('school_id', auth()->user()->school_id);
       })->paginate(5);
-      
+
     }else {
       $sections = Section::where('school_id', auth()->user()->school_id)->paginate(5);
       }
@@ -733,13 +818,19 @@ class AdminController extends Controller
 
   public function class_store(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'name' => 'required',
+      'class_id' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'class_id.required' => 'Class Id field is required.'
+  ]);
 
-    $duplicate_class_name = Classes::get()->where('name', $data['name'])->where('school_id', auth()->user()->school_id);
+    $duplicate_class_name = Classes::get()->where('name', $validated['name'])->where('school_id', auth()->user()->school_id);
 
     if(count($duplicate_class_name) == 0){
       $id = Classes::create([
-        'name' => $data['name'],
+        'name' => $validated['name'],
         'school_id' => auth()->user()->school_id
       ])->id;
 
@@ -749,7 +840,7 @@ class AdminController extends Controller
         'school_id' => auth()->user()->school_id
       ]);
 
-      return redirect()->route('admin.class')->with(['message' => 'You have successfully create a new class.']);
+      return redirect()->route('admin.class')->with(['success' => 'You have successfully create a new class.']);
     }else {
       return redirect()->back()->with('error', 'sorry already the class name is exisist');
     }
@@ -830,21 +921,37 @@ class AdminController extends Controller
 
   public function examStore(Request $request)
   {
-    $data = $request->all();
-    $exam = Exam::create([
-      'name' => $data['exam_name'],
-      'exam_type' => $data['exam_type'],
-      'starting_time' => $data['starting_time'],
-      'ending_time' => $data['ending_time'],
-      'total_marks' => $data['total_marks'],
+    $validated = $request->validate([
+      'name' => 'required',
+      'exam_type' => 'required',
+      'starting_time' => 'required',
+      'ending_time' => 'required',
+      'total_marks' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required'
+    ],[
+      'name.required' => 'Name field is required.',
+      'class_id.required' => 'Class Id field is required.',
+      'exam_type.required' => 'exam_type field is required.',
+      'starting_time.required' => 'starting_time field is required.',
+      'ending_time.required' => 'ending_time field is required.',
+      'total_marks.required' => 'total_marks field is required.',
+      'section_id.required' => 'section_id field is required.',
+    ]);
+
+    Exam::create([
+      'name' => $validated['exam_name'],
+      'exam_type' => $validated['exam_type'],
+      'starting_time' => $validated['starting_time'],
+      'ending_time' => $validated['ending_time'],
+      'total_marks' => $validated['total_marks'],
       'status' => 'pending',
-      'class_id' => $data['class_id'],
-      'section_id' => $data['section_id'],
+      'class_id' => $validated['class_id'],
+      'section_id' => $validated['section_id'],
       'school_id' => auth()->user()->school_id,
     ]);
-    $exam->save();
 
-    return redirect()->back()->with('message', 'You have successfully create a new exam.');
+    return redirect()->route('admin.exam')->with('success', 'You have successfully create a new exam.');
   }
 
   public function editExam(string $id)
@@ -914,16 +1021,35 @@ class AdminController extends Controller
 
   public function store_marks(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'user_id' => 'required',
+      'exam_id' => 'required',
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'subject_id' => 'required',
+      'marks' => 'required',
+      'grade_point' => 'required',
+      'comment' => 'required'
+    ],[
+      'user_id.required' => 'Name field is required.',
+      'exam_id.required' => 'Exam Id field is required.',
+      'class_id.required' => 'Class Id field is required.',
+      'section_id.required' => 'section_id field is required.',
+      'subject_id.required' => 'subject_id field is required.',
+      'marks.required' => 'marks field is required.',
+      'grade_point.required' => 'grade_point field is required.',
+      'comment.required' => 'comment field is required.'
+    ]);
+
     Mark::create([
-      'user_id' => $data['user_id'],
-      'exam_id' => $data['exam_id'],
-      'class_id' => $data['class_id'],
-      'section_id' => $data['section_id'],
-      'subject_id' => $data['subject_id'],
-      'marks' => $data['marks'],
-      'grade_point' => $data['grade_point'],
-      'comment' => $data['comment'],
+      'user_id' => $validated['user_id'],
+      'exam_id' => $validated['exam_id'],
+      'class_id' => $validated['class_id'],
+      'section_id' => $validated['section_id'],
+      'subject_id' => $validated['subject_id'],
+      'marks' => $validated['marks'],
+      'grade_point' => $validated['grade_point'],
+      'comment' => $validated['comment'],
       'school_id' => auth()->user()->school_id
     ]);
 
@@ -943,12 +1069,27 @@ class AdminController extends Controller
 
   public function update_marks(Request $request, string $id)
   {
+    $data = $request->all();
 
+    Mark::where('id', $id)->update([
+      'user_id' => $data['user_id'],
+      'exam_id' => $data['exam_id'],
+      'class_id' => $data['class_id'],
+      'section_id' => $data['section_id'],
+      'subject_id' => $data['subject_id'],
+      'marks' => $data['marks'],
+      'grade_point' => $data['grade_point'],
+      'comment' => $data['comment'],
+      'school_id' => auth()->user()->school_id
+    ]);
+    return redirect()->route('admin.marks');
   }
 
   public function marks_destroy(string $id)
   {
-
+    $mark = Mark::find($id);
+    $mark->delete();
+    return redirect()->route('admin.marks');
   }
 
   //Routine
@@ -968,19 +1109,39 @@ class AdminController extends Controller
 
   public function store_routine(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'subject_id' => 'required',
+      'routine_creator' => 'required',
+      'room_id' => 'required',
+      'day' => 'required',
+      'starting_hour' => 'required',
+      'starting_minute' => 'required',
+      'ending_hour' => 'required',
+      'ending_minute' => 'required'
+    ],[
+      'class_id.required' => 'Class Id field is required.',
+      'section_id.required' => 'section_id field is required.',
+      'subject_id.required' => 'subject_id field is required.',
+      'routine_creator.required' => 'routine_creator field is required.',
+      'room_id.required' => 'room_id field is required.',
+      'day.required' => 'day field is required.',
+      'starting_hour.required' => 'starting_hour field is required.',
+      'ending_hour.required' => 'ending_hour field is required.'
+    ]);
 
     Routine::create([
-      'class_id' => $data['class_id'],
-      'section_id' => $data['section_id'],
-      'subject_id' => $data['subject_id'],
-      'routine_creator' => $data['routine_creator'],
-      'room_id' => $data['room_id'],
-      'day' => $data['day'],
-      'starting_hour' => $data['starting_hour'],
-      'starting_minute' => $data['starting_minute'],
-      'ending_hour' => $data['ending_hour'],
-      'ending_minute' => $data['ending_minute'],
+      'class_id' => $validated['class_id'],
+      'section_id' => $validated['section_id'],
+      'subject_id' => $validated['subject_id'],
+      'routine_creator' => $validated['routine_creator'],
+      'room_id' => $validated['room_id'],
+      'day' => $validated['day'],
+      'starting_hour' => $validated['starting_hour'],
+      'starting_minute' => $validated['starting_minute'],
+      'ending_hour' => $validated['ending_hour'],
+      'ending_minute' => $validated['ending_minute'],
       'school_id' => auth()->user()->school_id
     ]);
 
@@ -1054,10 +1215,22 @@ class AdminController extends Controller
 
   public function store_syllabus(Request $request)
   {
-    $data = $request->all();
+    $validated = $request->validate([
+      'class_id' => 'required',
+      'section_id' => 'required',
+      'subject_id' => 'required',
+      'title' => 'required',
+      'image' => 'required'
+    ],[
+      'class_id.required' => 'Class Id field is required.',
+      'section_id.required' => 'section_id field is required.',
+      'subject_id.required' => 'subject_id field is required.',
+      'title.required' => 'title field is required.',
+      'image.required' => 'image field is required.'
+    ]);
 
-    if(!empty($data['image'])){
-      $file = $data['image'];
+    if(!empty($validated['image'])){
+      $file = $validated['image'];
       $filename = time(). '.'. $file->getClientOriginalExtension();
       $file->move('syllabus_images/', $filename);
       $image = $filename;
@@ -1066,11 +1239,11 @@ class AdminController extends Controller
     }
 
     Syllabus::create([
-      'title' => $data['title'],
+      'title' => $validated['title'],
       'file' => $image,
-      'subject_id' => $data['subject_id'],
-      'class_id' => $data['class_id'],
-      'section_id' => $data['section_id'],
+      'subject_id' => $validated['subject_id'],
+      'class_id' => $validated['class_id'],
+      'section_id' => $validated['section_id'],
       'school_id' => auth()->user()->school_id
     ]);
     return redirect()->route('admin.syllabus');

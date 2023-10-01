@@ -31,14 +31,14 @@
           <div class="col-md-6 mb-3">
             <div>
               <label for="name">Name</label>
-              <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+              <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
                 value="{{ $student->name }}" required>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="email">Email</label>
-              <input class="form-control @error('email') is-valid @enderror" name="email" type="email"
+              <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
                 value="{{ $student->email }}" required>
             </div>
           </div>
@@ -103,14 +103,14 @@
           <div class="col-sm-6 mb-3">
             <div class="form-group">
               <label for="address">Address</label>
-              <input class="form-control @error('address') is-valid @enderror" name="address" type="text"
+              <input class="form-control @error('address') is-invalid @enderror" name="address" type="text"
                 value="{{ $info->address }}">
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input class="form-control @error('phone') is-valid @enderror" name="phone" type="number"
+              <input class="form-control @error('phone') is-invalid @enderror" name="phone" type="number"
                 value="{{ $info->phone }}">
             </div>
           </div>
@@ -119,7 +119,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <Label for="form-label" class="">Add Photo</Label>
-            <input class="form-control @error('photo') is-valid @enderror" type="file" name="photo"
+            <input class="form-control @error('photo') is-invalid @enderror" type="file" name="photo"
               value="Add Photo...">
           </div>
           <div class="col-md-6 mb-3">

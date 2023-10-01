@@ -29,7 +29,7 @@
               <div class="col-md-6 mb-3">
                 <div>
                   <label for="name">Name</label>
-                  <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+                  <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
                     value="{{ $class->name }}" required>
                 </div>
               </div>

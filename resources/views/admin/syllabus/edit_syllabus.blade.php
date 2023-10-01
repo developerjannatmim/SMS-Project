@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="title" class="eForm-label">Title</label>
-                            <input class="form-control @error('title') is-valid @enderror" type="text" name="title"
+                            <input class="form-control @error('title') is-invalid @enderror" type="text" name="title"
                                 id="title" value="{{ $syllabus->title }}" required>
                         </div>
 
@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="form-label" class="eForm-label">Upload Syllabus</label>
-                            <input class="form-control @error('image') is-valid @enderror" type="file" name="image"
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
                             value="{{ $syllabus->file }}">
                         </div>
                     </div>

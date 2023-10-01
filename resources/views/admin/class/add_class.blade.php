@@ -23,13 +23,33 @@
     <section class="section" style="margin-top: -120px">
       <a class="btn btn-primary" type="button" href="{{ route('admin.class') }}" style="margin-left: 880px; margin-top: -50px">Back</a>
       <div class="bg-white rounded p-4 mb-4 mt-2">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
+    
+        <!-- Way 1: Display All Error Messages -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.store.class') }}" method="POST">
           @csrf
           <div class="row">
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control @error('name') is-valid @enderror" type="text" name="name" placeholder="provide a new class name..." required>
+                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="provide a new class name..." required>
               </div>
             </div>
           </div>

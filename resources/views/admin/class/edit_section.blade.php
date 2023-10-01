@@ -29,7 +29,7 @@
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label for="name">Section</label>
-                <input class="form-control @error('name') is-valid @enderror" type="text" name="name" value="{{ $section->name }}" required >
+                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ $section->name }}" required >
               </div>
             </div>
           </div>

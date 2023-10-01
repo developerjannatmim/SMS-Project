@@ -22,6 +22,26 @@
       <a class="btn btn-primary" type="button" href="{{ route('admin.marks') }}"
         style="margin-left: 880px; margin-top: -45px">Back</a>
       <div class="bg-white rounded p-4 mb-4 mt-2">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
+    
+        <!-- Way 1: Display All Error Messages -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.marks.store') }}" method="POST">
           @csrf
           <div class="row">
@@ -78,14 +98,14 @@
             <div class="col-md-6 mb-3">
               <div>
                 <label for="marks">Mark</label>
-                <input class="form-control @error('marks') is-valid @enderror" name="marks" type="text"
+                <input class="form-control @error('marks') is-invalid @enderror" name="marks" type="text"
                   placeholder="add marks" required>
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <div>
                 <label for="grade_point">Grade Point</label>
-                <input class="form-control @error('grade_point') is-valid @enderror" name="grade_point" type="text"
+                <input class="form-control @error('grade_point') is-invalid @enderror" name="grade_point" type="text"
                   placeholder="grade point" required>
               </div>
             </div>
@@ -106,7 +126,7 @@
             <div class="col-md-6 mb-3">
               <div>
                 <label for="comment">Comment</label>
-                <input class="form-control @error('comment') is-valid @enderror" name="comment" type="text"
+                <input class="form-control @error('comment') is-invalid @enderror" name="comment" type="text"
                   placeholder="add comment" required>
               </div>
             </div>

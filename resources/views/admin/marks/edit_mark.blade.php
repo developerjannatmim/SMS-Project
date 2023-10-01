@@ -78,14 +78,14 @@
             <div class="col-md-6 mb-3">
               <div>
                 <label for="marks">Mark</label>
-                <input class="form-control @error('marks') is-valid @enderror" name="marks" type="text"
+                <input class="form-control @error('marks') is-invalid @enderror" name="marks" type="text"
                   value="{{ $mark->marks }}" required>
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <div>
                 <label for="grade_point">Grade Point</label>
-                <input class="form-control @error('grade_point') is-valid @enderror" name="grade_point" type="text"
+                <input class="form-control @error('grade_point') is-invalid @enderror" name="grade_point" type="text"
                   value="{{ $mark->grade_point }}" required>
               </div>
             </div>
@@ -106,7 +106,7 @@
             <div class="col-md-6 mb-3">
               <div>
                 <label for="comment">Comment</label>
-                <input class="form-control @error('comment') is-valid @enderror" name="comment" type="text"
+                <input class="form-control @error('comment') is-invalid @enderror" name="comment" type="text"
                 value="{{ $mark->comment }}" required>
               </div>
             </div>

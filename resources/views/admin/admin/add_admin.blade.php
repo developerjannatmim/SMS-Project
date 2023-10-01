@@ -23,7 +23,26 @@
 			<a class="btn btn-primary" type="button" href="{{ route('admin.admin') }}"
 				style="margin-left: 900px; margin-top: -45px">Back</a>
 			<div class="bg-white rounded p-4 mb-4 mt-2">
-				{{-- <h5>{{auth()->user()->name}}</h5> --}}
+				@if(Session::has('success'))
+				<div class="alert alert-success">
+					{{ Session::get('success') }}
+					@php
+						Session::forget('success');
+					@endphp
+				</div>
+				@endif
+			
+				<!-- Way 1: Display All Error Messages -->
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<strong>Whoops!</strong> There were some problems with your input.<br><br>
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
 				<h2 class="h5 mb-4">Create Admin information</h2>
 				<form action="{{ route('admin.admin.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
@@ -31,14 +50,14 @@
 						<div class="col-md-6 mb-3">
 							<div>
 								<label for="name">Name</label>
-								<input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+								<input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
 									placeholder="Enter your name" required>
 							</div>
 						</div>
 						<div class="col-md-6 mb-3">
 							<div class="form-group">
 								<label for="email">Email</label>
-								<input class="form-control @error('email') is-valid @enderror" name="email" type="email"
+								<input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
 									placeholder="name@gmail.com" required>
 							</div>
 						</div>
@@ -48,7 +67,7 @@
 						<div class="col-md-12 mb-3">
 							<div>
 								<label for="password">Password</label>
-								<input class="form-control @error('password') is-valid @enderror" name="password"
+								<input class="form-control @error('password') is-invalid @enderror" name="password"
 									type="password" placeholder="Enter your password" required>
 							</div>
 						</div>
@@ -78,14 +97,14 @@
 						<div class="col-sm-6 mb-3">
 							<div class="form-group">
 								<label for="address">Address</label>
-								<input class="form-control @error('address') is-valid @enderror" name="address"
+								<input class="form-control @error('address') is-invalid @enderror" name="address"
 									type="text" placeholder="Enter your home address">
 							</div>
 						</div>
 						<div class="col-md-6 mb-3">
 							<div class="form-group">
 								<label for="phone">Phone</label>
-								<input class="form-control @error('phone') is-valid @enderror" name="phone"
+								<input class="form-control @error('phone') is-invalid @enderror" name="phone"
 									type="number" placeholder="+12-345 678 910">
 							</div>
 						</div>
@@ -94,7 +113,7 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<Label for="form-label" class="">Add Photo</Label>
-							<input class="form-control @error('photo') is-valid @enderror" type="file" name="photo"
+							<input class="form-control @error('photo') is-invalid @enderror" type="file" name="photo"
 								placeholder="Add Photo...">
 						</div>
 						<div class="col-md-6 mb-3">

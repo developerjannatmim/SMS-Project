@@ -24,13 +24,33 @@
       <a class="btn btn-primary" type="button" href="{{ route('admin.subject') }}"
         style="margin-left: 880px; margin-top: -45px">Back</a>
     <div class="bg-white rounded p-4 mb-4 mt-2">
+      @if(Session::has('success'))
+      <div class="alert alert-success">
+          {{ Session::get('success') }}
+          @php
+              Session::forget('success');
+          @endphp
+      </div>
+      @endif
+  
+      <!-- Way 1: Display All Error Messages -->
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
       <form action="{{ route('admin.store.subject') }}" method="POST">
         @csrf
         <div class="row">
           <div class="col-md-6 mb-3">
             <div>
               <label for="name">Name</label>
-              <input class="form-control @error('name') is-valid @enderror" name="name" type="text"
+              <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
                 placeholder="Provide a subject name" required>
             </div>
           </div>
