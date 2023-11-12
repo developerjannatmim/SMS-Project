@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mark;
+use App\Models\Routine;
+use App\Models\Section;
+use App\Models\Syllabus;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Grade;
@@ -26,7 +30,7 @@ class TeacherController extends Controller
     {
       return view('teacher.profile.view');
     }
-  
+
   //start not permitted
     public function profile_edit(string $id)
     {
@@ -36,7 +40,7 @@ class TeacherController extends Controller
     public function profile_update(Request $request, string $id)
     {
       $data = $request->all();
-  
+
       if (!empty($data['photo'])) {
         $file = $data['photo'];
         $filename = time() . '-' . $file->getClientOriginalExtension();
@@ -52,7 +56,7 @@ class TeacherController extends Controller
         }
       }
       $user_info = User::where('id', $id)->value('user_information');
-  
+
       $info = array(
         'gender' => $data['gender'],
         'blood_group' => json_decode($user_info)->blood_group,
@@ -61,7 +65,7 @@ class TeacherController extends Controller
         'address' => $data['address'],
         'photo' => $photo
       );
-  
+
       $data['user_information'] = json_encode($info);
       User::where('id', $id)->update([
         'name' => $data['name'],
@@ -86,11 +90,36 @@ class TeacherController extends Controller
       return view('teacher.grade.grade_list', ['grades' => $grades]);
     }
 
+  //Routine List
+  public function routine()
+  {
+    $routine = Routine::get()->where('school_id', auth()->user()->school_id);
+    return view('teacher.routine.routine', ['routine' => $routine]);
+  }
+
+  //Syllabus List
+  public function list_of_syllabus()
+  {
+    $syllabus = Syllabus::get()->where('school_id', auth()->user()->school_id);
+    return view('teacher.syllabus.syllabus', ['syllabuses' => $syllabus]);
+  }
+
   //Exam List
   public function examList()
   {
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
     $exams = Exam::get()->where('school_id', auth()->user()->school_id);
     return view('teacher.examination.exam_list', ['exams' => $exams, 'classes' => $classes]);
+  }
+
+  //Marks List
+  public function marks()
+  {
+    $marks = Mark::get()->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+
+    return view('teacher.marks.marks_list', ['marks' => $marks, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects]);
   }
 }

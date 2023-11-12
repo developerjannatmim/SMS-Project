@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mark;
+use App\Models\Routine;
+use App\Models\Section;
+use App\Models\Syllabus;
 use App\Models\User;
 use App\Models\Grade;
 use App\Models\Classes;
@@ -93,4 +97,29 @@ class StudentController extends Controller
     return view('student.teacher.teacher_list', compact('teachers', 'classes'));
 
   }
+
+  //Marks List
+  public function marks()
+  {
+    $marks = Mark::get()->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+
+    return view('student.marks.marks_list', ['marks' => $marks, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects]);
+  }
+
+  //Routine List
+  public function routine()
+  {
+    $routine = Routine::get()->where('school_id', auth()->user()->school_id);
+    return view('student.routine.routine', ['routine' => $routine]);
+  }
+
+  //Syllabus List
+public function syllabus()
+{
+  $syllabus = Syllabus::get()->where('school_id', auth()->user()->school_id);
+  return view('student.syllabus.syllabus', ['syllabuses' => $syllabus]);
+}
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mark;
+use App\Models\Routine;
+use App\Models\Syllabus;
 use App\Models\User;
 use App\Models\Grade;
 use App\Models\Subject;
@@ -93,7 +96,7 @@ class ParentController extends Controller
     $students = User::get()->where('role_id', 3)->where('school_id', auth()->user()->school_id);
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
     $sections = Section::get()->where('school_id', auth()->user()->school_id);
-    return view('parent.users.student_list', compact('students', 'classes', 'sections'));
+    return view('parent.user.student_list', compact('students', 'classes', 'sections'));
   }
 
   //Teacher List
@@ -101,7 +104,31 @@ class ParentController extends Controller
   {
     $teachers = User::get()->where('role_id', 2)->where('school_id', auth()->user()->school_id);
     $classes = Classes::get()->where('school_id', auth()->user()->school_id);
-    return view('parent.users.teacher_list', compact('teachers', 'classes'));
+    return view('parent.user.teacher_list', compact('teachers', 'classes'));
 
   }
+  //Marks List
+  public function marks()
+  {
+    $marks = Mark::get()->where('school_id', auth()->user()->school_id);
+    $classes = Classes::get()->where('school_id', auth()->user()->school_id);
+    $sections = Section::get()->where('school_id', auth()->user()->school_id);
+    $subjects = Subject::get()->where('school_id', auth()->user()->school_id);
+
+    return view('parent.marks.marks_list', ['marks' => $marks, 'classes' => $classes, 'sections' => $sections, 'subjects' => $subjects]);
+  }
+
+  //Routine List
+  public function routine()
+  {
+    $routine = Routine::get()->where('school_id', auth()->user()->school_id);
+    return view('parent.routine.routine', ['routine' => $routine]);
+  }
+
+  //Syllabus List
+public function syllabusList()
+{
+  $syllabus = Syllabus::get()->where('school_id', auth()->user()->school_id);
+  return view('parent.syllabus.syllabus', ['syllabuses' => $syllabus]);
+}
 }

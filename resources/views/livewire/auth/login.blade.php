@@ -11,12 +11,12 @@
                     <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
                             <h1 class="mb-3 h3">Welcome back</h1>
-                            <p class="mb-0"> Create new account or
+                            {{-- <p class="mb-0"> Create new account or
                                 <p class="mb-0">Sign in with these credentials:</p>
                                 <p class="mb-0"> Email: <strong>admin@volt.com</strong> Password:
                                     <strong>secret</strong></p>
 
-                            </p>
+                            </p> --}}
                         </div>
                         <form wire:submit.prevent="login" action="#" class="mt-4" method="POST">
                             <!-- Form -->
