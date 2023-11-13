@@ -50,10 +50,10 @@
                 <tbody>
                   @foreach ($subjects as $subject)
                   <?php
-                                        $class = Classes::get()
-                                            ->where('id', $subject->class_id)
-                                            ->first();
-                                        ?>
+                      $class = Classes::get()
+                          ->where('id', $subject->class_id)
+                          ->first();
+                      ?>
                   <tr>
                     <th scope="row" class="scope">{{ $loop->index + 1 }}</th>
                     <td>{{ $subject->name }}</td>
